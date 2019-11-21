@@ -1,7 +1,8 @@
 setlocal EnableDelayedExpansion
 
-:: prevent redefining snprintf to _snprintf and build failing
-set "CFLAGS=%CFLAGS% -DHAVE_SNPRINTF"
+:: Python assumes an old Visual Studio without snprintf, but this breaks
+:: compiling the Python bindings. Need to define HAVE_SNPRINTF to fix.
+:: https://github.com/boostorg/system/issues/32#issuecomment-462912013
 set "CXXFLAGS=%CXXFLAGS% -DHAVE_SNPRINTF"
 
 :: Make a build folder and change to it
