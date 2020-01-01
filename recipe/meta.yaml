@@ -1,4 +1,4 @@
-{% set version = "3.14.1.1" %}
+{% set version = "3.15.0.0" %}
 
 package:
   name: uhd
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: 8cbcb22d12374ceb2859689b1d68d9a5fa6bd5bd82407f66952863d5547d27d0
+  sha256: eed4a77d75faafff56be78985950039f8d9d1eb9fcbd58b8862e481dd49825cd
   patches:
     - 0001-lib-utils-Don-t-use-hard-coded-path-constants.patch
     - 0001-python-change-CMake-variable-for-library-ext.patch
