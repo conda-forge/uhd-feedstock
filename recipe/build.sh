@@ -8,7 +8,6 @@ cd build
 #   DOXYGEN/MANUAL because we don't need docs in the conda package
 #   DPDK needs dpdk
 #   E300 build fails on CI
-#   GPSD needs gpsd
 #   LIBERIO needs liberio
 cmake \
     -DBOOST_ROOT=$PREFIX \
@@ -26,7 +25,6 @@ cmake \
     -DENABLE_E300=OFF \
     -DENABLE_E320=ON \
     -DENABLE_EXAMPLES=ON \
-    -DENABLE_GPSD=OFF \
     -DENABLE_LIBERIO=OFF \
     -DENABLE_LIBUHD=ON \
     -DENABLE_MAN_PAGES=ON \
@@ -34,8 +32,9 @@ cmake \
     -DENABLE_MPMD=ON \
     -DENABLE_OCTOCLOCK=ON \
     -DENABLE_N230=ON \
+    -DENABLE_N300=ON \
+    -DENABLE_N320=ON \
     -DENABLE_PYTHON_API=ON \
-    -DENABLE_PYTHON3=$PY3K \
     -DENABLE_RFNOC=ON \
     -DENABLE_TESTS=ON \
     -DENABLE_UTILS=ON \
