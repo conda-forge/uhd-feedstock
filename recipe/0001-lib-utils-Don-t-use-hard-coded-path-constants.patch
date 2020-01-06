@@ -1,4 +1,4 @@
-From eb5b4964c18716e376cc3be8ff8bfd86d138ed98 Mon Sep 17 00:00:00 2001
+From 88c423da07e83ec552a02722be1aaabde60926e6 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Tue, 29 Oct 2019 17:13:58 -0400
 Subject: [PATCH] lib: utils: Don't use hard-coded path constants.
@@ -14,8 +14,8 @@ relocated binaries (as with, for example, building a conda package).
  host/include/uhd/utils/paths.hpp |  3 +++
  host/lib/utils/CMakeLists.txt    | 20 --------------------
  host/lib/utils/paths.cpp         | 13 ++++++++++---
- host/tests/CMakeLists.txt        | 10 ----------
- 4 files changed, 13 insertions(+), 33 deletions(-)
+ host/tests/CMakeLists.txt        | 11 -----------
+ 4 files changed, 13 insertions(+), 34 deletions(-)
 
 diff --git a/host/include/uhd/utils/paths.hpp b/host/include/uhd/utils/paths.hpp
 index 035a4943d..e5b451542 100644
@@ -32,7 +32,7 @@ index 035a4943d..e5b451542 100644
  UHD_API std::string get_pkg_path(void);
  
 diff --git a/host/lib/utils/CMakeLists.txt b/host/lib/utils/CMakeLists.txt
-index 1ecf6b9fe..170942b68 100644
+index b4dd72c94..965ea7d2a 100644
 --- a/host/lib/utils/CMakeLists.txt
 +++ b/host/lib/utils/CMakeLists.txt
 @@ -195,26 +195,6 @@ set_source_files_properties(
@@ -109,15 +109,16 @@ index 8a7ba001f..6fcf76da8 100644
  }
  
 diff --git a/host/tests/CMakeLists.txt b/host/tests/CMakeLists.txt
-index e2bd5588a..63726fc86 100644
+index 769c09796..1b97537eb 100644
 --- a/host/tests/CMakeLists.txt
 +++ b/host/tests/CMakeLists.txt
-@@ -169,16 +169,6 @@ add_executable(paths_test
-     paths_test.cpp
-     ${CMAKE_SOURCE_DIR}/lib/utils/pathslib.cpp
+@@ -182,17 +182,6 @@ UHD_ADD_NONAPI_TEST(
+     EXTRA_SOURCES ${CMAKE_SOURCE_DIR}/lib/utils/config_parser.cpp
  )
+ 
 -# Careful: This is to satisfy the out-of-library build of paths.cpp. This is
 -# duplicate code from lib/utils/CMakeLists.txt, and it's been simplified.
+-# TODO Figure out if this is even needed
 -set(UHD_LIB_DIR "lib")
 -file(TO_NATIVE_PATH "${CMAKE_INSTALL_PREFIX}" UHD_PKG_PATH)
 -string(REPLACE "\\" "\\\\" UHD_PKG_PATH "${UHD_PKG_PATH}")
@@ -126,9 +127,9 @@ index e2bd5588a..63726fc86 100644
 -    PROPERTIES COMPILE_DEFINITIONS
 -    "UHD_PKG_PATH=\"${UHD_PKG_PATH}\";UHD_LIB_DIR=\"${UHD_LIB_DIR}\""
 -)
- target_link_libraries(paths_test uhd ${Boost_LIBRARIES})
- UHD_ADD_TEST(paths_test paths_test)
- UHD_INSTALL(TARGETS
+ UHD_ADD_NONAPI_TEST(
+     TARGET "paths_test.cpp"
+     EXTRA_SOURCES
 -- 
 2.20.1
 
