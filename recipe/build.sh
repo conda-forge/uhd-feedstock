@@ -1,12 +1,5 @@
 #!/bin/bash
 
-if [ "$PY3K" = "1" ]; then
-    export BOOST_PYTHON_COMPONENT="PYTHON3"
-else
-    export BOOST_PYTHON_COMPONENT="PYTHON"
-fi
-export BOOST_PYTHON_LIBPATH="$PREFIX/lib/libboost_python${PY_VER//./}$SHLIB_EXT"
-
 cd host  # needed for builds from github tarball
 mkdir build
 cd build
@@ -20,7 +13,6 @@ cd build
 cmake \
     -DBOOST_ROOT=$PREFIX \
     -DBoost_NO_BOOST_CMAKE=ON \
-    -DBoost_${BOOST_PYTHON_COMPONENT}_LIBRARY_RELEASE:FILEPATH=$BOOST_PYTHON_LIBPATH \
     -DCMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX=$ARCH \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCURSES_NEED_NCURSES=ON \

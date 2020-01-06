@@ -32,7 +32,6 @@ requirements:
     - pkg-config  # [not win]
 
   host:
-    - boost
     - boost-cpp
     - libusb >=1
     - mako >=0.5.0
@@ -43,7 +42,6 @@ requirements:
     - setuptools
 
   run:
-    - boost
     - boost-cpp
     - ncurses  # [not win]
     - {{ pin_compatible('numpy') }}
