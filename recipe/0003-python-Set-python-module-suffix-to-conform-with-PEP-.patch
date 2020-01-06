@@ -1,0 +1,41 @@
+From dfdf9e64bf9f3b7e1d6189507cea444a1327fd2f Mon Sep 17 00:00:00 2001
+From: Ryan Volz <rvolz@mit.edu>
+Date: Wed, 20 Nov 2019 16:10:05 -0500
+Subject: [PATCH 3/4] python: Set python module suffix to conform with PEP
+ 3149.
+
+This adds the python implementation, major and minor version numbers,
+and any additional flags (debug, pymalloc, wide unicode) to the
+extension module suffix as specified in PEP 3149.
+
+Hat tip to @isuruf:
+https://github.com/conda-forge/staged-recipes/pull/10076#discussion_r348721448
+---
+ host/python/CMakeLists.txt | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
+index 9b8df328b..c29eb6f6a 100644
+--- a/host/python/CMakeLists.txt
++++ b/host/python/CMakeLists.txt
+@@ -34,7 +34,16 @@ add_library(pyuhd SHARED pyuhd.cpp)
+ if(WIN32)
+     set_target_properties(pyuhd PROPERTIES PREFIX "lib" SUFFIX ".pyd")
+ else()
+-    set_target_properties(pyuhd PROPERTIES PREFIX "lib" SUFFIX ".so")
++    execute_process(
++        COMMAND "${PYTHON_EXECUTABLE}" -c
++        "from distutils.sysconfig import get_config_var; print(get_config_var('EXT_SUFFIX'))"
++        OUTPUT_VARIABLE PYTHON_EXTENSION_SUFFIX
++    )
++    string(STRIP ${PYTHON_EXTENSION_SUFFIX} PYTHON_EXTENSION_SUFFIX)
++    if(${PYTHON_EXTENSION_SUFFIX} STREQUAL "None")
++        set(PYTHON_EXTENSION_SUFFIX ${CMAKE_SHARED_MODULE_SUFFIX})
++    endif()
++    set_target_properties(pyuhd PROPERTIES PREFIX "lib" SUFFIX ${PYTHON_EXTENSION_SUFFIX})
+ endif(WIN32)
+ target_include_directories(pyuhd PUBLIC
+     ${PYTHON_NUMPY_INCLUDE_DIR}
+-- 
+2.20.1
+

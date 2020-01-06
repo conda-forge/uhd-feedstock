@@ -1,12 +1,5 @@
 #!/bin/bash
 
-if [ "$PY3K" = "1" ]; then
-    export BOOST_PYTHON_COMPONENT="PYTHON3"
-else
-    export BOOST_PYTHON_COMPONENT="PYTHON"
-fi
-export BOOST_PYTHON_LIBPATH="$PREFIX/lib/libboost_python${PY_VER//./}$SHLIB_EXT"
-
 cd host  # needed for builds from github tarball
 mkdir build
 cd build
@@ -15,12 +8,10 @@ cd build
 #   DOXYGEN/MANUAL because we don't need docs in the conda package
 #   DPDK needs dpdk
 #   E300 build fails on CI
-#   GPSD needs gpsd
 #   LIBERIO needs liberio
 cmake \
     -DBOOST_ROOT=$PREFIX \
     -DBoost_NO_BOOST_CMAKE=ON \
-    -DBoost_${BOOST_PYTHON_COMPONENT}_LIBRARY_RELEASE:FILEPATH=$BOOST_PYTHON_LIBPATH \
     -DCMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX=$ARCH \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCURSES_NEED_NCURSES=ON \
@@ -34,7 +25,6 @@ cmake \
     -DENABLE_E300=OFF \
     -DENABLE_E320=ON \
     -DENABLE_EXAMPLES=ON \
-    -DENABLE_GPSD=OFF \
     -DENABLE_LIBERIO=OFF \
     -DENABLE_LIBUHD=ON \
     -DENABLE_MAN_PAGES=ON \
@@ -42,8 +32,9 @@ cmake \
     -DENABLE_MPMD=ON \
     -DENABLE_OCTOCLOCK=ON \
     -DENABLE_N230=ON \
+    -DENABLE_N300=ON \
+    -DENABLE_N320=ON \
     -DENABLE_PYTHON_API=ON \
-    -DENABLE_PYTHON3=$PY3K \
     -DENABLE_RFNOC=ON \
     -DENABLE_TESTS=ON \
     -DENABLE_UTILS=ON \

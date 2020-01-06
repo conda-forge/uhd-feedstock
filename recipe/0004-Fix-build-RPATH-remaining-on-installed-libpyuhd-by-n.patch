@@ -1,4 +1,4 @@
-From f57a3aef0ab36e854ccf12890deadebc450aa236 Mon Sep 17 00:00:00 2001
+From 7b59c2fcb79304b978ccc5f43486ac71caa84a88 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Fri, 10 Aug 2018 18:07:17 -0400
 Subject: [PATCH 4/4] Fix build RPATH remaining on installed libpyuhd by not
@@ -9,10 +9,10 @@ Subject: [PATCH 4/4] Fix build RPATH remaining on installed libpyuhd by not
  1 file changed, 3 insertions(+)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 16f725aa4..1b43966da 100644
+index c29eb6f6a..3b9763471 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -52,6 +52,9 @@ else()
+@@ -61,6 +61,9 @@ else()
          target_link_options(pyuhd PRIVATE "LINKER:-undefined,dynamic_lookup")
      endif(APPLE)
  endif(WIN32)

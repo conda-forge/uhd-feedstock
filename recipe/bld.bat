@@ -15,7 +15,6 @@ cd build
 :: the following are disabled:
 ::   DOXYGEN/MANUAL because we don't need docs in the conda package
 ::   DPDK needs dpdk
-::   GPSD needs gpsd
 ::   LIBERIO needs liberio
 ::   MAN_PAGES because they can't be enabled for Windows
 cmake -G "NMake Makefiles JOM" ^
@@ -25,7 +24,6 @@ cmake -G "NMake Makefiles JOM" ^
     -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP:BOOL=ON ^
     -DBOOST_ALL_DYN_LINK:BOOL=ON ^
     -DBoost_NO_BOOST_CMAKE=ON ^
-    -DBoost_PYTHON3_LIBRARY_RELEASE:FILEPATH="%LIBRARY_LIB%\libboost_python%PY_VER:.=%.lib" ^
     -DLIBUSB_INCLUDE_DIRS:PATH="%LIBRARY_INC%\libusb-1.0" ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
     -DUHD_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
@@ -37,7 +35,6 @@ cmake -G "NMake Makefiles JOM" ^
     -DENABLE_E300=ON ^
     -DENABLE_E320=ON ^
     -DENABLE_EXAMPLES=ON ^
-    -DENABLE_GPSD=OFF ^
     -DENABLE_LIBERIO=OFF ^
     -DENABLE_LIBUHD=ON ^
     -DENABLE_MAN_PAGES=OFF ^
@@ -45,8 +42,9 @@ cmake -G "NMake Makefiles JOM" ^
     -DENABLE_MPMD=ON ^
     -DENABLE_OCTOCLOCK=ON ^
     -DENABLE_N230=ON ^
+    -DENABLE_N300=ON ^
+    -DENABLE_N320=ON ^
     -DENABLE_PYTHON_API=ON ^
-    -DENABLE_PYTHON3=ON ^
     -DENABLE_RFNOC=ON ^
     -DENABLE_TESTS=ON ^
     -DENABLE_UTILS=ON ^
