@@ -1,9 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
-boost:
-- 1.70.0
 boost_cpp:
-- 1.70.0
+- '1.72'
 c_compiler:
 - clang
 c_compiler_version:
@@ -25,8 +23,6 @@ ncurses:
 numpy:
 - '1.14'
 pin_run_as_build:
-  boost:
-    max_pin: x.x.x
   boost-cpp:
     max_pin: x.x.x
   ncurses:

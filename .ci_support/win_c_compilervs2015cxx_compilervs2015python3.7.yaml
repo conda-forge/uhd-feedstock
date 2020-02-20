@@ -1,7 +1,5 @@
-boost:
-- 1.70.0
 boost_cpp:
-- 1.70.0
+- '1.72'
 c_compiler:
 - vs2015
 channel_sources:
@@ -13,8 +11,6 @@ cxx_compiler:
 numpy:
 - '1.14'
 pin_run_as_build:
-  boost:
-    max_pin: x.x.x
   boost-cpp:
     max_pin: x.x.x
   python:
