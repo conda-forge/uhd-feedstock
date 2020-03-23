@@ -79,7 +79,7 @@ test:
 
 about:
   home: httsp://github.com/EttusResearch/uhd
-  license: GPL-3.0
+  license: GPL-3.0-only
   license_family: GPL
   license_file: host/LICENSE
   summary: 'Software driver and API for the Ettus Research USRP SDR platform'
