@@ -13,6 +13,7 @@ source:
     - 0002-python-Do-not-link-against-python-lib-for-building-a.patch
     - 0003-python-Set-python-module-suffix-to-conform-with-PEP-.patch
     - 0004-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
+    - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
 
 build:
   number: 2
