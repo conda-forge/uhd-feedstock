@@ -27,6 +27,7 @@ cmake -G "NMake Makefiles JOM" ^
     -DLIBUSB_INCLUDE_DIRS:PATH="%LIBRARY_INC%\libusb-1.0" ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
     -DUHD_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
+    -DUHD_RELEASE_MODE:STRING=release ^
     -DENABLE_B100=ON ^
     -DENABLE_B200=ON ^
     -DENABLE_C_API=ON ^
@@ -56,7 +57,7 @@ cmake -G "NMake Makefiles JOM" ^
 if errorlevel 1 exit 1
 
 :: build
-cmake --build . -- -j%CPU_COUNT%
+cmake --build . --config Release -- -j%CPU_COUNT%
 if errorlevel 1 exit 1
 
 :: test
@@ -65,5 +66,5 @@ ctest --output-on-failure
 if errorlevel 1 exit 1
 
 :: install
-cmake --build . --target install
+cmake --build . --config Release --target install
 if errorlevel 1 exit 1

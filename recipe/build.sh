@@ -15,11 +15,13 @@ cd build
 cmake_config_args=(
     -DBOOST_ROOT=$PREFIX
     -DBoost_NO_BOOST_CMAKE=ON
+    -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX=$ARCH
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCURSES_NEED_NCURSES=ON
     -DLIB_SUFFIX=""
     -DPYTHON_EXECUTABLE=$PYTHON
+    -DUHD_RELEASE_MODE=release
     -DENABLE_B100=ON
     -DENABLE_B200=ON
     -DENABLE_C_API=ON
@@ -56,6 +58,6 @@ if [[ $python_impl == "pypy" ]] ; then
 fi
 
 cmake .. "${cmake_config_args[@]}"
-cmake --build . -- -j${CPU_COUNT}
+cmake --build . --config Release -- -j${CPU_COUNT}
 ctest --output-on-failure
-cmake --build . --target install
+cmake --build . --config Release --target install
