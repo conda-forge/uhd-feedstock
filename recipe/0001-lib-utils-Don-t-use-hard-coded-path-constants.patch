@@ -1,4 +1,4 @@
-From 88c423da07e83ec552a02722be1aaabde60926e6 Mon Sep 17 00:00:00 2001
+From 4d48d4788e20939aa7268252dac783964a626fee Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Tue, 29 Oct 2019 17:13:58 -0400
 Subject: [PATCH] lib: utils: Don't use hard-coded path constants.
@@ -13,9 +13,9 @@ relocated binaries (as with, for example, building a conda package).
 ---
  host/include/uhd/utils/paths.hpp |  3 +++
  host/lib/utils/CMakeLists.txt    | 20 --------------------
- host/lib/utils/paths.cpp         | 13 ++++++++++---
+ host/lib/utils/paths.cpp         | 15 ++++++++++++---
  host/tests/CMakeLists.txt        | 11 -----------
- 4 files changed, 13 insertions(+), 34 deletions(-)
+ 4 files changed, 15 insertions(+), 34 deletions(-)
 
 diff --git a/host/include/uhd/utils/paths.hpp b/host/include/uhd/utils/paths.hpp
 index 035a4943d..e5b451542 100644
@@ -63,7 +63,7 @@ index b4dd72c94..965ea7d2a 100644
  # Append sources
  ########################################################################
 diff --git a/host/lib/utils/paths.cpp b/host/lib/utils/paths.cpp
-index 8a7ba001f..6fcf76da8 100644
+index 8a7ba001f..0051556b5 100644
 --- a/host/lib/utils/paths.cpp
 +++ b/host/lib/utils/paths.cpp
 @@ -12,6 +12,7 @@
@@ -74,13 +74,15 @@ index 8a7ba001f..6fcf76da8 100644
  #include <boost/filesystem.hpp>
  #include <boost/format.hpp>
  #include <boost/regex.hpp>
-@@ -173,8 +174,14 @@ std::string uhd::get_app_path(void){
+@@ -173,8 +174,16 @@ std::string uhd::get_app_path(void){
      return uhd::get_tmp_path();
  }
  
 +std::string uhd::get_lib_path(void) {
 +    fs::path runtime_libfile_path = boost::dll::this_line_location();
-+    return runtime_libfile_path.remove_filename().string();
++    //Normalize before decomposing path so result is reliable
++    fs::path lib_path = runtime_libfile_path.lexically_normal().parent_path();
++    return lib_path.string();
 +}
 +
  std::string uhd::get_pkg_path(void) {
@@ -90,7 +92,7 @@ index 8a7ba001f..6fcf76da8 100644
  }
  
  std::vector<fs::path> uhd::get_module_paths(void){
-@@ -185,7 +192,7 @@ std::vector<fs::path> uhd::get_module_paths(void){
+@@ -185,7 +194,7 @@ std::vector<fs::path> uhd::get_module_paths(void){
          paths.push_back(str_path);
      }
  
@@ -99,7 +101,7 @@ index 8a7ba001f..6fcf76da8 100644
      paths.push_back(fs::path(uhd::get_pkg_path()) / "share" / "uhd" / "modules");
  
      return paths;
-@@ -351,7 +358,7 @@ std::string uhd::find_image_path(const std::string &image_name, const std::strin
+@@ -351,7 +360,7 @@ std::string uhd::find_image_path(const std::string &image_name, const std::strin
  }
  
  std::string uhd::find_utility(const std::string &name) {
