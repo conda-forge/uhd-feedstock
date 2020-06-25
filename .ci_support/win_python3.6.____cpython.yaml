@@ -20,6 +20,8 @@ python:
 - 3.6.* *_cpython
 python_impl:
 - cpython
+uhd:
+- 3.15.0
 zip_keys:
 - - numpy
   - python
