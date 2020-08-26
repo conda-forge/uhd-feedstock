@@ -1,22 +1,19 @@
-{% set version = "3.15.0.0" %}
+{% set version = "4.0.0.0rc1" %}
+{% set version_tag = "4.0.0.0-rc1" %}
 
 package:
   name: uhd
   version: {{ version }}
 
 source:
-  url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: eed4a77d75faafff56be78985950039f8d9d1eb9fcbd58b8862e481dd49825cd
+  url: https://github.com/EttusResearch/uhd/archive/v{{ version_tag }}.tar.gz
+  sha256: d045d9db7142145a8de64a9e93268333b41d2eb1cf55b395a927aa33b5b9fda6
   patches:
-    - 0001-lib-utils-Don-t-use-hard-coded-path-constants.patch
-    - 0001-python-Fix-internal-library-name-incl.-suffix-to-mat.patch
-    - 0002-python-Do-not-link-against-python-lib-for-building-a.patch
-    - 0003-python-Set-python-module-suffix-to-conform-with-PEP-.patch
-    - 0004-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
-    - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
+    - 0001-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
+    - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
 
 build:
-  number: 4
+  number: 0
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   # windows requires vs2015+ to build and therefore can't build against py2k
@@ -75,7 +72,7 @@ test:
 
 about:
   home: httsp://github.com/EttusResearch/uhd
-  license: GPL-3.0-only
+  license: GPL-3.0-or-later
   license_family: GPL
   license_file: host/LICENSE
   summary: 'Software driver and API for the Ettus Research USRP SDR platform'
