@@ -37,6 +37,7 @@ requirements:
     - numpy
     - python
     - requests
+    - ruamel.yaml
     - setuptools
 
   run:
@@ -44,19 +45,21 @@ requirements:
     - ncurses  # [not win]
     - {{ pin_compatible('numpy') }}
     - python
+    - pyyaml
     - requests
+    - ruamel.yaml
 
 test:
   commands:
     # verify CLI tools
-    {% set uhd_cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_find_devices", "uhd_image_loader"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_usrp_probe"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_images_downloader", "usrp2_card_burner"] %}  # [linux]
-    {% for each_cmd in uhd_cmds %}
-    - command -v {{ each_cmd }}  # [unix]
-    - where {{ each_cmd }}  # [win]
+    {% set cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
+    {% set cmds = cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
+    {% set cmds = cmds + ["uhd_find_devices", "uhd_image_loader"] %}
+    {% set cmds = cmds + ["uhd_usrp_probe"] %}
+    {% set cmds = cmds + ["uhd_images_downloader", "usrp2_card_burner"] %}  # [linux]
+    {% for cmd in cmds %}
+    - {{ cmd }} --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi  # [not win]
+    - {{ cmd }} --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"  # [win]
     {% endfor %}
 
     # verify libraries
