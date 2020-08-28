@@ -10,6 +10,7 @@ source:
   sha256: d045d9db7142145a8de64a9e93268333b41d2eb1cf55b395a927aa33b5b9fda6
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
+    - 0001-python-Update-virtualenv-check-to-work-with-venv-and.patch
 
 build:
   number: 0
