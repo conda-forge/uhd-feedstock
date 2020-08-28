@@ -50,6 +50,7 @@ if [[ $python_impl == "pypy" ]] ; then
     cmake_config_args+=(
         -DPYTHON_LIBRARY=$PREFIX/lib/libpypy3-c$SHLIB_EXT
         -DPYTHON_INCLUDE_DIR=$PREFIX/include
+        -DUHD_PYTHON_DIR=$SP_DIR
     )
 fi
 
