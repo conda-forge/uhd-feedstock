@@ -10,6 +10,7 @@ source:
   sha256: 4f3513c43edf0178391ed5755266864532716b8b503bcfb9a983ae6256c51b14
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
+    - 0001-python-Fix-libpyuhd-install_name-on-macOS.patch
 
 build:
   number: 0
