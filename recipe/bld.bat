@@ -68,3 +68,6 @@ if errorlevel 1 exit 1
 :: install
 cmake --build . --config Release --target install
 if errorlevel 1 exit 1
+
+:: delete dd.exe which gets downloaded and included in release mode
+del "%PREFIX%\Library\lib\uhd\utils\dd.exe"

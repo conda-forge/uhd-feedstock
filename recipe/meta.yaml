@@ -16,7 +16,7 @@ source:
     - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
 
 build:
-  number: 3
+  number: 4
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   # windows requires vs2015+ to build and therefore can't build against py2k
@@ -52,15 +52,10 @@ requirements:
 test:
   commands:
     # verify CLI tools
-    {% set uhd_cmds = [
-        "uhd_cal_rx_iq_balance",
-        "uhd_cal_tx_dc_offset",
-        "uhd_cal_tx_iq_balance",
-        "uhd_config_info",
-        "uhd_find_devices",
-        "uhd_image_loader",
-        "uhd_usrp_probe",
-    ] %}
+    {% set uhd_cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
+    {% set uhd_cmds = uhd_cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
+    {% set uhd_cmds = uhd_cmds + ["uhd_find_devices", "uhd_image_loader"] %}
+    {% set uhd_cmds = uhd_cmds + ["uhd_usrp_probe"] %}
     {% set uhd_cmds = uhd_cmds + ["uhd_images_downloader", "usrp2_card_burner"] %}  # [linux]
     {% for each_cmd in uhd_cmds %}
     - command -v {{ each_cmd }}  # [unix]
