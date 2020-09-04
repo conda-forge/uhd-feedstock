@@ -63,8 +63,9 @@ test:
     {% endfor %}
 
     # verify libraries
-    {% set uhd_lib = "uhd" %}
-    - test -f $PREFIX/lib/lib{{ uhd_lib }}${SHLIB_EXT}  # [unix]
+    - test -f $PREFIX/lib/libuhd${SHLIB_EXT}  # [not win]
+    - if not exist %PREFIX%\\Library\\bin\\uhd.dll exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\uhd.lib exit 1  # [win]
 
     # run select commands
     - uhd_config_info --print-all
