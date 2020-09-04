@@ -1,18 +1,30 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
 boost_cpp:
 - '1.72'
 c_compiler:
-- vs2017
+- clang
+c_compiler_version:
+- '10'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2017
+- clangxx
+cxx_compiler_version:
+- '10'
+macos_machine:
+- x86_64-apple-darwin13.4.0
+ncurses:
+- '6.2'
 numpy:
-- '1.14'
+- '1.16'
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
+  ncurses:
+    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
@@ -20,6 +32,8 @@ python:
 - 3.8.* *_cpython
 python_impl:
 - cpython
+target_platform:
+- osx-64
 uhd:
 - 3.15.0
 zip_keys:
