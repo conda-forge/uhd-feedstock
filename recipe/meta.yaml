@@ -16,7 +16,7 @@ source:
     - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
 
 build:
-  number: 4
+  number: 5
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   # windows requires vs2015+ to build and therefore can't build against py2k
