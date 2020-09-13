@@ -1,4 +1,5 @@
-{% set version = "3.15.0.0" %}
+{% set uhd_lib = "uhd" %}
+{% set version = "4.0.0.0" %}
 
 package:
   name: uhd
@@ -6,7 +7,7 @@ package:
 
 source:
   url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: eed4a77d75faafff56be78985950039f8d9d1eb9fcbd58b8862e481dd49825cd
+  sha256: 4f3513c43edf0178391ed5755266864532716b8b503bcfb9a983ae6256c51b14
   patches:
     - 0001-lib-utils-Don-t-use-hard-coded-path-constants.patch
     - 0001-python-Fix-internal-library-name-incl.-suffix-to-mat.patch
@@ -16,11 +17,11 @@ source:
     - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
 
 build:
-  number: 4
+  number: 0
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   # windows requires vs2015+ to build and therefore can't build against py2k
-  skip: True  # [win and py2k]
+  skip: true  # [win and py2k]
 
 requirements:
   build:
@@ -78,7 +79,7 @@ about:
   license: GPL-3.0-only
   license_family: GPL
   license_file: host/LICENSE
-  summary: 'Software driver and API for the Ettus Research USRP SDR platform'
+  summary: Software driver and API for the Ettus Research USRP SDR platform
   description: |
     UHD is the free & open-source software driver and API for the Universal
     Software Radio Peripheral (USRP(TM)) SDR platform, created and sold by
