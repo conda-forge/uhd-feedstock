@@ -11,7 +11,6 @@ cd build
 #   DOXYGEN/MANUAL because we don't need docs in the conda package
 #   DPDK needs dpdk
 #   E300 build fails on CI
-#   LIBERIO needs liberio
 cmake_config_args=(
     -DBOOST_ROOT=$PREFIX
     -DBoost_NO_BOOST_CMAKE=ON
@@ -30,18 +29,15 @@ cmake_config_args=(
     -DENABLE_E300=OFF
     -DENABLE_E320=ON
     -DENABLE_EXAMPLES=ON
-    -DENABLE_LIBERIO=OFF
     -DENABLE_LIBUHD=ON
     -DENABLE_MAN_PAGES=ON
     -DENABLE_MANUAL=OFF
     -DENABLE_MPMD=ON
     -DENABLE_OCTOCLOCK=ON
-    -DENABLE_N230=ON
     -DENABLE_N300=ON
     -DENABLE_N320=ON
     -DENABLE_PYTHON_API=ON
-    -DENABLE_RFNOC=ON
-    -DENABLE_TESTS=ON
+    -DENABLE_TESTS=OFF
     -DENABLE_UTILS=ON
     -DENABLE_USB=ON
     -DENABLE_USRP1=ON
@@ -54,10 +50,10 @@ if [[ $python_impl == "pypy" ]] ; then
     cmake_config_args+=(
         -DPYTHON_LIBRARY=$PREFIX/lib/libpypy3-c$SHLIB_EXT
         -DPYTHON_INCLUDE_DIR=$PREFIX/include
+        -DUHD_PYTHON_DIR=$SP_DIR
     )
 fi
 
 cmake .. "${cmake_config_args[@]}"
 cmake --build . --config Release -- -j${CPU_COUNT}
-ctest --output-on-failure
 cmake --build . --config Release --target install

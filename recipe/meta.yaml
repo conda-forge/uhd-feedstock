@@ -1,4 +1,5 @@
-{% set version = "3.15.0.0" %}
+{% set uhd_lib = "uhd" %}
+{% set version = "4.0.0.0" %}
 
 package:
   name: uhd
@@ -6,21 +7,17 @@ package:
 
 source:
   url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: eed4a77d75faafff56be78985950039f8d9d1eb9fcbd58b8862e481dd49825cd
+  sha256: 4f3513c43edf0178391ed5755266864532716b8b503bcfb9a983ae6256c51b14
   patches:
-    - 0001-lib-utils-Don-t-use-hard-coded-path-constants.patch
-    - 0001-python-Fix-internal-library-name-incl.-suffix-to-mat.patch
-    - 0002-python-Do-not-link-against-python-lib-for-building-a.patch
-    - 0003-python-Set-python-module-suffix-to-conform-with-PEP-.patch
-    - 0004-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
-    - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
+    - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
+    - 0001-python-Fix-libpyuhd-install_name-on-macOS.patch
 
 build:
-  number: 4
+  number: 0
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   # windows requires vs2015+ to build and therefore can't build against py2k
-  skip: True  # [win and py2k]
+  skip: true  # [win and py2k]
 
 requirements:
   build:
@@ -40,6 +37,7 @@ requirements:
     - numpy
     - python
     - requests
+    - ruamel.yaml
     - setuptools
 
   run:
@@ -47,24 +45,27 @@ requirements:
     - ncurses  # [not win]
     - {{ pin_compatible('numpy') }}
     - python
+    - pyyaml
     - requests
+    - ruamel.yaml
 
 test:
   commands:
     # verify CLI tools
-    {% set uhd_cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_find_devices", "uhd_image_loader"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_usrp_probe"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_images_downloader", "usrp2_card_burner"] %}  # [linux]
-    {% for each_cmd in uhd_cmds %}
-    - command -v {{ each_cmd }}  # [unix]
-    - where {{ each_cmd }}  # [win]
+    {% set cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
+    {% set cmds = cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
+    {% set cmds = cmds + ["uhd_find_devices", "uhd_image_loader"] %}
+    {% set cmds = cmds + ["uhd_usrp_probe"] %}
+    {% set cmds = cmds + ["uhd_images_downloader", "usrp2_card_burner"] %}  # [linux]
+    {% for cmd in cmds %}
+    - {{ cmd }} --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi  # [not win]
+    - {{ cmd }} --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"  # [win]
     {% endfor %}
 
     # verify libraries
-    {% set uhd_lib = "uhd" %}
-    - test -f $PREFIX/lib/lib{{ uhd_lib }}${SHLIB_EXT}  # [unix]
+    - test -f $PREFIX/lib/libuhd${SHLIB_EXT}  # [not win]
+    - if not exist %PREFIX%\\Library\\bin\\uhd.dll exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\uhd.lib exit 1  # [win]
 
     # run select commands
     - uhd_config_info --print-all
@@ -75,10 +76,10 @@ test:
 
 about:
   home: httsp://github.com/EttusResearch/uhd
-  license: GPL-3.0-only
+  license: GPL-3.0-or-later
   license_family: GPL
   license_file: host/LICENSE
-  summary: 'Software driver and API for the Ettus Research USRP SDR platform'
+  summary: Software driver and API for the Ettus Research USRP SDR platform
   description: |
     UHD is the free & open-source software driver and API for the Universal
     Software Radio Peripheral (USRP(TM)) SDR platform, created and sold by
