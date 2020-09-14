@@ -13,7 +13,7 @@ source:
     - 0001-python-Fix-libpyuhd-install_name-on-macOS.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   # windows requires vs2015+ to build and therefore can't build against py2k
