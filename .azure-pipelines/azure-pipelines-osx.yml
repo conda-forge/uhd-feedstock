@@ -20,6 +20,9 @@ jobs:
       osx_64_boost_cpp1.72.0numpy1.18python3.6.____73_pypypython_implpypy:
         CONFIG: osx_64_boost_cpp1.72.0numpy1.18python3.6.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
+      osx_64_boost_cpp1.72.0numpy1.19python3.9.____cpythonpython_implcpython:
+        CONFIG: osx_64_boost_cpp1.72.0numpy1.19python3.9.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
       osx_64_boost_cpp1.74.0numpy1.16python3.6.____cpythonpython_implcpython:
         CONFIG: osx_64_boost_cpp1.74.0numpy1.16python3.6.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
@@ -32,7 +35,9 @@ jobs:
       osx_64_boost_cpp1.74.0numpy1.18python3.6.____73_pypypython_implpypy:
         CONFIG: osx_64_boost_cpp1.74.0numpy1.18python3.6.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
-    maxParallel: 8
+      osx_64_boost_cpp1.74.0numpy1.19python3.9.____cpythonpython_implcpython:
+        CONFIG: osx_64_boost_cpp1.74.0numpy1.19python3.9.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
 
   steps:
