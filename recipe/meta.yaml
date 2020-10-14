@@ -14,9 +14,10 @@ source:
     - 0003-python-Set-python-module-suffix-to-conform-with-PEP-.patch
     - 0004-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
     - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
+    - 0001-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
 
 build:
-  number: 4
+  number: 5
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   # windows requires vs2015+ to build and therefore can't build against py2k
