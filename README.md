@@ -5,9 +5,13 @@ Home: httsp://github.com/EttusResearch/uhd
 
 Package license: GPL-3.0-only
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/uhd-feedstock/blob/master/LICENSE.txt)
 
 Summary: Software driver and API for the Ettus Research USRP SDR platform
+
+Development: https://github.com/EttusResearch/uhd
+
+Documentation: https://files.ettus.com/manual/
 
 UHD is the free & open-source software driver and API for the Universal
 Software Radio Peripheral (USRP(TM)) SDR platform, created and sold by
