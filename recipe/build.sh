@@ -61,3 +61,8 @@ cmake .. "${cmake_config_args[@]}"
 cmake --build . --config Release -- -j${CPU_COUNT}
 ctest --output-on-failure
 cmake --build . --config Release --target install
+
+if [[ $target_platform != linux* ]] ; then
+    # copy uhd_images_downloader.py into uhd package so we can make an entry_point
+    cp utils/uhd_images_downloader.py $SP_DIR/uhd/
+fi
