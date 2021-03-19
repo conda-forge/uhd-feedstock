@@ -71,3 +71,7 @@ if errorlevel 1 exit 1
 
 :: delete dd.exe which gets downloaded and included in release mode
 del "%PREFIX%\Library\lib\uhd\utils\dd.exe"
+
+:: copy uhd_images_downloader.py into uhd package so we can make an entry_point
+copy "utils\uhd_images_downloader.py" "%SP_DIR%\uhd"
+if errorlevel 1 exit 1

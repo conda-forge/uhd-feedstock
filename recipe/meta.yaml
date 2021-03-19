@@ -17,11 +17,11 @@ source:
     - 0001-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
 
 build:
-  number: 5
+  number: 6
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
-  # windows requires vs2015+ to build and therefore can't build against py2k
-  skip: True  # [win and py2k]
+  entry_points:   # [not linux]
+    - uhd_images_downloader = uhd.uhd_images_downloader:main  # [not linux]
 
 requirements:
   build:
@@ -53,14 +53,14 @@ requirements:
 test:
   commands:
     # verify CLI tools
-    {% set uhd_cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_find_devices", "uhd_image_loader"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_usrp_probe"] %}
-    {% set uhd_cmds = uhd_cmds + ["uhd_images_downloader", "usrp2_card_burner"] %}  # [linux]
-    {% for each_cmd in uhd_cmds %}
-    - command -v {{ each_cmd }}  # [unix]
-    - where {{ each_cmd }}  # [win]
+    {% set cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
+    {% set cmds = cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
+    {% set cmds = cmds + ["uhd_find_devices", "uhd_image_loader"] %}
+    {% set cmds = cmds + ["uhd_images_downloader", "uhd_usrp_probe"] %}
+    {% set cmds = cmds + ["usrp2_card_burner"] %}  # [linux]
+    {% for cmd in cmds %}
+    - {{ cmd }} --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi  # [not win]
+    - {{ cmd }} --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"  # [win]
     {% endfor %}
 
     # verify libraries
