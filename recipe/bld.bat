@@ -25,7 +25,7 @@ cmake -G "NMake Makefiles JOM" ^
     -DBoost_NO_BOOST_CMAKE=ON ^
     -DLIBUSB_INCLUDE_DIRS:PATH="%LIBRARY_INC%\libusb-1.0" ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
-    -DUHD_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
+    -DUHD_PYTHON_DIR:PATH="%SP_DIR%" ^
     -DUHD_RELEASE_MODE:STRING=release ^
     -DENABLE_B100=ON ^
     -DENABLE_B200=ON ^
@@ -61,4 +61,8 @@ cmake --build . --config Release --target install
 if errorlevel 1 exit 1
 
 :: delete dd.exe which gets downloaded and included in release mode
-del "%PREFIX%\Library\lib\uhd\utils\dd.exe"
+del "%LIBRARY_LIB%\uhd\utils\dd.exe"
+
+:: copy uhd_images_downloader.py into uhd package so we can make an entry_point
+copy "utils\uhd_images_downloader.py" "%SP_DIR%\uhd"
+if errorlevel 1 exit 1
