@@ -10,10 +10,11 @@ source:
   sha256: 4f3513c43edf0178391ed5755266864532716b8b503bcfb9a983ae6256c51b14
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
-    - 0001-python-Fix-libpyuhd-install_name-on-macOS.patch
+    - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
+    - 0003-b200-handle-overruns-during-continuous-streaming.patch
 
 build:
-  number: 3
+  number: 4
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]
