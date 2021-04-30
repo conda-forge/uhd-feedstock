@@ -57,9 +57,11 @@ if [[ $python_impl == "pypy" ]] ; then
     )
 fi
 
-cmake .. "${cmake_config_args[@]}"
+cmake ${CMAKE_ARGS} .. "${cmake_config_args[@]}"
 cmake --build . --config Release -- -j${CPU_COUNT}
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
 ctest --output-on-failure
+fi
 cmake --build . --config Release --target install
 
 if [[ $target_platform != linux* ]] ; then
