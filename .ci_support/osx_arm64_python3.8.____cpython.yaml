@@ -1,0 +1,44 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+boost_cpp:
+- 1.74.0
+c_compiler:
+- clang
+c_compiler_version:
+- '11'
+channel_sources:
+- conda-forge/label/rust_dev,conda-forge
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- clangxx
+cxx_compiler_version:
+- '11'
+macos_machine:
+- arm64-apple-darwin20.0.0
+ncurses:
+- '6.2'
+numpy:
+- '1.19'
+pin_run_as_build:
+  boost-cpp:
+    max_pin: x.x.x
+  ncurses:
+    max_pin: x.x
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- 3.8.* *_cpython
+python_impl:
+- cpython
+target_platform:
+- osx-arm64
+uhd:
+- 3.15.0
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
+- - python
+  - numpy
+  - python_impl
