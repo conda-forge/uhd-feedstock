@@ -49,6 +49,7 @@ cmake -G "NMake Makefiles JOM" ^
     -DENABLE_USRP1=ON ^
     -DENABLE_USRP2=ON ^
     -DENABLE_X300=ON ^
+    -DENABLE_X400=ON ^
     ..
 if errorlevel 1 exit 1
 
