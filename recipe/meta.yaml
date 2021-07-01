@@ -27,11 +27,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.5.1
-    - jom  # [win]
     # libudev is on its own in CentOS 6, packaged with systemd in CentOS 7
     - {{ cdt('libudev-devel') }}  # [linux and cdt_name=='cos6']
     - {{ cdt('systemd-devel') }}  # [linux and cdt_name=='cos7']
-    - make  # [not win]
+    - ninja
     - pkg-config  # [not win]
 
   host:
