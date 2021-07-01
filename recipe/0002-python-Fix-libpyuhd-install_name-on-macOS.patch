@@ -8,10 +8,10 @@ Subject: [PATCH] python: Fix libpyuhd install_name on macOS.
  1 file changed, 7 insertions(+)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index dfe049b87..48661a4c9 100644
+index 8f12e3f01..e99b21b0c 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -128,6 +128,13 @@ else()
+@@ -191,6 +191,13 @@ else()
          DESTINATION ${UHD_PYTHON_DIR}
          COMPONENT pythonapi
      )
@@ -26,5 +26,5 @@ index dfe049b87..48661a4c9 100644
      # install(DIRECTORY) will treat the .so file like any other file, which
      # means it won't update its RPATH, and thus the RPATH would be stuck to the
 -- 
-2.30.2
+2.25.1
 

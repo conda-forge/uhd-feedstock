@@ -11,7 +11,6 @@ source:
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
     - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
-    - 0003-b200-handle-overruns-during-continuous-streaming.patch
 
 build:
   number: 0
