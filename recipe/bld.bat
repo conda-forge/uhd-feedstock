@@ -43,6 +43,7 @@ cmake -G "NMake Makefiles JOM" ^
     -DENABLE_N300=ON ^
     -DENABLE_N320=ON ^
     -DENABLE_PYTHON_API=ON ^
+    -DENABLE_SIM=ON ^
     -DENABLE_TESTS=OFF ^
     -DENABLE_UTILS=ON ^
     -DENABLE_USB=ON ^
