@@ -16,7 +16,7 @@ cd build
 ::   DOXYGEN/MANUAL because we don't need docs in the conda package
 ::   DPDK needs dpdk
 ::   MAN_PAGES because they can't be enabled for Windows
-cmake -G "NMake Makefiles JOM" ^
+cmake -G "Ninja" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_BUILD_TYPE:STRING=Release ^
