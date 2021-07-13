@@ -11,6 +11,8 @@ source:
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
     - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
+    - 0003-cmake-Make-libuhd-linking-to-Python-library-PRIVATE.patch
+    - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
 
 build:
   number: 0

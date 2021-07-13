@@ -1,0 +1,60 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Tue, 13 Jul 2021 18:05:19 -0400
+Subject: [PATCH] cmake: Don't set package_dir in setup.py.in.
+
+Since the setup.py.in gets configured to the CMAKE_CURRENT_BINARY_DIR
+and the Python files get copied there as well, there is no need to set
+package_dir.
+
+This also fixes a bug where the path that used to be set for package_dir
+fails on Windows (the path is converted to a native format by
+setuptools, but it doesn't account for absolute paths with a drive
+specified and so fails to do this properly).
+---
+ host/python/CMakeLists.txt | 3 +--
+ host/python/setup.py.in    | 1 -
+ mpm/python/setup.py.in     | 1 -
+ 3 files changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
+index e99b21b0c..66f636431 100644
+--- a/host/python/CMakeLists.txt
++++ b/host/python/CMakeLists.txt
+@@ -85,8 +85,7 @@ file(GLOB_RECURSE PYUHD_FILES
+ set(SETUP_PY_IN    "${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in")
+ set(SETUP_PY       "${CMAKE_CURRENT_BINARY_DIR}/setup.py")
+ set(TIMESTAMP_FILE "${CMAKE_CURRENT_BINARY_DIR}/build/timestamp")
+-# convert binary directory to native format to use in SETUP_PY file.
+-file(TO_NATIVE_PATH ${CMAKE_CURRENT_BINARY_DIR} NATIVE_CURRENT_BINARY_DIR)
++
+ configure_file(${SETUP_PY_IN} ${SETUP_PY})
+ 
+ if(ENABLE_SIM)
+diff --git a/host/python/setup.py.in b/host/python/setup.py.in
+index 39e284b4a..21e4cd47f 100755
+--- a/host/python/setup.py.in
++++ b/host/python/setup.py.in
+@@ -27,7 +27,6 @@ setup(name='uhd',
+       author_email='packages@ettus.com',
+       url='https://www.ettus.com/',
+       license='GPLv3',
+-      package_dir={'': r'${NATIVE_CURRENT_BINARY_DIR}'},
+       package_data={'uhd': ['*.so']},
+       zip_safe=False,
+       packages=packages,
+diff --git a/mpm/python/setup.py.in b/mpm/python/setup.py.in
+index 31313c9e7..3bc3d263a 100755
+--- a/mpm/python/setup.py.in
++++ b/mpm/python/setup.py.in
+@@ -25,7 +25,6 @@ setup(name='usrp_mpm',
+       author_email='packages@ettus.com',
+       url='https://www.ettus.com/',
+       license='GPLv3',
+-      package_dir={'': '${CMAKE_CURRENT_BINARY_DIR}'},
+       package_data={"usrp_mpm": ["*.so"]},
+       zip_safe=False,
+       packages=[
+-- 
+2.25.1
+
