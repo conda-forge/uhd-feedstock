@@ -48,11 +48,6 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
         SHORT_CONFIG_NAME: linux_ppc64le_numpy1.18python3.8.___h12ab300d74
-      linux_ppc64le_numpy1.19python3.7.____73_pypypython_implpypy:
-        CONFIG: linux_ppc64le_numpy1.19python3.7.____73_pypypython_implpypy
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
-        SHORT_CONFIG_NAME: linux_ppc64le_numpy1.19python3.7.___h1457821301
       linux_ppc64le_numpy1.19python3.9.____cpythonpython_implcpython:
         CONFIG: linux_ppc64le_numpy1.19python3.9.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
