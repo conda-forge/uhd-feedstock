@@ -43,6 +43,7 @@ cmake_config_args=(
     -DENABLE_USRP1=ON
     -DENABLE_USRP2=ON
     -DENABLE_X300=ON
+    -DENABLE_X400=ON
 )
 
 if [[ $python_impl == "pypy" ]] ; then
@@ -51,10 +52,15 @@ if [[ $python_impl == "pypy" ]] ; then
         -DPYTHON_LIBRARY=$PREFIX/lib/libpypy3-c$SHLIB_EXT
         -DPYTHON_INCLUDE_DIR=$PREFIX/include
         -DUHD_PYTHON_DIR=$SP_DIR
+        -DENABLE_SIM=OFF
+    )
+else
+    cmake_config_args+=(
+        -DENABLE_SIM=ON
     )
 fi
 
-cmake ${CMAKE_ARGS} .. "${cmake_config_args[@]}"
+cmake ${CMAKE_ARGS} -G "Ninja" .. "${cmake_config_args[@]}"
 cmake --build . --config Release -- -j${CPU_COUNT}
 cmake --build . --config Release --target install
 

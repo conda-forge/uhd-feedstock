@@ -16,7 +16,7 @@ cd build
 ::   DOXYGEN/MANUAL because we don't need docs in the conda package
 ::   DPDK needs dpdk
 ::   MAN_PAGES because they can't be enabled for Windows
-cmake -G "NMake Makefiles JOM" ^
+cmake -G "Ninja" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_BUILD_TYPE:STRING=Release ^
@@ -43,12 +43,14 @@ cmake -G "NMake Makefiles JOM" ^
     -DENABLE_N300=ON ^
     -DENABLE_N320=ON ^
     -DENABLE_PYTHON_API=ON ^
+    -DENABLE_SIM=ON ^
     -DENABLE_TESTS=OFF ^
     -DENABLE_UTILS=ON ^
     -DENABLE_USB=ON ^
     -DENABLE_USRP1=ON ^
     -DENABLE_USRP2=ON ^
     -DENABLE_X300=ON ^
+    -DENABLE_X400=ON ^
     ..
 if errorlevel 1 exit 1
 
