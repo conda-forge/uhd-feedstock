@@ -15,7 +15,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '9'
 docker_image:
-- quay.io/condaforge/linux-anvil-ppc64le
+- quay.io/condaforge/linux-anvil-comp7
 ncurses:
 - '6.2'
 numpy:
@@ -35,7 +35,7 @@ python_impl:
 target_platform:
 - linux-ppc64le
 uhd:
-- 3.15.0
+- 4.1.0
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
