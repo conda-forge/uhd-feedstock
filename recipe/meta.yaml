@@ -1,5 +1,5 @@
 {% set uhd_lib = "uhd" %}
-{% set version = "4.1.0.2" %}
+{% set version = "4.1.0.3" %}
 
 package:
   name: uhd
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: 0f573eaca69fea49786bc04d7f9d3300720ffa082385391c6520097e795cf9ae
+  sha256: 36007e4b9864ed675547fb52ad1e1da2fa16847af325482128dcc84c4b6c9f23
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
     - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
