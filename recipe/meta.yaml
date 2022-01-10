@@ -38,6 +38,9 @@ requirements:
   host:
     - boost-cpp
     - libusb >=1
+    # needed while on cos6 sysroot, make sure we get cos6-compatible libusb
+    # (this does not add a run_exports for libusb)
+    - libusb-cos6  # [linux and cdt_name=='cos6']
     - mako >=0.5.0
     - ncurses  # [not win]
     - numpy
