@@ -13,6 +13,7 @@ source:
     - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
     - 0003-cmake-Make-libuhd-linking-to-Python-library-PRIVATE.patch
     - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
+    - 0005-cmake-Work-around-wrong-Python-extension-suffix-when.patch
 
 build:
   number: 0
