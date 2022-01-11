@@ -61,7 +61,6 @@ requirements:
 
 test:
   commands:
-    - python -c "from uhd import libpyuhd"
     # verify CLI tools
     {% set cmds = ["uhd_cal_rx_iq_balance", "uhd_cal_tx_dc_offset"] %}
     {% set cmds = cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
@@ -83,7 +82,7 @@ test:
     - uhd_find_devices || (($? < 128))  # [unix]
 
   imports:
-    #- uhd
+    - uhd
 
 about:
   home: httsp://github.com/EttusResearch/uhd
