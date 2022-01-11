@@ -76,6 +76,6 @@ if [[ $python_impl == "pypy" && $build_platform == linux-64 ]] ; then
         pushd $SP_DIR/uhd
         LIBPYUHD_ORIGNAME=`basename libpyuhd*.so`
         LIBPYUHD_NAME=${LIBPYUHD_ORIGNAME/x86_64-linux-gnu/linux-gnu}
-        mv $LIBPYUHD_ORIGNAME $LIBPYUHDNAME
+        mv $LIBPYUHD_ORIGNAME $LIBPYUHD_NAME
     fi
 fi
