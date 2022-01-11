@@ -82,7 +82,6 @@ test:
     - uhd_find_devices || (($? < 128))  # [unix]
 
   imports:
-    - uhd.libpyuhd
     - uhd
 
 about:
