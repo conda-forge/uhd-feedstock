@@ -18,7 +18,7 @@ specified and so fails to do this properly).
  3 files changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index e99b21b0c..66f636431 100644
+index c5de3c065..3bf5c81dc 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
 @@ -85,8 +85,7 @@ file(GLOB_RECURSE PYUHD_FILES
@@ -56,5 +56,5 @@ index 31313c9e7..3bc3d263a 100755
        zip_safe=False,
        packages=[
 -- 
-2.25.1
+2.34.1
 

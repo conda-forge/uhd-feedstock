@@ -13,19 +13,19 @@ fixed by #309.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index 910fe3c70..c18be5cc1 100644
+index 78cce3e97..349ad48de 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -179,7 +179,7 @@ if(ENABLE_MPMD)
+@@ -180,7 +180,7 @@ if(ENABLE_MPMD)
      list(APPEND libuhd_sources $<TARGET_OBJECTS:uhd_rpclib>)
  endif()
  add_library(uhd SHARED ${libuhd_sources})
--target_link_libraries(uhd ${Boost_LIBRARIES} ${libuhd_libs} uhd_rc)
-+target_link_libraries(uhd PUBLIC ${Boost_LIBRARIES} ${libuhd_libs} uhd_rc)
+-target_link_libraries(uhd ${Boost_LIBRARIES} ${libuhd_libs})
++target_link_libraries(uhd PUBLIC ${Boost_LIBRARIES} ${libuhd_libs})
  set_target_properties(uhd PROPERTIES DEFINE_SYMBOL "UHD_DLL_EXPORTS")
  if(NOT LIBUHDDEV_PKG)
      set_target_properties(uhd PROPERTIES SOVERSION "${UHD_ABI_VERSION}")
-@@ -202,7 +202,7 @@ if(ENABLE_SIM)
+@@ -203,7 +203,7 @@ if(ENABLE_SIM)
  
      # For PYUHD we don't link against the python libraries, but when calling
      # python instead of being called by it, we have to.
@@ -35,5 +35,5 @@ index 910fe3c70..c18be5cc1 100644
      if(APPLE)
          target_link_options(uhd PRIVATE "LINKER:-undefined,dynamic_lookup")
 -- 
-2.25.1
+2.34.1
 
