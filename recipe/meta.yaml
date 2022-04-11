@@ -17,7 +17,7 @@ source:
     - 0001-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
 
 build:
-  number: 7
+  number: 8
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]
