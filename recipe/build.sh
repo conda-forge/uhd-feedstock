@@ -52,8 +52,8 @@ cmake_config_args=(
 if [[ $python_impl == "pypy" ]] ; then
     # we need to help cmake find pypy
     cmake_config_args+=(
-        -DPYTHON_LIBRARY=$PREFIX/lib/libpypy3-c$SHLIB_EXT
-        -DPYTHON_INCLUDE_DIR=$PREFIX/include
+        -DPYTHON_LIBRARY=$PREFIX/lib/`$PYTHON -c "import sysconfig; print(sysconfig.get_config_var('LDLIBRARY'))"`
+        -DPYTHON_INCLUDE_DIR=`$PYTHON -c "import sysconfig; print(sysconfig.get_paths()['include'])"`
     )
 fi
 
