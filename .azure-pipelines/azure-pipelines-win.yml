@@ -8,22 +8,30 @@ jobs:
     vmImage: windows-2019
   strategy:
     matrix:
-      win_64_numpy1.18python3.7.____cpython:
-        CONFIG: win_64_numpy1.18python3.7.____cpython
+      win_64_numpy1.19python3.7.____cpythonpython_implcpython:
+        CONFIG: win_64_numpy1.19python3.7.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_numpy1.18python3.7.____cpython
-      win_64_numpy1.18python3.8.____cpython:
-        CONFIG: win_64_numpy1.18python3.8.____cpython
+        SHORT_CONFIG: win_64_numpy1.19python3.7.____cpyth_h5882cf7f98
+      win_64_numpy1.19python3.8.____73_pypypython_implpypy:
+        CONFIG: win_64_numpy1.19python3.8.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_numpy1.18python3.8.____cpython
-      win_64_numpy1.19python3.9.____cpython:
-        CONFIG: win_64_numpy1.19python3.9.____cpython
+        SHORT_CONFIG: win_64_numpy1.19python3.8.____73_py_hded8259290
+      win_64_numpy1.19python3.8.____cpythonpython_implcpython:
+        CONFIG: win_64_numpy1.19python3.8.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_numpy1.19python3.9.____cpython
-      win_64_numpy1.21python3.10.____cpython:
-        CONFIG: win_64_numpy1.21python3.10.____cpython
+        SHORT_CONFIG: win_64_numpy1.19python3.8.____cpyth_hd0b9160f94
+      win_64_numpy1.19python3.9.____73_pypypython_implpypy:
+        CONFIG: win_64_numpy1.19python3.9.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_numpy1.21python3.10.____cpython
+        SHORT_CONFIG: win_64_numpy1.19python3.9.____73_py_he409916481
+      win_64_numpy1.19python3.9.____cpythonpython_implcpython:
+        CONFIG: win_64_numpy1.19python3.9.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: win_64_numpy1.19python3.9.____cpyth_hce1c5e4073
+      win_64_numpy1.21python3.10.____cpythonpython_implcpython:
+        CONFIG: win_64_numpy1.21python3.10.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: win_64_numpy1.21python3.10.____cpyt_hb07ed7ccda
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\
@@ -62,10 +70,9 @@ jobs:
 
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
-
     - task: CondaEnvironment@1
       inputs:
-        packageSpecs: 'python=3.9 conda-build conda "conda-forge-ci-setup=3" pip boa' # Optional
+        packageSpecs: 'python=3.9 conda-build conda pip boa conda-forge-ci-setup=3' # Optional
         installOptions: "-c conda-forge"
         updateConda: true
       displayName: Install conda-build and activate environment
