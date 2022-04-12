@@ -70,13 +70,3 @@ if [[ $target_platform != linux* ]] ; then
     # copy uhd_images_downloader.py into uhd package so we can make an entry_point
     cp utils/uhd_images_downloader.py $SP_DIR/uhd/
 fi
-
-# manually rename libpyuhd to have the proper extension suffix when cross-compiling
-if [[ $python_impl == "pypy" && $build_platform == linux-64 ]] ; then
-    if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64 ]] ; then
-        pushd $SP_DIR/uhd
-        LIBPYUHD_ORIGNAME=`basename libpyuhd*.so`
-        LIBPYUHD_NAME=${LIBPYUHD_ORIGNAME/x86_64-linux-gnu/linux-gnu}
-        mv $LIBPYUHD_ORIGNAME $LIBPYUHD_NAME
-    fi
-fi
