@@ -53,16 +53,16 @@ set ^"CMAKE_OPTIONS=^
  -DENABLE_USRP2=ON ^
  -DENABLE_X300=ON ^
  -DENABLE_X400=ON ^
-^"
+ ^"
 
 if [%python_impl%] == [pypy] (
   set ^"CMAKE_OPTIONS=!CMAKE_OPTIONS! ^
     -DENABLE_SIM=OFF ^
-  ^"
+    ^"
 ) else (
   set ^"CMAKE_OPTIONS=!CMAKE_OPTIONS! ^
-    -DENABLE_SIM=OFF ^
-  ^"
+    -DENABLE_SIM=ON ^
+    ^"
 )
 
 cmake -G "Ninja" !CMAKE_OPTIONS! ..
