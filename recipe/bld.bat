@@ -25,6 +25,7 @@ cmake -G "NMake Makefiles JOM" ^
     -DBOOST_ALL_DYN_LINK:BOOL=ON ^
     -DBoost_NO_BOOST_CMAKE=ON ^
     -DLIBUSB_INCLUDE_DIRS:PATH="%LIBRARY_INC%\libusb-1.0" ^
+    -DPYBIND11_INCLUDE_DIR="%SP_DIR%\pybind11\include" ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
     -DUHD_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
     -DUHD_RELEASE_MODE:STRING=release ^
