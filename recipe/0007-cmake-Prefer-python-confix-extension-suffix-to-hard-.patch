@@ -1,0 +1,67 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Mon, 10 Jan 2022 16:53:14 -0500
+Subject: [PATCH] cmake: Prefer python confix extension suffix to hard-coded on
+ Windows.
+
+PyPy won't load extension modules with a generic (e.g. ".pyd") suffix,
+so it is necessary to use the full SOABI extension suffix and only
+fallback to the ".pyd" default if the config variable lookup fails.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ fpga-src                   |  2 +-
+ host/python/CMakeLists.txt | 28 ++++++++++++++++------------
+ 2 files changed, 17 insertions(+), 13 deletions(-)
+
+diff --git a/fpga-src b/fpga-src
+index fde2a94eb..d26c7b582 160000
+--- a/fpga-src
++++ b/fpga-src
+@@ -1 +1 @@
+-Subproject commit fde2a94eb7231af859653db8caaf777ae2b66199
++Subproject commit d26c7b5828aec77d29e67faad6178bb41ba3d574
+diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
+index 3b9763471..9081b2d24 100644
+--- a/host/python/CMakeLists.txt
++++ b/host/python/CMakeLists.txt
+@@ -31,20 +31,24 @@ execute_process(
+ # Build pyuhd library
+ add_library(pyuhd SHARED pyuhd.cpp)
+ # python expects extension modules with a particular suffix
+-if(WIN32)
+-    set_target_properties(pyuhd PROPERTIES PREFIX "lib" SUFFIX ".pyd")
+-else()
+-    execute_process(
+-        COMMAND "${PYTHON_EXECUTABLE}" -c
+-        "from distutils.sysconfig import get_config_var; print(get_config_var('EXT_SUFFIX'))"
+-        OUTPUT_VARIABLE PYTHON_EXTENSION_SUFFIX
+-    )
+-    string(STRIP ${PYTHON_EXTENSION_SUFFIX} PYTHON_EXTENSION_SUFFIX)
+-    if(${PYTHON_EXTENSION_SUFFIX} STREQUAL "None")
++execute_process(
++    COMMAND "${PYTHON_EXECUTABLE}" -c
++    "from sysconfig import get_config_var; print(get_config_var('EXT_SUFFIX'))"
++    OUTPUT_VARIABLE PYTHON_EXTENSION_SUFFIX
++)
++string(STRIP ${PYTHON_EXTENSION_SUFFIX} PYTHON_EXTENSION_SUFFIX)
++if(${PYTHON_EXTENSION_SUFFIX} STREQUAL "None")
++    if(WIN32)
++        set(PYTHON_EXTENSION_SUFFIX ".pyd")
++    else()
+         set(PYTHON_EXTENSION_SUFFIX ${CMAKE_SHARED_MODULE_SUFFIX})
+     endif()
+-    set_target_properties(pyuhd PROPERTIES PREFIX "lib" SUFFIX ${PYTHON_EXTENSION_SUFFIX})
+-endif(WIN32)
++endif()
++set_target_properties(pyuhd
++    PROPERTIES
++    PREFIX "lib"
++    SUFFIX ${PYTHON_EXTENSION_SUFFIX}
++)
+ target_include_directories(pyuhd PUBLIC
+     ${PYTHON_NUMPY_INCLUDE_DIR}
+     ${CMAKE_SOURCE_DIR}/lib
+-- 
+2.35.1
+

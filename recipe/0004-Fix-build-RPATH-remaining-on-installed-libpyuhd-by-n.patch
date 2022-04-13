@@ -1,7 +1,7 @@
-From 7b59c2fcb79304b978ccc5f43486ac71caa84a88 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Fri, 10 Aug 2018 18:07:17 -0400
-Subject: [PATCH 4/4] Fix build RPATH remaining on installed libpyuhd by not
+Subject: [PATCH] Fix build RPATH remaining on installed libpyuhd by not
  setting it.
 
 ---
@@ -23,5 +23,5 @@ index c29eb6f6a..3b9763471 100644
  add_custom_command(TARGET pyuhd
      POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:pyuhd> ${CMAKE_CURRENT_BINARY_DIR}/uhd/$<TARGET_FILE_NAME:pyuhd>)
 -- 
-2.20.1
+2.35.1
 

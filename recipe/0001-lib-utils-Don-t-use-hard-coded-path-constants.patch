@@ -1,4 +1,4 @@
-From 4d48d4788e20939aa7268252dac783964a626fee Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Tue, 29 Oct 2019 17:13:58 -0400
 Subject: [PATCH] lib: utils: Don't use hard-coded path constants.
@@ -133,5 +133,5 @@ index 769c09796..1b97537eb 100644
      TARGET "paths_test.cpp"
      EXTRA_SOURCES
 -- 
-2.20.1
+2.35.1
 

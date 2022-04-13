@@ -9,12 +9,12 @@ source:
   sha256: eed4a77d75faafff56be78985950039f8d9d1eb9fcbd58b8862e481dd49825cd
   patches:
     - 0001-lib-utils-Don-t-use-hard-coded-path-constants.patch
-    - 0001-python-Fix-internal-library-name-incl.-suffix-to-mat.patch
-    - 0002-python-Do-not-link-against-python-lib-for-building-a.patch
-    - 0003-python-Set-python-module-suffix-to-conform-with-PEP-.patch
+    - 0002-python-Fix-internal-library-name-incl.-suffix-to-mat.patch
+    - 0003-python-Do-not-link-against-python-lib-for-building-a.patch
     - 0004-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
-    - 0001-lib-Make-sure-generated-file-is-closed-when-writing-.patch
-    - 0001-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
+    - 0005-lib-Make-sure-generated-file-is-closed-when-writing-.patch
+    - 0006-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
+    - 0007-cmake-Prefer-python-confix-extension-suffix-to-hard-.patch
 
 build:
   number: 8
