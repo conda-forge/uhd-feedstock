@@ -8,13 +8,14 @@ source:
   url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
   sha256: eed4a77d75faafff56be78985950039f8d9d1eb9fcbd58b8862e481dd49825cd
   patches:
-    - 0001-lib-utils-Don-t-use-hard-coded-path-constants.patch
-    - 0002-python-Fix-internal-library-name-incl.-suffix-to-mat.patch
-    - 0003-python-Do-not-link-against-python-lib-for-building-a.patch
-    - 0004-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
-    - 0005-lib-Make-sure-generated-file-is-closed-when-writing-.patch
-    - 0006-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
-    - 0007-cmake-Prefer-python-confix-extension-suffix-to-hard-.patch
+    - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
+    - 0002-lib-utils-Don-t-use-hard-coded-path-constants.patch
+    - 0003-python-Fix-internal-library-name-incl.-suffix-to-mat.patch
+    - 0004-python-Do-not-link-against-python-lib-for-building-a.patch
+    - 0005-Fix-build-RPATH-remaining-on-installed-libpyuhd-by-n.patch
+    - 0006-lib-Make-sure-generated-file-is-closed-when-writing-.patch
+    - 0007-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
+    - 0008-cmake-Prefer-python-confix-extension-suffix-to-hard-.patch
 
 build:
   number: 8
@@ -35,13 +36,14 @@ requirements:
     - jom  # [win]
     # libudev is on its own in CentOS 6, packaged with systemd in CentOS 7
     - {{ cdt('libudev-devel') }}  # [linux and cdt_name=='cos6']
-    - {{ cdt('systemd-devel') }}  # [linux and cdt_name=='cos7']
     - make  # [not win]
     - pkg-config  # [not win]
 
   host:
     - boost-cpp
-    - libusb >=1
+    - libusb
+    # restrict to cos6-compatible libusb (and libudev)
+    - libusb-cos6  # [linux and cdt_name=='cos6']
     - mako >=0.5.0
     - ncurses  # [not win]
     - numpy
