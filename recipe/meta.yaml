@@ -31,18 +31,12 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.5.1
-    # libudev is on its own in CentOS 6, packaged with systemd in CentOS 7
-    - {{ cdt('libudev-devel') }}  # [linux and cdt_name=='cos6']
-    - {{ cdt('systemd-devel') }}  # [linux and cdt_name=='cos7']
     - ninja
     - pkg-config  # [not win]
 
   host:
     - boost-cpp
-    - libusb >=1
-    # needed while on cos6 sysroot, make sure we get cos6-compatible libusb
-    # (this does not add a run_exports for libusb)
-    - libusb-cos6  # [linux and cdt_name=='cos6']
+    - libusb
     - mako >=0.5.0
     - ncurses  # [not win]
     - numpy
