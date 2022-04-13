@@ -35,5 +35,5 @@ index 78cce3e97..349ad48de 100644
      if(APPLE)
          target_link_options(uhd PRIVATE "LINKER:-undefined,dynamic_lookup")
 -- 
-2.34.1
+2.35.1
 
