@@ -19,6 +19,7 @@ cmake_config_args=(
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCURSES_NEED_NCURSES=ON
     -DLIB_SUFFIX=""
+    -DPYBIND11_INCLUDE_DIR=$SP_DIR/pybind11/include
     -DPYTHON_EXECUTABLE=$PYTHON
     -DRUNTIME_PYTHON_EXECUTABLE=$PYTHON
     -DUHD_RELEASE_MODE=release
@@ -50,8 +51,8 @@ cmake_config_args=(
 if [[ $python_impl == "pypy" ]] ; then
     # we need to help cmake find pypy
     cmake_config_args+=(
-        -DPYTHON_LIBRARY=$PREFIX/lib/libpypy3-c$SHLIB_EXT
-        -DPYTHON_INCLUDE_DIR=$PREFIX/include
+        -DPYTHON_LIBRARY=$PREFIX/lib/`$PYTHON -c "import sysconfig; print(sysconfig.get_config_var('LDLIBRARY'))"`
+        -DPYTHON_INCLUDE_DIR=`$PYTHON -c "import sysconfig; print(sysconfig.get_paths()['include'])"`
         -DUHD_PYTHON_DIR=$SP_DIR
         -DENABLE_SIM=OFF
     )
@@ -68,14 +69,4 @@ cmake --build . --config Release --target install
 if [[ $target_platform != linux* ]] ; then
     # copy uhd_images_downloader.py into uhd package so we can make an entry_point
     cp utils/uhd_images_downloader.py $SP_DIR/uhd/
-fi
-
-# manually rename libpyuhd to have the proper extension suffix when cross-compiling
-if [[ $python_impl == "pypy" && $build_platform == linux-64 ]] ; then
-    if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64 ]] ; then
-        pushd $SP_DIR/uhd
-        LIBPYUHD_ORIGNAME=`basename libpyuhd*.so`
-        LIBPYUHD_NAME=${LIBPYUHD_ORIGNAME/x86_64-linux-gnu/linux-gnu}
-        mv $LIBPYUHD_ORIGNAME $LIBPYUHD_NAME
-    fi
 fi

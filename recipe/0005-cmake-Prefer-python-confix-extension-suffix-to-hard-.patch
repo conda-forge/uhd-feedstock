@@ -1,0 +1,63 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Mon, 10 Jan 2022 16:53:14 -0500
+Subject: [PATCH] cmake: Prefer python confix extension suffix to hard-coded on
+ Windows.
+
+PyPy won't load extension modules with a generic (e.g. ".pyd") suffix,
+so it is necessary to use the full SOABI extension suffix and only
+fallback to the ".pyd" default if the config variable lookup fails.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ host/python/CMakeLists.txt | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
+index 3bf5c81dc..8a4819f91 100644
+--- a/host/python/CMakeLists.txt
++++ b/host/python/CMakeLists.txt
+@@ -36,24 +36,24 @@ add_library(pyuhd SHARED
+     ${UHD_SOURCE_DIR}/lib/usrp/multi_usrp_python.cpp
+ )
+ # python expects extension modules with a particular suffix
+-if(WIN32)
+-    set_target_properties(pyuhd PROPERTIES PREFIX "lib" SUFFIX ".pyd")
+-else()
+-    execute_process(
+-        COMMAND "${PYTHON_EXECUTABLE}" -c
+-        "from distutils.sysconfig import get_config_var; print(get_config_var('EXT_SUFFIX'))"
+-        OUTPUT_VARIABLE PYTHON_EXTENSION_SUFFIX
+-    )
+-    string(STRIP ${PYTHON_EXTENSION_SUFFIX} PYTHON_EXTENSION_SUFFIX)
+-    if(${PYTHON_EXTENSION_SUFFIX} STREQUAL "None")
++execute_process(
++    COMMAND "${PYTHON_EXECUTABLE}" -c
++    "from sysconfig import get_config_var; print(get_config_var('EXT_SUFFIX'))"
++    OUTPUT_VARIABLE PYTHON_EXTENSION_SUFFIX
++)
++string(STRIP ${PYTHON_EXTENSION_SUFFIX} PYTHON_EXTENSION_SUFFIX)
++if(${PYTHON_EXTENSION_SUFFIX} STREQUAL "None")
++    if(WIN32)
++        set(PYTHON_EXTENSION_SUFFIX ".pyd")
++    else()
+         set(PYTHON_EXTENSION_SUFFIX ${CMAKE_SHARED_MODULE_SUFFIX})
+     endif()
+-    set_target_properties(pyuhd
+-        PROPERTIES
+-        PREFIX "lib"
+-        SUFFIX ${PYTHON_EXTENSION_SUFFIX}
+-    )
+-endif(WIN32)
++endif()
++set_target_properties(pyuhd
++    PROPERTIES
++    PREFIX "lib"
++    SUFFIX ${PYTHON_EXTENSION_SUFFIX}
++)
+ target_include_directories(pyuhd PUBLIC
+     ${PYTHON_NUMPY_INCLUDE_DIR}
+     ${UHD_SOURCE_DIR}/lib
+-- 
+2.35.1
+

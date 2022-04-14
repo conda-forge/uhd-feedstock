@@ -1,4 +1,5 @@
-setlocal EnableDelayedExpansion
+setlocal EnableExtensions EnableDelayedExpansion
+@echo on
 
 :: Python assumes an old Visual Studio without snprintf, but this breaks
 :: compiling the Python bindings. Need to define HAVE_SNPRINTF to fix.
@@ -16,43 +17,55 @@ cd build
 ::   DOXYGEN/MANUAL because we don't need docs in the conda package
 ::   DPDK needs dpdk
 ::   MAN_PAGES because they can't be enabled for Windows
-cmake -G "Ninja" ^
-    -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
-    -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
-    -DCMAKE_BUILD_TYPE=Release ^
-    -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=ON ^
-    -DBOOST_ALL_DYN_LINK=ON ^
-    -DBoost_NO_BOOST_CMAKE=ON ^
-    -DLIBUSB_INCLUDE_DIRS="%LIBRARY_INC%\libusb-1.0" ^
-    -DPYTHON_EXECUTABLE="%PYTHON%" ^
-    -DRUNTIME_PYTHON_EXECUTABLE="%PYTHON%" ^
-    -DUHD_PYTHON_DIR="%SP_DIR%" ^
-    -DUHD_RELEASE_MODE=release ^
-    -DENABLE_B100=ON ^
-    -DENABLE_B200=ON ^
-    -DENABLE_C_API=ON ^
-    -DENABLE_DOXYGEN=OFF ^
-    -DENABLE_DPDK=OFF ^
-    -DENABLE_E300=ON ^
-    -DENABLE_E320=ON ^
-    -DENABLE_EXAMPLES=ON ^
-    -DENABLE_LIBUHD=ON ^
-    -DENABLE_MAN_PAGES=OFF ^
-    -DENABLE_MANUAL=OFF ^
-    -DENABLE_MPMD=ON ^
-    -DENABLE_OCTOCLOCK=ON ^
-    -DENABLE_N300=ON ^
-    -DENABLE_N320=ON ^
-    -DENABLE_PYTHON_API=ON ^
+set ^"CMAKE_OPTIONS=^
+ -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
+ -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
+ -DCMAKE_BUILD_TYPE=Release ^
+ -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=ON ^
+ -DBOOST_ALL_DYN_LINK=ON ^
+ -DBoost_NO_BOOST_CMAKE=ON ^
+ -DLIBUSB_INCLUDE_DIRS="%LIBRARY_INC%\libusb-1.0" ^
+ -DPYBIND11_INCLUDE_DIR="%SP_DIR%\pybind11\include" ^
+ -DPYTHON_EXECUTABLE="%PYTHON%" ^
+ -DRUNTIME_PYTHON_EXECUTABLE="%PYTHON%" ^
+ -DUHD_PYTHON_DIR="%SP_DIR%" ^
+ -DUHD_RELEASE_MODE=release ^
+ -DENABLE_B100=ON ^
+ -DENABLE_B200=ON ^
+ -DENABLE_C_API=ON ^
+ -DENABLE_DOXYGEN=OFF ^
+ -DENABLE_DPDK=OFF ^
+ -DENABLE_E300=ON ^
+ -DENABLE_E320=ON ^
+ -DENABLE_EXAMPLES=ON ^
+ -DENABLE_LIBUHD=ON ^
+ -DENABLE_MAN_PAGES=OFF ^
+ -DENABLE_MANUAL=OFF ^
+ -DENABLE_MPMD=ON ^
+ -DENABLE_OCTOCLOCK=ON ^
+ -DENABLE_N300=ON ^
+ -DENABLE_N320=ON ^
+ -DENABLE_PYTHON_API=ON ^
+ -DENABLE_TESTS=OFF ^
+ -DENABLE_UTILS=ON ^
+ -DENABLE_USB=ON ^
+ -DENABLE_USRP1=ON ^
+ -DENABLE_USRP2=ON ^
+ -DENABLE_X300=ON ^
+ -DENABLE_X400=ON ^
+ ^"
+
+if [%python_impl%] == [pypy] (
+  set ^"CMAKE_OPTIONS=!CMAKE_OPTIONS! ^
+    -DENABLE_SIM=OFF ^
+    ^"
+) else (
+  set ^"CMAKE_OPTIONS=!CMAKE_OPTIONS! ^
     -DENABLE_SIM=ON ^
-    -DENABLE_TESTS=OFF ^
-    -DENABLE_UTILS=ON ^
-    -DENABLE_USB=ON ^
-    -DENABLE_USRP1=ON ^
-    -DENABLE_USRP2=ON ^
-    -DENABLE_X300=ON ^
-    -DENABLE_X400=ON ^
-    ..
+    ^"
+)
+
+cmake -G "Ninja" !CMAKE_OPTIONS! ..
 if errorlevel 1 exit 1
 
 :: build
