@@ -1,5 +1,5 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '11.0'
+- '10.9'
 boost_cpp:
 - 1.74.0
 c_compiler:
@@ -15,11 +15,11 @@ cxx_compiler:
 cxx_compiler_version:
 - '12'
 macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 ncurses:
 - '6'
 numpy:
-- '1.21'
+- '1.19'
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
@@ -27,11 +27,11 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.8.* *_73_pypy
 python_impl:
-- cpython
+- pypy
 target_platform:
-- osx-arm64
+- osx-64
 uhd:
 - 4.1.0
 zip_keys:

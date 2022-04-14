@@ -20,6 +20,7 @@ cmake_config_args=(
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCURSES_NEED_NCURSES=ON
     -DLIB_SUFFIX=""
+    -DPYBIND11_INCLUDE_DIR=$SP_DIR/pybind11/include
     -DPYTHON_EXECUTABLE=$PYTHON
     -DUHD_RELEASE_MODE=release
     -DENABLE_B100=ON
@@ -52,8 +53,8 @@ cmake_config_args=(
 if [[ $python_impl == "pypy" ]] ; then
     # we need to help cmake find pypy
     cmake_config_args+=(
-        -DPYTHON_LIBRARY=$PREFIX/lib/libpypy3-c$SHLIB_EXT
-        -DPYTHON_INCLUDE_DIR=$PREFIX/include
+        -DPYTHON_LIBRARY=$PREFIX/lib/`$PYTHON -c "import sysconfig; print(sysconfig.get_config_var('LDLIBRARY'))"`
+        -DPYTHON_INCLUDE_DIR=`$PYTHON -c "import sysconfig; print(sysconfig.get_paths()['include'])"`
     )
 fi
 
