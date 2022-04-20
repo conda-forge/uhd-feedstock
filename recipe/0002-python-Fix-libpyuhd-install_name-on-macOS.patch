@@ -8,10 +8,10 @@ Subject: [PATCH] python: Fix libpyuhd install_name on macOS.
  1 file changed, 7 insertions(+)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 212bd9e46..c5de3c065 100644
+index eacdb8fbf..470a78321 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -191,6 +191,13 @@ else()
+@@ -182,6 +182,13 @@ else()
          DESTINATION ${UHD_PYTHON_DIR}
          COMPONENT pythonapi
      )
