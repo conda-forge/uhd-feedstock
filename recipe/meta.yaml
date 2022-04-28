@@ -32,7 +32,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.5.1
     - ninja
-    - pkg-config  # [not win]
+    - pkg-config
 
   host:
     - boost-cpp
