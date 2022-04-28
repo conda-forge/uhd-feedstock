@@ -14,6 +14,7 @@ source:
     - 0003-cmake-Make-libuhd-linking-to-Python-library-PRIVATE.patch
     - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
     - 0005-cmake-Prefer-python-confix-extension-suffix-to-hard-.patch
+    - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
 
 build:
   number: 0
