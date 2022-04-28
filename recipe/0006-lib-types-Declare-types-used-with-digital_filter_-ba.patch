@@ -14,7 +14,7 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/host/lib/types/filters.cpp b/host/lib/types/filters.cpp
-index a39dd0f58..fd69567cf 100644
+index a39dd0f58..5652e648d 100644
 --- a/host/lib/types/filters.cpp
 +++ b/host/lib/types/filters.cpp
 @@ -64,3 +64,7 @@ std::string analog_filter_lp::to_pp_string()
@@ -22,9 +22,9 @@ index a39dd0f58..fd69567cf 100644
      return std::string(os.str());
  }
 +
-+template class digital_filter_base<int16_t>;
++template class uhd::digital_filter_base<int16_t>;
 +
-+template class digital_filter_fir<int16_t>;
++template class uhd::digital_filter_fir<int16_t>;
 -- 
 2.35.1
 
