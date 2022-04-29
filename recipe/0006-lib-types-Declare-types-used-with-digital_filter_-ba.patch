@@ -1,0 +1,30 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Thu, 28 Apr 2022 13:56:50 -0400
+Subject: [PATCH] lib: types: Declare types used with digital_filter_(base|fir)
+ template.
+
+Without declaring the instances of these digital filter classes using
+the int16_t type for the taps, the libpyuhd bindings fail to link on
+Windows using MSVC in a dynamic library configuration.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ host/lib/types/filters.cpp | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/host/lib/types/filters.cpp b/host/lib/types/filters.cpp
+index a39dd0f58..5652e648d 100644
+--- a/host/lib/types/filters.cpp
++++ b/host/lib/types/filters.cpp
+@@ -64,3 +64,7 @@ std::string analog_filter_lp::to_pp_string()
+        << "\t\trolloff: " << _rolloff << std::endl;
+     return std::string(os.str());
+ }
++
++template class uhd::digital_filter_base<int16_t>;
++
++template class uhd::digital_filter_fir<int16_t>;
+-- 
+2.35.1
+

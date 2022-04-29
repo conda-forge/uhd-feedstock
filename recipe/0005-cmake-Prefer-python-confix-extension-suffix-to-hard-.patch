@@ -14,10 +14,10 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 3bf5c81dc..8a4819f91 100644
+index 2b1e36cd6..b8d6099d6 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -36,24 +36,24 @@ add_library(pyuhd SHARED
+@@ -37,24 +37,24 @@ add_library(pyuhd SHARED
      ${UHD_SOURCE_DIR}/lib/usrp/multi_usrp_python.cpp
  )
  # python expects extension modules with a particular suffix
@@ -26,7 +26,7 @@ index 3bf5c81dc..8a4819f91 100644
 -else()
 -    execute_process(
 -        COMMAND "${PYTHON_EXECUTABLE}" -c
--        "from distutils.sysconfig import get_config_var; print(get_config_var('EXT_SUFFIX'))"
+-        "from sysconfig import get_config_var; print(get_config_var('EXT_SUFFIX'))"
 -        OUTPUT_VARIABLE PYTHON_EXTENSION_SUFFIX
 -    )
 -    string(STRIP ${PYTHON_EXTENSION_SUFFIX} PYTHON_EXTENSION_SUFFIX)

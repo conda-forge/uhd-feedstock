@@ -18,10 +18,10 @@ specified and so fails to do this properly).
  3 files changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index c5de3c065..3bf5c81dc 100644
+index 470a78321..2b1e36cd6 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -85,8 +85,7 @@ file(GLOB_RECURSE PYUHD_FILES
+@@ -86,8 +86,7 @@ file(GLOB_RECURSE PYUHD_FILES
  set(SETUP_PY_IN    "${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in")
  set(SETUP_PY       "${CMAKE_CURRENT_BINARY_DIR}/setup.py")
  set(TIMESTAMP_FILE "${CMAKE_CURRENT_BINARY_DIR}/build/timestamp")
