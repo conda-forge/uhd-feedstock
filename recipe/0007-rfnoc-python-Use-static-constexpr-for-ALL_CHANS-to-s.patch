@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Fri, 29 Jul 2022 14:05:30 -0400
+Subject: [PATCH] rfnoc: python: Use static constexpr for ALL_CHANS to satisfy
+ clang.
+
+clang 13 doesn't like declaring the local ALL_CHANS as const, so this
+switches it to static constexpr to match the original declaration in the
+radio_control.hpp header.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ host/lib/rfnoc/radio_control_python.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/host/lib/rfnoc/radio_control_python.hpp b/host/lib/rfnoc/radio_control_python.hpp
+index 3fb6371da..f933decde 100644
+--- a/host/lib/rfnoc/radio_control_python.hpp
++++ b/host/lib/rfnoc/radio_control_python.hpp
+@@ -14,7 +14,7 @@ using namespace uhd::rfnoc;
+ void export_radio_control(py::module& m)
+ {
+     // Re-import ALL_CHANS here to avoid linker errors
+-    const auto ALL_CHANS = radio_control::ALL_CHANS;
++    static constexpr auto ALL_CHANS = radio_control::ALL_CHANS;
+ 
+     py::class_<radio_control, noc_block_base, radio_control::sptr>(m, "radio_control")
+         .def(py::init(&block_controller_factory<radio_control>::make_from))
+-- 
+2.35.1
+
