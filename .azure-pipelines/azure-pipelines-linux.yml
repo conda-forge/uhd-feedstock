@@ -38,6 +38,36 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
         SHORT_CONFIG: linux_64_numpy1.21python3.10.____cp_hc201f56a3b
+      linux_aarch64_numpy1.19python3.7.____cpythonpython_implcpython:
+        CONFIG: linux_aarch64_numpy1.19python3.7.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+        SHORT_CONFIG: linux_aarch64_numpy1.19python3.7.___hf28c983bbc
+      linux_aarch64_numpy1.19python3.8.____73_pypypython_implpypy:
+        CONFIG: linux_aarch64_numpy1.19python3.8.____73_pypypython_implpypy
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+        SHORT_CONFIG: linux_aarch64_numpy1.19python3.8.___hdcedf1f4d4
+      linux_aarch64_numpy1.19python3.8.____cpythonpython_implcpython:
+        CONFIG: linux_aarch64_numpy1.19python3.8.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+        SHORT_CONFIG: linux_aarch64_numpy1.19python3.8.___h4a304a423d
+      linux_aarch64_numpy1.19python3.9.____73_pypypython_implpypy:
+        CONFIG: linux_aarch64_numpy1.19python3.9.____73_pypypython_implpypy
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+        SHORT_CONFIG: linux_aarch64_numpy1.19python3.9.___hcb940d3727
+      linux_aarch64_numpy1.19python3.9.____cpythonpython_implcpython:
+        CONFIG: linux_aarch64_numpy1.19python3.9.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+        SHORT_CONFIG: linux_aarch64_numpy1.19python3.9.___hb72e2bb7de
+      linux_aarch64_numpy1.21python3.10.____cpythonpython_implcpython:
+        CONFIG: linux_aarch64_numpy1.21python3.10.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+        SHORT_CONFIG: linux_aarch64_numpy1.21python3.10.__h261ce13961
       linux_ppc64le_numpy1.19python3.7.____cpythonpython_implcpython:
         CONFIG: linux_ppc64le_numpy1.19python3.7.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
