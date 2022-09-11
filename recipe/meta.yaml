@@ -18,7 +18,7 @@ source:
     - 0007-rfnoc-python-Use-static-constexpr-for-ALL_CHANS-to-s.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]
