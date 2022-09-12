@@ -4,11 +4,45 @@ Date: Mon, 12 Sep 2022 12:53:08 -0400
 Subject: [PATCH] Fix compilation with Boost >= 1.76.
 
 ---
- host/lib/usrp/cores/rx_dsp_core_3000.cpp      |  1 +
- host/lib/usrp/cores/rx_frontend_core_3000.cpp |  1 +
- host/lib/usrp/usrp2/usrp2_impl.cpp            | 13 +++++--------
- 3 files changed, 7 insertions(+), 8 deletions(-)
+ .../lib/usrp/common/ad9361_driver/ad9361_device.cpp |  5 ++---
+ host/lib/usrp/cores/rx_dsp_core_3000.cpp            |  1 +
+ host/lib/usrp/cores/rx_frontend_core_3000.cpp       |  1 +
+ host/lib/usrp/usrp2/usrp2_impl.cpp                  | 13 +++++--------
+ 4 files changed, 9 insertions(+), 11 deletions(-)
 
+diff --git a/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp b/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp
+index a3d3552ef..3321bc3b9 100644
+--- a/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp
++++ b/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp
+@@ -5,18 +5,17 @@
+ // SPDX-License-Identifier: GPL-3.0-or-later
+ //
+ 
++#define _USE_MATH_DEFINES
+ #include "ad9361_filter_taps.h"
+ #include "ad9361_gain_tables.h"
+ #include "ad9361_synth_lut.h"
+ #include "ad9361_client.h"
+ #include "ad9361_device.h"
+-#define _USE_MATH_DEFINES
+ #include <uhd/exception.hpp>
+ #include <uhd/utils/log.hpp>
+ 
+ #include <boost/scoped_array.hpp>
+ #include <boost/format.hpp>
+-#include <boost/math/special_functions.hpp>
+ #include <chrono>
+ #include <thread>
+ #include <cmath>
+@@ -1196,7 +1195,7 @@ double ad9361_device_t::_tune_bbvco(const double rate)
+     /* Fo = Fref * (Nint + Nfrac / mod) */
+     int nint = static_cast<int>(vcorate / fref);
+     UHD_LOG_TRACE("AD936X", "[ad9361_device_t::_tune_bbvco] (nint)=" << (vcorate / fref));
+-    int nfrac = static_cast<int>(boost::math::round(((vcorate / fref) - (double) nint) * (double) modulus));
++    int nfrac = static_cast<int>(std::lround(((vcorate / fref) - (double)nint) * (double)modulus));
+     UHD_LOG_TRACE("AD936X",
+         "[ad9361_device_t::_tune_bbvco] (nfrac)=" << ((vcorate / fref) - (double)nint)
+                                                          * (double)modulus);
 diff --git a/host/lib/usrp/cores/rx_dsp_core_3000.cpp b/host/lib/usrp/cores/rx_dsp_core_3000.cpp
 index ff7caf105..5ed5aab5c 100644
 --- a/host/lib/usrp/cores/rx_dsp_core_3000.cpp
