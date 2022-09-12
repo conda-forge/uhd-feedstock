@@ -16,9 +16,10 @@ source:
     - 0006-lib-Make-sure-generated-file-is-closed-when-writing-.patch
     - 0007-boost-Include-bind.hpp-where-used-add-BOOST_BIND_GLO.patch
     - 0008-cmake-Prefer-python-confix-extension-suffix-to-hard-.patch
+    - 0009-Fix-compilation-with-Boost-1.76.patch
 
 build:
-  number: 8
+  number: 9
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]
