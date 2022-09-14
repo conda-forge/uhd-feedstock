@@ -8,38 +8,38 @@ jobs:
     vmImage: macOS-11
   strategy:
     matrix:
-      osx_64_numpy1.19python3.7.____cpythonpython_implcpython:
-        CONFIG: osx_64_numpy1.19python3.7.____cpythonpython_implcpython
+      osx_64_numpy1.20python3.7.____cpythonpython_implcpython:
+        CONFIG: osx_64_numpy1.20python3.7.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: osx_64_numpy1.19python3.7.____cpyth_h1446debee8
-      osx_64_numpy1.19python3.8.____73_pypypython_implpypy:
-        CONFIG: osx_64_numpy1.19python3.8.____73_pypypython_implpypy
+        SHORT_CONFIG: osx_64_numpy1.20python3.7.____cpyth_h0009420603
+      osx_64_numpy1.20python3.8.____73_pypypython_implpypy:
+        CONFIG: osx_64_numpy1.20python3.8.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: osx_64_numpy1.19python3.8.____73_py_h82e90247ab
-      osx_64_numpy1.19python3.8.____cpythonpython_implcpython:
-        CONFIG: osx_64_numpy1.19python3.8.____cpythonpython_implcpython
+        SHORT_CONFIG: osx_64_numpy1.20python3.8.____73_py_hbd66f51575
+      osx_64_numpy1.20python3.8.____cpythonpython_implcpython:
+        CONFIG: osx_64_numpy1.20python3.8.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: osx_64_numpy1.19python3.8.____cpyth_hd5361ccee4
-      osx_64_numpy1.19python3.9.____73_pypypython_implpypy:
-        CONFIG: osx_64_numpy1.19python3.9.____73_pypypython_implpypy
+        SHORT_CONFIG: osx_64_numpy1.20python3.8.____cpyth_h16671a2f57
+      osx_64_numpy1.20python3.9.____73_pypypython_implpypy:
+        CONFIG: osx_64_numpy1.20python3.9.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: osx_64_numpy1.19python3.9.____73_py_hf3117532aa
-      osx_64_numpy1.19python3.9.____cpythonpython_implcpython:
-        CONFIG: osx_64_numpy1.19python3.9.____cpythonpython_implcpython
+        SHORT_CONFIG: osx_64_numpy1.20python3.9.____73_py_h5eb9d6b811
+      osx_64_numpy1.20python3.9.____cpythonpython_implcpython:
+        CONFIG: osx_64_numpy1.20python3.9.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: osx_64_numpy1.19python3.9.____cpyth_h68481d7586
+        SHORT_CONFIG: osx_64_numpy1.20python3.9.____cpyth_hdd3dcb0590
       osx_64_numpy1.21python3.10.____cpythonpython_implcpython:
         CONFIG: osx_64_numpy1.21python3.10.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: osx_64_numpy1.21python3.10.____cpyt_h16fdaa3d33
-      osx_arm64_numpy1.19python3.8.____cpython:
-        CONFIG: osx_arm64_numpy1.19python3.8.____cpython
+      osx_arm64_numpy1.20python3.8.____cpython:
+        CONFIG: osx_arm64_numpy1.20python3.8.____cpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: osx_arm64_numpy1.19python3.8.____cpython
-      osx_arm64_numpy1.19python3.9.____cpython:
-        CONFIG: osx_arm64_numpy1.19python3.9.____cpython
+        SHORT_CONFIG: osx_arm64_numpy1.20python3.8.____cpython
+      osx_arm64_numpy1.20python3.9.____cpython:
+        CONFIG: osx_arm64_numpy1.20python3.9.____cpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: osx_arm64_numpy1.19python3.9.____cpython
+        SHORT_CONFIG: osx_arm64_numpy1.20python3.9.____cpython
       osx_arm64_numpy1.21python3.10.____cpython:
         CONFIG: osx_arm64_numpy1.21python3.10.____cpython
         UPLOAD_PACKAGES: 'True'

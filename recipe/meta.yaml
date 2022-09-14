@@ -1,5 +1,5 @@
 {% set uhd_lib = "uhd" %}
-{% set version = "4.2.0.1" %}
+{% set version = "4.3.0.0" %}
 
 package:
   name: uhd
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: ad15e0061126d3acf0f0cf1bdb85991c974a0eb5e26413498019e3d70bfd588d
+  sha256: 8695800d593c58b557cbf9905b02bbf65a74ca68674e8c8c8c28bb6e203635ad
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
     - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
@@ -15,10 +15,9 @@ source:
     - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
     - 0005-cmake-Prefer-python-confix-extension-suffix-to-hard-.patch
     - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
-    - 0007-rfnoc-python-Use-static-constexpr-for-ALL_CHANS-to-s.patch
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]

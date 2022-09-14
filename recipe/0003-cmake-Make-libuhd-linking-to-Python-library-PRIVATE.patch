@@ -13,10 +13,10 @@ fixed by #309.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index 5aee65d38..033d5c625 100644
+index 351e0a170..55b7e2cde 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -180,7 +180,7 @@ if(ENABLE_MPMD)
+@@ -181,7 +181,7 @@ if(ENABLE_MPMD)
      list(APPEND libuhd_sources $<TARGET_OBJECTS:uhd_rpclib>)
  endif()
  add_library(uhd SHARED ${libuhd_sources})
@@ -25,7 +25,7 @@ index 5aee65d38..033d5c625 100644
  if(APPLE)
      target_link_options(uhd PRIVATE "LINKER:-undefined,dynamic_lookup")
      target_link_options(uhd PRIVATE "-flat_namespace")
-@@ -207,7 +207,7 @@ if(ENABLE_SIM)
+@@ -208,7 +208,7 @@ if(ENABLE_SIM)
  
      # For PYUHD we don't link against the python libraries, but when calling
      # python instead of being called by it, we have to.
