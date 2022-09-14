@@ -14,7 +14,7 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 43ae20c4d..a71f1f068 100644
+index ad1defec2..198077393 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
 @@ -37,24 +37,24 @@ add_library(pyuhd SHARED
