@@ -9,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 numpy:
-- '1.19'
+- '1.20'
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
@@ -17,13 +17,13 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.8.* *_cpython
 python_impl:
 - cpython
 target_platform:
 - win-64
 uhd:
-- 4.2.0
+- 4.3.0
 zip_keys:
 - - python
   - numpy

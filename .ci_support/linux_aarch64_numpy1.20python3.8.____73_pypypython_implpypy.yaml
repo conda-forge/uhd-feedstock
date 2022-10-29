@@ -23,7 +23,7 @@ docker_image:
 ncurses:
 - '6'
 numpy:
-- '1.19'
+- '1.20'
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
@@ -31,13 +31,13 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_73_pypy
+- 3.8.* *_73_pypy
 python_impl:
 - pypy
 target_platform:
 - linux-aarch64
 uhd:
-- 4.2.0
+- 4.3.0
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
