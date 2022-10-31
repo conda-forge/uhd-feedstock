@@ -23,7 +23,7 @@ python_impl:
 target_platform:
 - win-64
 uhd:
-- 4.2.0
+- 4.3.0
 zip_keys:
 - - python
   - numpy
