@@ -8,10 +8,6 @@ jobs:
     vmImage: windows-2019
   strategy:
     matrix:
-      win_64_numpy1.20python3.7.____cpythonpython_implcpython:
-        CONFIG: win_64_numpy1.20python3.7.____cpythonpython_implcpython
-        UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_numpy1.20python3.7.____cpyth_h7c9d381b4d
       win_64_numpy1.20python3.8.____73_pypypython_implpypy:
         CONFIG: win_64_numpy1.20python3.8.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
@@ -32,6 +28,10 @@ jobs:
         CONFIG: win_64_numpy1.21python3.10.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: win_64_numpy1.21python3.10.____cpyt_hb07ed7ccda
+      win_64_numpy1.23python3.11.____cpythonpython_implcpython:
+        CONFIG: win_64_numpy1.23python3.11.____cpythonpython_implcpython
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: win_64_numpy1.23python3.11.____cpyt_hfdca1d6b56
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\
