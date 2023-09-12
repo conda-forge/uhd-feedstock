@@ -8,91 +8,76 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_numpy1.20python3.8.____73_pypypython_implpypy:
-        CONFIG: linux_64_numpy1.20python3.8.____73_pypypython_implpypy
+      linux_64_numpy1.22python3.10.____cpythonpython_implcpython:
+        CONFIG: linux_64_numpy1.22python3.10.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_64_numpy1.20python3.8.____73__h42b078c4ed
-      linux_64_numpy1.20python3.8.____cpythonpython_implcpython:
-        CONFIG: linux_64_numpy1.20python3.8.____cpythonpython_implcpython
+        SHORT_CONFIG: linux_64_numpy1.22python3.10.____cp_hb876ddec32
+      linux_64_numpy1.22python3.8.____cpythonpython_implcpython:
+        CONFIG: linux_64_numpy1.22python3.8.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_64_numpy1.20python3.8.____cpy_hc66395c11f
-      linux_64_numpy1.20python3.9.____73_pypypython_implpypy:
-        CONFIG: linux_64_numpy1.20python3.9.____73_pypypython_implpypy
+        SHORT_CONFIG: linux_64_numpy1.22python3.8.____cpy_h259db29771
+      linux_64_numpy1.22python3.9.____73_pypypython_implpypy:
+        CONFIG: linux_64_numpy1.22python3.9.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_64_numpy1.20python3.9.____73__h9a0f39370a
-      linux_64_numpy1.20python3.9.____cpythonpython_implcpython:
-        CONFIG: linux_64_numpy1.20python3.9.____cpythonpython_implcpython
+        SHORT_CONFIG: linux_64_numpy1.22python3.9.____73__h99ea93dc8d
+      linux_64_numpy1.22python3.9.____cpythonpython_implcpython:
+        CONFIG: linux_64_numpy1.22python3.9.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_64_numpy1.20python3.9.____cpy_h4c6fc9d11c
-      linux_64_numpy1.21python3.10.____cpythonpython_implcpython:
-        CONFIG: linux_64_numpy1.21python3.10.____cpythonpython_implcpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_64_numpy1.21python3.10.____cp_hc201f56a3b
+        SHORT_CONFIG: linux_64_numpy1.22python3.9.____cpy_h0a2b3bd23a
       linux_64_numpy1.23python3.11.____cpythonpython_implcpython:
         CONFIG: linux_64_numpy1.23python3.11.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
         SHORT_CONFIG: linux_64_numpy1.23python3.11.____cp_h28e7358e74
-      linux_aarch64_numpy1.20python3.8.____73_pypypython_implpypy:
-        CONFIG: linux_aarch64_numpy1.20python3.8.____73_pypypython_implpypy
+      linux_aarch64_numpy1.22python3.10.____cpythonpython_implcpython:
+        CONFIG: linux_aarch64_numpy1.22python3.10.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_aarch64_numpy1.20python3.8.___h9158bb1f3a
-      linux_aarch64_numpy1.20python3.8.____cpythonpython_implcpython:
-        CONFIG: linux_aarch64_numpy1.20python3.8.____cpythonpython_implcpython
+        SHORT_CONFIG: linux_aarch64_numpy1.22python3.10.__hfef8627d55
+      linux_aarch64_numpy1.22python3.8.____cpythonpython_implcpython:
+        CONFIG: linux_aarch64_numpy1.22python3.8.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_aarch64_numpy1.20python3.8.___h2eea368c3f
-      linux_aarch64_numpy1.20python3.9.____73_pypypython_implpypy:
-        CONFIG: linux_aarch64_numpy1.20python3.9.____73_pypypython_implpypy
+        SHORT_CONFIG: linux_aarch64_numpy1.22python3.8.___hf1e1cf5873
+      linux_aarch64_numpy1.22python3.9.____73_pypypython_implpypy:
+        CONFIG: linux_aarch64_numpy1.22python3.9.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_aarch64_numpy1.20python3.9.___h39c154040c
-      linux_aarch64_numpy1.20python3.9.____cpythonpython_implcpython:
-        CONFIG: linux_aarch64_numpy1.20python3.9.____cpythonpython_implcpython
+        SHORT_CONFIG: linux_aarch64_numpy1.22python3.9.___h7c5237695a
+      linux_aarch64_numpy1.22python3.9.____cpythonpython_implcpython:
+        CONFIG: linux_aarch64_numpy1.22python3.9.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_aarch64_numpy1.20python3.9.___hd177600c4f
-      linux_aarch64_numpy1.21python3.10.____cpythonpython_implcpython:
-        CONFIG: linux_aarch64_numpy1.21python3.10.____cpythonpython_implcpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_aarch64_numpy1.21python3.10.__h261ce13961
+        SHORT_CONFIG: linux_aarch64_numpy1.22python3.9.___h23ece3e0d3
       linux_aarch64_numpy1.23python3.11.____cpythonpython_implcpython:
         CONFIG: linux_aarch64_numpy1.23python3.11.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
         SHORT_CONFIG: linux_aarch64_numpy1.23python3.11.__hd10399580a
-      linux_ppc64le_numpy1.20python3.8.____73_pypypython_implpypy:
-        CONFIG: linux_ppc64le_numpy1.20python3.8.____73_pypypython_implpypy
+      linux_ppc64le_numpy1.22python3.10.____cpythonpython_implcpython:
+        CONFIG: linux_ppc64le_numpy1.22python3.10.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_ppc64le_numpy1.20python3.8.___h2c206b81f2
-      linux_ppc64le_numpy1.20python3.8.____cpythonpython_implcpython:
-        CONFIG: linux_ppc64le_numpy1.20python3.8.____cpythonpython_implcpython
+        SHORT_CONFIG: linux_ppc64le_numpy1.22python3.10.__hddc5bc08ac
+      linux_ppc64le_numpy1.22python3.8.____cpythonpython_implcpython:
+        CONFIG: linux_ppc64le_numpy1.22python3.8.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_ppc64le_numpy1.20python3.8.___h11d0a79359
-      linux_ppc64le_numpy1.20python3.9.____73_pypypython_implpypy:
-        CONFIG: linux_ppc64le_numpy1.20python3.9.____73_pypypython_implpypy
+        SHORT_CONFIG: linux_ppc64le_numpy1.22python3.8.___h3dc93fdbf1
+      linux_ppc64le_numpy1.22python3.9.____73_pypypython_implpypy:
+        CONFIG: linux_ppc64le_numpy1.22python3.9.____73_pypypython_implpypy
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_ppc64le_numpy1.20python3.9.___hd29792cb05
-      linux_ppc64le_numpy1.20python3.9.____cpythonpython_implcpython:
-        CONFIG: linux_ppc64le_numpy1.20python3.9.____cpythonpython_implcpython
+        SHORT_CONFIG: linux_ppc64le_numpy1.22python3.9.___haa58f513bc
+      linux_ppc64le_numpy1.22python3.9.____cpythonpython_implcpython:
+        CONFIG: linux_ppc64le_numpy1.22python3.9.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_ppc64le_numpy1.20python3.9.___h1c440e220b
-      linux_ppc64le_numpy1.21python3.10.____cpythonpython_implcpython:
-        CONFIG: linux_ppc64le_numpy1.21python3.10.____cpythonpython_implcpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_ppc64le_numpy1.21python3.10.__h175ce0eba6
+        SHORT_CONFIG: linux_ppc64le_numpy1.22python3.9.___hce604159e0
       linux_ppc64le_numpy1.23python3.11.____cpythonpython_implcpython:
         CONFIG: linux_ppc64le_numpy1.23python3.11.____cpythonpython_implcpython
         UPLOAD_PACKAGES: 'True'
@@ -101,11 +86,6 @@ jobs:
   timeoutInMinutes: 360
 
   steps:
-  - script: |
-         rm -rf /opt/ghc
-         df -h
-    displayName: Manage disk space
-
   # configure qemu binfmt-misc running.  This allows us to run docker containers
   # embedded qemu-static
   - script: |
