@@ -19,7 +19,7 @@ source:
     - 0009-Fix-compilation-with-Boost-1.76.patch
 
 build:
-  number: 10
+  number: 11
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]
@@ -39,7 +39,7 @@ requirements:
     - pkg-config  # [not win]
 
   host:
-    - boost-cpp
+    - libboost-devel
     - libusb
     - mako >=0.5.0
     - ncurses  # [not win]
@@ -50,7 +50,6 @@ requirements:
     - setuptools
 
   run:
-    - boost-cpp
     - ncurses  # [not win]
     - {{ pin_compatible('numpy') }}
     - python
