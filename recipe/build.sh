@@ -39,6 +39,7 @@ cmake_config_args=(
     -DENABLE_N300=ON
     -DENABLE_N320=ON
     -DENABLE_PYTHON_API=ON
+    -DENABLE_SIM=OFF
     -DENABLE_TESTS=OFF
     -DENABLE_UTILS=ON
     -DENABLE_USB=ON
@@ -54,11 +55,6 @@ if [[ $python_impl == "pypy" ]] ; then
         -DPYTHON_LIBRARY=$PREFIX/lib/`$PYTHON -c "import sysconfig; print(sysconfig.get_config_var('LDLIBRARY'))"`
         -DPYTHON_INCLUDE_DIR=`$PYTHON -c "import sysconfig; print(sysconfig.get_paths()['include'])"`
         -DUHD_PYTHON_DIR=$SP_DIR
-        -DENABLE_SIM=OFF
-    )
-else
-    cmake_config_args+=(
-        -DENABLE_SIM=ON
     )
 fi
 

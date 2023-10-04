@@ -60,7 +60,7 @@ if [%python_impl%] == [pypy] (
     ^"
 ) else (
   set ^"CMAKE_OPTIONS=!CMAKE_OPTIONS! ^
-    -DENABLE_SIM=ON ^
+    -DENABLE_SIM=OFF ^
     ^"
 )
 
