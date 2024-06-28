@@ -23,7 +23,7 @@ build:
   entry_points:   # [not linux]
     - rfnoc_image_builder = uhd.rfnoc_image_builder:main  # [win]
     - uhd_images_downloader = uhd.uhd_images_downloader:main  # [not linux]
-    - usrpctl = uhd.usrpctl:main  # [win]
+    - usrpctl = uhd.usrpctl_script:main  # [win]
 
 requirements:
   build:
