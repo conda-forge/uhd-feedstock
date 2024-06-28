@@ -51,6 +51,7 @@ requirements:
     - setuptools
 
   run:
+    - mako >=0.5.0
     - ncurses  # [not win]
     - python
     - pyyaml
