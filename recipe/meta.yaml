@@ -21,7 +21,9 @@ build:
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]
+    - rfnoc_image_builder = uhd.rfnoc_image_builder:main  # [win]
     - uhd_images_downloader = uhd.uhd_images_downloader:main  # [not linux]
+    - usrpctl = uhd.usrpctl:main  # [win]
 
 requirements:
   build:
@@ -62,6 +64,7 @@ test:
     {% set cmds = cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
     {% set cmds = cmds + ["uhd_find_devices", "uhd_image_loader"] %}
     {% set cmds = cmds + ["uhd_images_downloader", "uhd_usrp_probe"] %}
+    {% set cmds = cmds + ["rfnoc_image_builder", "usrpctl"] %}
     {% set cmds = cmds + ["usrp2_card_burner"] %}  # [linux]
     {% for cmd in cmds %}
     - {{ cmd }} --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi  # [not win]
