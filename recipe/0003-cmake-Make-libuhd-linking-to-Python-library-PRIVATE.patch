@@ -13,7 +13,7 @@ fixed by #309.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index 351e0a170..55b7e2cde 100644
+index 62e052d64..f5b9f1609 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
 @@ -181,7 +181,7 @@ if(ENABLE_MPMD)
@@ -25,7 +25,7 @@ index 351e0a170..55b7e2cde 100644
  if(APPLE)
      target_link_options(uhd PRIVATE "LINKER:-undefined,dynamic_lookup")
      target_link_options(uhd PRIVATE "-flat_namespace")
-@@ -208,7 +208,7 @@ if(ENABLE_SIM)
+@@ -213,7 +213,7 @@ if(ENABLE_SIM)
  
      # For PYUHD we don't link against the python libraries, but when calling
      # python instead of being called by it, we have to.
@@ -35,5 +35,5 @@ index 351e0a170..55b7e2cde 100644
  endif(ENABLE_SIM)
  
 -- 
-2.35.1
+2.45.2
 

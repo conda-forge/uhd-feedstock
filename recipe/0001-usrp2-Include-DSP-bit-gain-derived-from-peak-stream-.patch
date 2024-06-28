@@ -15,7 +15,7 @@ sacrificing high order bits.
  1 file changed, 12 insertions(+), 9 deletions(-)
 
 diff --git a/host/lib/usrp/cores/rx_dsp_core_200.cpp b/host/lib/usrp/cores/rx_dsp_core_200.cpp
-index f5d31a374..6df0d8f0d 100644
+index 5a7af7bf2..4e7b60bc2 100644
 --- a/host/lib/usrp/cores/rx_dsp_core_200.cpp
 +++ b/host/lib/usrp/cores/rx_dsp_core_200.cpp
 @@ -225,13 +225,14 @@ public:
@@ -58,5 +58,5 @@ index f5d31a374..6df0d8f0d 100644
              _dsp_extra_scaling  = peak * 256;
          } else
 -- 
-2.35.1
+2.45.2
 
