@@ -24,7 +24,6 @@ set ^"CMAKE_OPTIONS=^
  -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=ON ^
  -DBOOST_ALL_DYN_LINK=ON ^
  -DBoost_NO_BOOST_CMAKE=ON ^
- -DPYBIND11_INCLUDE_DIR="%SP_DIR%\pybind11\include" ^
  -DPYTHON_EXECUTABLE="%PYTHON%" ^
  -DRUNTIME_PYTHON_EXECUTABLE="%PYTHON%" ^
  -DUHD_PYTHON_DIR="%SP_DIR%" ^
@@ -78,6 +77,8 @@ if errorlevel 1 exit 1
 :: delete dd.exe which gets downloaded and included in release mode
 del "%LIBRARY_LIB%\uhd\utils\dd.exe"
 
-:: copy uhd_images_downloader.py into uhd package so we can make an entry_point
+:: copy scripts into uhd package so we can make an entry_point
+copy "utils\rfnoc_image_builder" "%SP_DIR%\uhd\rfnoc_image_builder.py"
 copy "utils\uhd_images_downloader.py" "%SP_DIR%\uhd"
+copy "utils\usrpctl" "%SP_DIR%\uhd\usrpctl_script.py"
 if errorlevel 1 exit 1

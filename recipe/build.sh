@@ -19,7 +19,6 @@ cmake_config_args=(
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCURSES_NEED_NCURSES=ON
     -DLIB_SUFFIX=""
-    -DPYBIND11_INCLUDE_DIR=$SP_DIR/pybind11/include
     -DPYTHON_EXECUTABLE=$PYTHON
     -DRUNTIME_PYTHON_EXECUTABLE=$PYTHON
     -DUHD_RELEASE_MODE=release
@@ -51,9 +50,13 @@ cmake_config_args=(
 
 if [[ $python_impl == "pypy" ]] ; then
     # we need to help cmake find pypy
+    # (need both PYTHON_ and Python_ style because UHD uses old finder
+    #  and pybind11 uses new FindPython module)
     cmake_config_args+=(
         -DPYTHON_LIBRARY=$PREFIX/lib/`$PYTHON -c "import sysconfig; print(sysconfig.get_config_var('LDLIBRARY'))"`
         -DPYTHON_INCLUDE_DIR=`$PYTHON -c "import sysconfig; print(sysconfig.get_paths()['include'])"`
+        -DPython_LIBRARY=$PREFIX/lib/`$PYTHON -c "import sysconfig; print(sysconfig.get_config_var('LDLIBRARY'))"`
+        -DPython_INCLUDE_DIR=`$PYTHON -c "import sysconfig; print(sysconfig.get_paths()['include'])"`
         -DUHD_PYTHON_DIR=$SP_DIR
     )
 fi
