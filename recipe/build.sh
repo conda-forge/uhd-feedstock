@@ -55,6 +55,7 @@ if [[ $target_platform == osx* ]] ; then
         -DCMAKE_INSTALL_NAME_DIR="@rpath"
         -DCMAKE_INSTALL_RPATH=""
         -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF
+        -DCMAKE_BUILD_WITH_INSTALL_NAME_DIR=ON
     )
 fi
 
