@@ -2,6 +2,8 @@ MACOSX_DEPLOYMENT_TARGET:
 - '10.13'
 MACOSX_SDK_VERSION:
 - '10.13'
+boost_cpp:
+- '1.81'
 c_compiler:
 - clang
 c_compiler_version:
@@ -18,8 +20,6 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '18'
-libboost_devel:
-- '1.86'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 ncurses:

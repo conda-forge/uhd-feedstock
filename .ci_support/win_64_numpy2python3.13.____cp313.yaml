@@ -1,3 +1,5 @@
+boost_cpp:
+- '1.81'
 c_compiler:
 - vs2019
 c_stdlib:
@@ -8,8 +10,6 @@ channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2019
-libboost_devel:
-- '1.86'
 numpy:
 - '2'
 pin_run_as_build:

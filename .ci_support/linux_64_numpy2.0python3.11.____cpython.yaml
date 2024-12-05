@@ -1,3 +1,5 @@
+boost_cpp:
+- '1.81'
 c_compiler:
 - gcc
 c_compiler_version:
@@ -18,8 +20,6 @@ cxx_compiler_version:
 - '13'
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
-libboost_devel:
-- '1.86'
 ncurses:
 - '6'
 numpy:
