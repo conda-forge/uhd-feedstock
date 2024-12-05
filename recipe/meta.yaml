@@ -39,7 +39,7 @@ requirements:
     - pkg-config
 
   host:
-    - libboost-devel
+    - boost-cpp
     - libusb
     - mako >=0.5.0
     - ncurses  # [not win]
@@ -51,6 +51,7 @@ requirements:
     - setuptools
 
   run:
+    - boost-cpp
     - mako >=0.5.0
     - ncurses  # [not win]
     - python
