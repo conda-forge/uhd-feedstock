@@ -48,6 +48,17 @@ cmake_config_args=(
     -DENABLE_X400=ON
 )
 
+if [[ $target_platform == osx* ]] ; then
+    # the RPATH variables are forced to values that we don't want for a conda
+    # package unless we specify them, so force them to the CMake defaults
+    cmake_config_args+=(
+        -DCMAKE_INSTALL_NAME_DIR="@rpath"
+        -DCMAKE_INSTALL_RPATH=""
+        -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF
+        -DCMAKE_BUILD_WITH_INSTALL_NAME_DIR=ON
+    )
+fi
+
 if [[ $python_impl == "pypy" ]] ; then
     # we need to help cmake find pypy
     # (need both PYTHON_ and Python_ style because UHD uses old finder

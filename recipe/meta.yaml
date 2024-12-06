@@ -15,9 +15,10 @@ source:
     - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
     - 0005-cmake-Prefer-python-config-extension-suffix-to-hard-.patch
     - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
+    - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
 
 build:
-  number: 3
+  number: 4
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:   # [not linux]

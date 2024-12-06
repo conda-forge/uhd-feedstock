@@ -27,5 +27,5 @@ index d8b203b91..d26f32ef3 100644
          # install(DIRECTORY) will treat the .so file like any other file, which
          # means it won't update its RPATH, and thus the RPATH would be stuck to the
 -- 
-2.45.2
+2.46.0
 
