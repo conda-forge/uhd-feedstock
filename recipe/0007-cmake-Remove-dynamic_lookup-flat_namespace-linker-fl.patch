@@ -4,18 +4,24 @@ Date: Fri, 6 Dec 2024 12:01:59 -0500
 Subject: [PATCH] cmake: Remove dynamic_lookup, flat_namespace linker flags for
  Apple
 
+These only need to be applied to Python extension modules, which is
+the case elsewhere, and having these flags set here caused a "pointer
+being freed was not allocated" bug in the conda-forge package. Removing
+this fixes the bug.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
 ---
  host/lib/CMakeLists.txt | 4 ----
  1 file changed, 4 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index f5b9f1609..e9d29a6f6 100644
+index 02f467a3c..63c1833f6 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -182,10 +182,6 @@ if(ENABLE_MPMD)
+@@ -193,10 +193,6 @@ if(ENABLE_DPDK)
+     # undefined references when linking libuhd
+     target_link_libraries(uhd ${DPDK_LIBRARIES})
  endif()
- add_library(uhd SHARED ${libuhd_sources})
- target_link_libraries(uhd PUBLIC ${Boost_LIBRARIES} ${libuhd_libs})
 -if(APPLE)
 -    target_link_options(uhd PRIVATE "LINKER:-undefined,dynamic_lookup")
 -    target_link_options(uhd PRIVATE "-flat_namespace")
@@ -24,5 +30,5 @@ index f5b9f1609..e9d29a6f6 100644
  if(NOT LIBUHDDEV_PKG)
      set_target_properties(uhd PROPERTIES SOVERSION "${UHD_ABI_VERSION}")
 -- 
-2.46.0
+2.47.1
 

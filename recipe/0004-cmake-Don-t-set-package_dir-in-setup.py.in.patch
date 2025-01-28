@@ -18,36 +18,36 @@ specified and so fails to do this properly).
  3 files changed, 4 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 81deb0499..1e77b0162 100644
+index df2353758..15693db10 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -12,8 +12,6 @@
- set(SETUP_PY_IN    "${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in")
- set(SETUP_PY       "${CMAKE_CURRENT_BINARY_DIR}/setup.py")
- set(TIMESTAMP_FILE "${CMAKE_CURRENT_BINARY_DIR}/build/timestamp")
+@@ -30,8 +30,6 @@ if (UHD_RELEASE_MODE)
+         endif()
+     endif()
+ endif()
 -# convert binary directory to native format to use in SETUP_PY file.
 -file(TO_NATIVE_PATH ${CMAKE_CURRENT_BINARY_DIR} NATIVE_CURRENT_BINARY_DIR)
  configure_file(${SETUP_PY_IN} ${SETUP_PY})
- 
- # If we're not in a virtual environment, then we need to figure out where to
+ if(WIN32)
+     configure_file(${PYPROJECT_TOML_IN} ${PYPROJECT_TOML})
 diff --git a/host/python/setup.py.in b/host/python/setup.py.in
-index 16089e374..6f8d60dc1 100755
+index 09263404e..12c460d62 100755
 --- a/host/python/setup.py.in
 +++ b/host/python/setup.py.in
-@@ -27,7 +27,6 @@ setup(name='uhd',
-       author_email='packages@ettus.com',
-       url='https://www.ettus.com/',
-       license='GPLv3',
--      package_dir={'': r'${NATIVE_CURRENT_BINARY_DIR}'},
-       package_data={
-           'uhd': ['*.so'],
-           'uhd.imgbuilder.templates': ['*.mako'],
+@@ -32,7 +32,6 @@ setup(
+     author_email="uhd.maintainer@emerson.com",
+     url="https://www.ettus.com/",
+     license="GPLv3",
+-    package_dir={"": r"${NATIVE_CURRENT_BINARY_DIR}"},
+     package_data={
+         "uhd": ["*.so"],
+         "uhd.rfnoc_utils.templates": ["*.mako"],
 diff --git a/mpm/python/setup.py.in b/mpm/python/setup.py.in
-index 31313c9e7..3bc3d263a 100755
+index c95cfb3f6..7860f66d5 100755
 --- a/mpm/python/setup.py.in
 +++ b/mpm/python/setup.py.in
 @@ -25,7 +25,6 @@ setup(name='usrp_mpm',
-       author_email='packages@ettus.com',
+       author_email='uhd.maintainer@emerson.com',
        url='https://www.ettus.com/',
        license='GPLv3',
 -      package_dir={'': '${CMAKE_CURRENT_BINARY_DIR}'},
@@ -55,5 +55,5 @@ index 31313c9e7..3bc3d263a 100755
        zip_safe=False,
        packages=[
 -- 
-2.46.0
+2.47.1
 
