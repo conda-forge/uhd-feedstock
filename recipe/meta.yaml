@@ -16,6 +16,7 @@ source:
     - 0005-cmake-Prefer-python-config-extension-suffix-to-hard-.patch
     - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
     - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
+    - 0008-Add-option-to-control-building-a-Python-wheel.patch
 
 build:
   number: 0
