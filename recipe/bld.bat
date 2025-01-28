@@ -79,7 +79,7 @@ if errorlevel 1 exit 1
 del "%LIBRARY_LIB%\uhd\utils\dd.exe"
 
 :: copy scripts into uhd package so we can make an entry_point
-copy "utils\rfnoc_image_builder" "%SP_DIR%\uhd\rfnoc_image_builder.py"
+copy "utils\rfnoc_image_builder.py" "%SP_DIR%\uhd\rfnoc_image_builder.py"
 copy "utils\uhd_images_downloader.py" "%SP_DIR%\uhd"
-copy "utils\usrpctl" "%SP_DIR%\uhd\usrpctl_script.py"
+copy "utils\usrpctl.py" "%SP_DIR%\uhd\usrpctl_script.py"
 if errorlevel 1 exit 1
