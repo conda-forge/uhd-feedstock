@@ -78,5 +78,5 @@ cmake --build . --config Release --target install
 
 if [[ $target_platform != linux* ]] ; then
     # copy uhd_images_downloader.py into uhd package so we can make an entry_point
-    cp utils/uhd_images_downloader.py $SP_DIR/uhd/
+    cp utils/uhd_images_downloader.py $SP_DIR/uhd/uhd_images_downloader_cmd.py
 fi

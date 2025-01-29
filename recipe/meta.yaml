@@ -17,18 +17,19 @@ source:
     - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
     - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
     - 0008-Add-option-to-control-building-a-Python-wheel.patch
+    - 0009-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
 
 build:
   number: 0
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:
-    - rfnoc_image_builder = uhd.rfnoc_image_builder:main  # [win]
-    - rfnoc_modtool = uhd.rfnoc_utils.rfnoc_modtool:main
+    - rfnoc_image_builder = uhd.rfnoc_image_builder_cmd:main  # [win]
+    - rfnoc_modtool = uhd.rfnoc_modtool_cmd:main  # [win]
     - uhd_convert_cal_data = uhd.utils.convert_cal_data:main
-    - uhd_images_downloader = uhd.uhd_images_downloader:main  # [not linux]
+    - uhd_images_downloader = uhd.uhd_images_downloader_cmd:main  # [not linux]
     - uhd_power_cal = uhd.utils.uhd_power_cal:main
-    - usrpctl = uhd.usrpctl_script:main  # [win]
+    - usrpctl = uhd.usrpctl_script_cmd:main  # [win]
 
 requirements:
   build:

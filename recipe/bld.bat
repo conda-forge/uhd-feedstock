@@ -79,9 +79,11 @@ cmake -E rm -f "%LIBRARY_LIB%\uhd\utils\dd.exe"
 if errorlevel 1 exit 1
 
 :: copy scripts into uhd package so we can make an entry_point
-cmake -E copy "utils\rfnoc_image_builder" "%SP_DIR%\uhd\rfnoc_image_builder.py"
+cmake -E copy "utils\rfnoc_image_builder" "%SP_DIR%\uhd\rfnoc_image_builder_cmd.py"
 if errorlevel 1 exit 1
-cmake -E copy -t "%SP_DIR%\uhd" "utils\uhd_images_downloader.py"
+cmake -E copy "utils\rfnoc_modtool" "%SP_DIR%\uhd\rfnoc_modtool_cmd.py"
 if errorlevel 1 exit 1
-cmake -E copy "utils\usrpctl" "%SP_DIR%\uhd\usrpctl_script.py"
+cmake -E copy "utils\uhd_images_downloader.py" "%SP_DIR%\uhd\uhd_images_downloader_cmd.py"
+if errorlevel 1 exit 1
+cmake -E copy "utils\usrpctl" "%SP_DIR%\uhd\usrpctl_script_cmd.py"
 if errorlevel 1 exit 1
