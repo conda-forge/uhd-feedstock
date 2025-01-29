@@ -78,7 +78,7 @@ if errorlevel 1 exit 1
 pushd python
 %PYTHON% -m poetry build
 if errorlevel 1 exit 1
-%PYTHON% -m pip install dist/*.whl
+%PYTHON% -m pip install -f dist uhd
 if errorlevel 1 exit 1
 popd
 
