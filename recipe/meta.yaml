@@ -16,8 +16,7 @@ source:
     - 0005-cmake-Prefer-python-config-extension-suffix-to-hard-.patch
     - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
     - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
-    - 0008-Add-option-to-control-building-a-Python-wheel.patch
-    - 0009-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
+    - 0008-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
 
 build:
   number: 0
@@ -50,6 +49,8 @@ requirements:
     - mako >=0.5.0
     - ncurses  # [not win]
     - numpy
+    - pip  # [win]
+    - poetry  # [win]
     - pybind11
     - python
     - requests

@@ -74,6 +74,10 @@ if errorlevel 1 exit 1
 cmake --build . --config Release --target install
 if errorlevel 1 exit 1
 
+:: install Python package from wheel created during build
+%PYTHON% -m pip install python/dist/*.whl
+if errorlevel 1 exit 1
+
 :: delete dd.exe which gets downloaded and included in release mode
 cmake -E rm -f "%LIBRARY_LIB%\uhd\utils\dd.exe"
 if errorlevel 1 exit 1
