@@ -74,9 +74,13 @@ if errorlevel 1 exit 1
 cmake --build . --config Release --target install
 if errorlevel 1 exit 1
 
-:: install Python package from wheel created during build
-%PYTHON% -m pip install python/dist/*.whl
+:: build and install Python package from wheel created during build
+pushd python
+%PYTHON% -m poetry build
 if errorlevel 1 exit 1
+%PYTHON% -m pip install dist/*.whl
+if errorlevel 1 exit 1
+popd
 
 :: delete dd.exe which gets downloaded and included in release mode
 cmake -E rm -f "%LIBRARY_LIB%\uhd\utils\dd.exe"

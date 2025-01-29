@@ -1,0 +1,44 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Tue, 28 Jan 2025 17:52:41 -0500
+Subject: [PATCH] Add option to control building a Python wheel
+
+ENABLE_WHEEL_BUILD_DEFAULT defaults to ON for WIN32 and OFF otherwise,
+maintaining current behavior.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ host/python/CMakeLists.txt | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
+
+diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
+index 1a53676bf..2f14a5cbd 100644
+--- a/host/python/CMakeLists.txt
++++ b/host/python/CMakeLists.txt
+@@ -237,15 +237,14 @@ add_custom_command(OUTPUT ${TIMESTAMP_FILE}
+   COMMAND ${CMAKE_COMMAND} -E touch ${TIMESTAMP_FILE}
+   DEPENDS ${PYUHD_FILES})
+ 
+-if (WIN32)
+-	add_custom_target(pyuhd_wheel ALL
+-		DEPENDS ${PYUHD_FILES} pyuhd_library)
+-	add_custom_command(
+-		TARGET pyuhd_wheel
+-		COMMAND ${PYTHON_EXECUTABLE} -m pip install poetry
+-		COMMAND ${PYTHON_EXECUTABLE} -m poetry build
+-	)
+-endif(WIN32)
++option(ENABLE_WHEEL_BUILD_DEFAULT "Enable building Python wheel" $<IF:$<BOOL:${WIN32}>,ON,OFF>)
++add_custom_target(pyuhd_wheel $<$<BOOL:${ENABLE_WHEEL_BUILD_DEFAULT}>:ALL>
++    DEPENDS ${PYUHD_FILES} pyuhd_library)
++add_custom_command(
++    TARGET pyuhd_wheel
++    COMMAND ${PYTHON_EXECUTABLE} -m pip install poetry
++    COMMAND ${PYTHON_EXECUTABLE} -m poetry build
++)
+ 
+ add_custom_target(pyuhd_library ALL DEPENDS ${TIMESTAMP_FILE} pyuhd)
+ 
+-- 
+2.47.1
+
