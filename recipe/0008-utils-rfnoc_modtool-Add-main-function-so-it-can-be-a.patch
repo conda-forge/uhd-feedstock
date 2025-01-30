@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Wed, 29 Jan 2025 14:53:27 -0500
+Subject: [PATCH] utils/rfnoc_modtool: Add main() function so it can be an
+ entry point
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ host/utils/rfnoc_modtool.py | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/host/utils/rfnoc_modtool.py b/host/utils/rfnoc_modtool.py
+index ee0bf2dac..e69272561 100644
+--- a/host/utils/rfnoc_modtool.py
++++ b/host/utils/rfnoc_modtool.py
+@@ -19,6 +19,9 @@ def get_pkg_dir():
+     """
+     return os.path.normpath("@CONFIG_PATH@")
+ 
++def main():
++    return rfnoc_modtool.main(get_pkg_dir())
++
+ 
+ if __name__ == "__main__":
+-    sys.exit(rfnoc_modtool.main(get_pkg_dir()))
++    sys.exit(main())
+-- 
+2.47.1
+

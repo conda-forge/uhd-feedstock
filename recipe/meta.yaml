@@ -1,5 +1,5 @@
 {% set uhd_lib = "uhd" %}
-{% set version = "4.7.0.0" %}
+{% set version = "4.8.0.0" %}
 
 package:
   name: uhd
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: afe56842587ce72d6a57535a2b15c061905f0a039abcc9d79f0106f072a00d10
+  sha256: a2159491949477dca67f5a9b05f5a80d8c2b32e91b95dd7fac8ddd3893e36d09
   patches:
     - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
     - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
@@ -16,15 +16,21 @@ source:
     - 0005-cmake-Prefer-python-config-extension-suffix-to-hard-.patch
     - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
     - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
+    - 0008-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
+    - 0009-Add-option-to-control-building-a-Python-wheel.patch
+    - 0010-Adjust-pyproject.toml-to-be-looser-on-Python-version.patch
 
 build:
-  number: 4
+  number: 0
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
-  entry_points:   # [not linux]
-    - rfnoc_image_builder = uhd.rfnoc_image_builder:main  # [win]
-    - uhd_images_downloader = uhd.uhd_images_downloader:main  # [not linux]
-    - usrpctl = uhd.usrpctl_script:main  # [win]
+  entry_points:
+    - rfnoc_image_builder = uhd.rfnoc_image_builder_cmd:main  # [win]
+    - rfnoc_modtool = uhd.rfnoc_modtool_cmd:main  # [win]
+    - uhd_convert_cal_data = uhd.utils.convert_cal_data:main
+    - uhd_images_downloader = uhd.uhd_images_downloader_cmd:main  # [not linux]
+    - uhd_power_cal = uhd.utils.uhd_power_cal:main
+    - usrpctl = uhd.usrpctl_script_cmd:main  # [win]
 
 requirements:
   build:
@@ -45,6 +51,8 @@ requirements:
     - mako >=0.5.0
     - ncurses  # [not win]
     - numpy
+    - pip  # [win]
+    - poetry  # [win]
     - pybind11
     - python
     - requests
@@ -66,7 +74,8 @@ test:
     {% set cmds = cmds + ["uhd_cal_tx_iq_balance", "uhd_config_info"] %}
     {% set cmds = cmds + ["uhd_find_devices", "uhd_image_loader"] %}
     {% set cmds = cmds + ["uhd_images_downloader", "uhd_usrp_probe"] %}
-    {% set cmds = cmds + ["rfnoc_image_builder", "usrpctl"] %}
+    {% set cmds = cmds + ["rfnoc_image_builder", "rfnoc_modtool", "usrpctl"] %}
+    {% set cmds = cmds + ["uhd_convert_cal_data", "uhd_power_cal"] %}
     {% set cmds = cmds + ["usrp2_card_burner"] %}  # [linux]
     {% for cmd in cmds %}
     - {{ cmd }} --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi  # [not win]

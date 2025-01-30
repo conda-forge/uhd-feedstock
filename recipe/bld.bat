@@ -21,7 +21,6 @@ set ^"CMAKE_OPTIONS=^
  -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
  -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
  -DCMAKE_BUILD_TYPE=Release ^
- -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=ON ^
  -DBOOST_ALL_DYN_LINK=ON ^
  -DBoost_NO_BOOST_CMAKE=ON ^
  -DPYTHON_EXECUTABLE="%PYTHON%" ^
@@ -49,6 +48,7 @@ set ^"CMAKE_OPTIONS=^
  -DENABLE_USB=ON ^
  -DENABLE_USRP1=ON ^
  -DENABLE_USRP2=ON ^
+ -DENABLE_WHEEL_BUILD_DEFAULT=OFF ^
  -DENABLE_X300=ON ^
  -DENABLE_X400=ON ^
  ^"
@@ -74,11 +74,24 @@ if errorlevel 1 exit 1
 cmake --build . --config Release --target install
 if errorlevel 1 exit 1
 
+:: build and install Python package from wheel created during build
+pushd python
+%PYTHON% -m poetry build
+if errorlevel 1 exit 1
+%PYTHON% -m pip install -f dist uhd
+if errorlevel 1 exit 1
+popd
+
 :: delete dd.exe which gets downloaded and included in release mode
-del "%LIBRARY_LIB%\uhd\utils\dd.exe"
+cmake -E rm -f "%LIBRARY_LIB%\uhd\utils\dd.exe"
+if errorlevel 1 exit 1
 
 :: copy scripts into uhd package so we can make an entry_point
-copy "utils\rfnoc_image_builder" "%SP_DIR%\uhd\rfnoc_image_builder.py"
-copy "utils\uhd_images_downloader.py" "%SP_DIR%\uhd"
-copy "utils\usrpctl" "%SP_DIR%\uhd\usrpctl_script.py"
+cmake -E copy "utils\rfnoc_image_builder" "%SP_DIR%\uhd\rfnoc_image_builder_cmd.py"
+if errorlevel 1 exit 1
+cmake -E copy "utils\rfnoc_modtool" "%SP_DIR%\uhd\rfnoc_modtool_cmd.py"
+if errorlevel 1 exit 1
+cmake -E copy "utils\uhd_images_downloader.py" "%SP_DIR%\uhd\uhd_images_downloader_cmd.py"
+if errorlevel 1 exit 1
+cmake -E copy "utils\usrpctl" "%SP_DIR%\uhd\usrpctl_script_cmd.py"
 if errorlevel 1 exit 1
