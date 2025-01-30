@@ -18,6 +18,7 @@ source:
     - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
     - 0008-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
     - 0009-Add-option-to-control-building-a-Python-wheel.patch
+    - 0010-Adjust-pyproject.toml-to-be-looser-on-Python-version.patch
 
 build:
   number: 0
