@@ -13,7 +13,7 @@ fixed by #309.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index be26c588a..02f467a3c 100644
+index 26b79eb57..02de28f5c 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
 @@ -180,7 +180,7 @@ if(ENABLE_MPMD)
@@ -35,5 +35,5 @@ index be26c588a..02f467a3c 100644
  endif(ENABLE_SIM)
  
 -- 
-2.47.1
+2.51.0
 
