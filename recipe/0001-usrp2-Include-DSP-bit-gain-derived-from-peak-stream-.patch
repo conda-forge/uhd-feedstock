@@ -15,10 +15,10 @@ sacrificing high order bits.
  1 file changed, 12 insertions(+), 9 deletions(-)
 
 diff --git a/host/lib/usrp/cores/rx_dsp_core_200.cpp b/host/lib/usrp/cores/rx_dsp_core_200.cpp
-index 9feeb16f4..387e7f0a1 100644
+index 08e26cbff..4ddae3dcf 100644
 --- a/host/lib/usrp/cores/rx_dsp_core_200.cpp
 +++ b/host/lib/usrp/cores/rx_dsp_core_200.cpp
-@@ -225,13 +225,14 @@ public:
+@@ -224,13 +224,14 @@ public:
  
      void update_scalar(void)
      {
@@ -39,7 +39,7 @@ index 9feeb16f4..387e7f0a1 100644
      }
  
      double get_scaling_adjustment(void) override
-@@ -268,12 +269,14 @@ public:
+@@ -267,12 +268,14 @@ public:
          unsigned format_word = 0;
          if (stream_args.otw_format == "sc16") {
              format_word         = 0;
@@ -58,5 +58,5 @@ index 9feeb16f4..387e7f0a1 100644
              _dsp_extra_scaling  = peak * 256;
          } else
 -- 
-2.47.1
+2.51.0
 

@@ -9,18 +9,18 @@ Subject: [PATCH] Adjust pyproject.toml to be looser on Python version
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/host/python/pyproject.toml.in b/host/python/pyproject.toml.in
-index 66227c633..e994093c6 100644
+index e70ca4589..e994093c6 100644
 --- a/host/python/pyproject.toml.in
 +++ b/host/python/pyproject.toml.in
 @@ -18,7 +18,7 @@ exclude = [
  ]
  
  [tool.poetry.dependencies]
--python = ">=3.10,<3.13"
+-python = ">=3.10,<3.14"
 +python = ">=3.9"
  numpy = "^@UHD_NUMPY_MIN_VERSION@"
  mako = ">=@UHD_PY_MAKO_MIN_VERSION@"
  ruamel-yaml = ">=@UHD_RUAMEL_YAML_MIN_VERSION@"
 -- 
-2.47.1
+2.51.0
 

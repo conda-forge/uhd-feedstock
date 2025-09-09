@@ -14,10 +14,10 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 15693db10..1a53676bf 100644
+index c642eb5e9..a636816cd 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -112,24 +112,24 @@ add_library(pyuhd SHARED
+@@ -124,24 +124,24 @@ add_library(pyuhd SHARED
  )
  
  # python expects extension modules with a particular suffix
@@ -59,5 +59,5 @@ index 15693db10..1a53676bf 100644
      ${PYTHON_INCLUDE_DIRS}
      ${PYTHON_NUMPY_INCLUDE_DIR}
 -- 
-2.47.1
+2.51.0
 

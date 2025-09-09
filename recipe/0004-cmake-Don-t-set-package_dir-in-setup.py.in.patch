@@ -18,7 +18,7 @@ specified and so fails to do this properly).
  3 files changed, 4 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index df2353758..15693db10 100644
+index 00c088237..c642eb5e9 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
 @@ -30,8 +30,6 @@ if (UHD_RELEASE_MODE)
@@ -55,5 +55,5 @@ index c95cfb3f6..7860f66d5 100755
        zip_safe=False,
        packages=[
 -- 
-2.47.1
+2.51.0
 

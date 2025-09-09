@@ -8,7 +8,7 @@ Subject: [PATCH] python: Fix libpyuhd install_name on macOS.
  1 file changed, 8 insertions(+)
 
 diff --git a/host/cmake/Modules/UHDPython.cmake b/host/cmake/Modules/UHDPython.cmake
-index ada445780..2ea696718 100644
+index ebb6b1ab1..81344b189 100644
 --- a/host/cmake/Modules/UHDPython.cmake
 +++ b/host/cmake/Modules/UHDPython.cmake
 @@ -299,6 +299,14 @@ macro(UHD_PYTHON_INSTALL_MODULE)
@@ -27,5 +27,5 @@ index ada445780..2ea696718 100644
              # install(DIRECTORY) will treat the .so file like any other file, which
              # means it won't update its RPATH, and thus the RPATH would be stuck to the
 -- 
-2.47.1
+2.51.0
 

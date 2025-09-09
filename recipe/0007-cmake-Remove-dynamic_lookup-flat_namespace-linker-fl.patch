@@ -15,7 +15,7 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 4 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index 02f467a3c..63c1833f6 100644
+index 02de28f5c..e28a0f759 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
 @@ -193,10 +193,6 @@ if(ENABLE_DPDK)
@@ -30,5 +30,5 @@ index 02f467a3c..63c1833f6 100644
  if(NOT LIBUHDDEV_PKG)
      set_target_properties(uhd PROPERTIES SOVERSION "${UHD_ABI_VERSION}")
 -- 
-2.47.1
+2.51.0
 

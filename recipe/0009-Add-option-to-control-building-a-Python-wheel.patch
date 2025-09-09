@@ -12,10 +12,10 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 8 insertions(+), 9 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 1a53676bf..2f14a5cbd 100644
+index a636816cd..a8db0d824 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
-@@ -237,15 +237,14 @@ add_custom_command(OUTPUT ${TIMESTAMP_FILE}
+@@ -245,15 +245,14 @@ add_custom_command(OUTPUT ${TIMESTAMP_FILE}
    COMMAND ${CMAKE_COMMAND} -E touch ${TIMESTAMP_FILE}
    DEPENDS ${PYUHD_FILES})
  
@@ -40,5 +40,5 @@ index 1a53676bf..2f14a5cbd 100644
  add_custom_target(pyuhd_library ALL DEPENDS ${TIMESTAMP_FILE} pyuhd)
  
 -- 
-2.47.1
+2.51.0
 

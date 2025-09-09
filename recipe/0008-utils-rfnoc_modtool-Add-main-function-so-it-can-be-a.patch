@@ -10,20 +10,19 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/host/utils/rfnoc_modtool.py b/host/utils/rfnoc_modtool.py
-index ee0bf2dac..e69272561 100644
+index 417835dd4..c577e2526 100644
 --- a/host/utils/rfnoc_modtool.py
 +++ b/host/utils/rfnoc_modtool.py
-@@ -19,6 +19,9 @@ def get_pkg_dir():
-     """
-     return os.path.normpath("@CONFIG_PATH@")
+@@ -10,5 +10,8 @@ import sys
+ 
+ from uhd.rfnoc_utils import rfnoc_modtool
  
 +def main():
-+    return rfnoc_modtool.main(get_pkg_dir())
++    return rfnoc_modtool.main()
 +
- 
  if __name__ == "__main__":
--    sys.exit(rfnoc_modtool.main(get_pkg_dir()))
+-    sys.exit(rfnoc_modtool.main())
 +    sys.exit(main())
 -- 
-2.47.1
+2.51.0
 
