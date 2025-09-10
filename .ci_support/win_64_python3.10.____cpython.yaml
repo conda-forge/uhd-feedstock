@@ -24,3 +24,6 @@ target_platform:
 - win-64
 uhd:
 - 4.8.0
+zip_keys:
+- - python
+  - channel_sources
