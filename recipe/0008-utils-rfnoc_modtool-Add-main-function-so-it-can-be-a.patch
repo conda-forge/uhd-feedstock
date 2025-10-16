@@ -1,8 +1,8 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 713835e9921c13cdfe79fce8ec80e9dbe7575f88 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Wed, 29 Jan 2025 14:53:27 -0500
-Subject: [PATCH] utils/rfnoc_modtool: Add main() function so it can be an
- entry point
+Subject: [PATCH 08/10] utils/rfnoc_modtool: Add main() function so it can be
+ an entry point
 
 Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
 ---
@@ -10,7 +10,7 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/host/utils/rfnoc_modtool.py b/host/utils/rfnoc_modtool.py
-index 417835dd4..c577e2526 100644
+index 417835d..c577e25 100644
 --- a/host/utils/rfnoc_modtool.py
 +++ b/host/utils/rfnoc_modtool.py
 @@ -10,5 +10,8 @@ import sys
@@ -23,6 +23,3 @@ index 417835dd4..c577e2526 100644
  if __name__ == "__main__":
 -    sys.exit(rfnoc_modtool.main())
 +    sys.exit(main())
--- 
-2.51.0
-

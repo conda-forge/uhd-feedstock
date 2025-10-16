@@ -1,8 +1,8 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 240a407c4478f976f02d95bed87f7e07274534b2 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Mon, 10 Jan 2022 16:53:14 -0500
-Subject: [PATCH] cmake: Prefer python config extension suffix to hard-coded on
- Windows.
+Subject: [PATCH 05/10] cmake: Prefer python config extension suffix to
+ hard-coded on Windows.
 
 PyPy won't load extension modules with a generic (e.g. ".pyd") suffix,
 so it is necessary to use the full SOABI extension suffix and only
@@ -14,7 +14,7 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index c642eb5e9..a636816cd 100644
+index bdd27e6..2f0dfd8 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
 @@ -124,24 +124,24 @@ add_library(pyuhd SHARED
@@ -58,6 +58,3 @@ index c642eb5e9..a636816cd 100644
  target_include_directories(pyuhd PUBLIC
      ${PYTHON_INCLUDE_DIRS}
      ${PYTHON_NUMPY_INCLUDE_DIR}
--- 
-2.51.0
-

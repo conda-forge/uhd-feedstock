@@ -1,7 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 9d6a900aea57452886024f62747b1e2456933949 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Tue, 28 Jan 2025 17:52:41 -0500
-Subject: [PATCH] Add option to control building a Python wheel
+Subject: [PATCH 09/10] Add option to control building a Python wheel
 
 ENABLE_WHEEL_BUILD_DEFAULT defaults to ON for WIN32 and OFF otherwise,
 maintaining current behavior.
@@ -12,7 +12,7 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 8 insertions(+), 9 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index a636816cd..a8db0d824 100644
+index 2f0dfd8..4fcc13a 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
 @@ -245,15 +245,14 @@ add_custom_command(OUTPUT ${TIMESTAMP_FILE}
@@ -39,6 +39,3 @@ index a636816cd..a8db0d824 100644
  
  add_custom_target(pyuhd_library ALL DEPENDS ${TIMESTAMP_FILE} pyuhd)
  
--- 
-2.51.0
-

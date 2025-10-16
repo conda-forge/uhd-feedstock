@@ -1,8 +1,8 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 242d97c33e724c6203995e307c5dadbac6bdd589 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Fri, 6 Dec 2024 12:01:59 -0500
-Subject: [PATCH] cmake: Remove dynamic_lookup, flat_namespace linker flags for
- Apple
+Subject: [PATCH 07/10] cmake: Remove dynamic_lookup, flat_namespace linker
+ flags for Apple
 
 These only need to be applied to Python extension modules, which is
 the case elsewhere, and having these flags set here caused a "pointer
@@ -15,12 +15,12 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 4 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index 02de28f5c..e28a0f759 100644
+index 2a5c4c3..eb037a5 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -193,10 +193,6 @@ if(ENABLE_DPDK)
+@@ -208,10 +208,6 @@ if(ENABLE_DPDK)
      # undefined references when linking libuhd
-     target_link_libraries(uhd ${DPDK_LIBRARIES})
+     target_link_libraries(uhd PUBLIC ${DPDK_LIBRARIES})
  endif()
 -if(APPLE)
 -    target_link_options(uhd PRIVATE "LINKER:-undefined,dynamic_lookup")
@@ -29,6 +29,3 @@ index 02de28f5c..e28a0f759 100644
  set_target_properties(uhd PROPERTIES DEFINE_SYMBOL "UHD_DLL_EXPORTS")
  if(NOT LIBUHDDEV_PKG)
      set_target_properties(uhd PROPERTIES SOVERSION "${UHD_ABI_VERSION}")
--- 
-2.51.0
-
