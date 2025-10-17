@@ -1,7 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From a0e5c7a5e0e53e83f304bca255a24e4a0cc5ac55 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Thu, 30 Jan 2025 10:26:10 -0500
-Subject: [PATCH] Adjust pyproject.toml to be looser on Python version
+Subject: [PATCH 10/10] Adjust pyproject.toml to be looser on Python version
  requirement
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH] Adjust pyproject.toml to be looser on Python version
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/host/python/pyproject.toml.in b/host/python/pyproject.toml.in
-index e70ca4589..e994093c6 100644
+index e70ca45..e994093 100644
 --- a/host/python/pyproject.toml.in
 +++ b/host/python/pyproject.toml.in
 @@ -18,7 +18,7 @@ exclude = [
@@ -21,6 +21,3 @@ index e70ca4589..e994093c6 100644
  numpy = "^@UHD_NUMPY_MIN_VERSION@"
  mako = ">=@UHD_PY_MAKO_MIN_VERSION@"
  ruamel-yaml = ">=@UHD_RUAMEL_YAML_MIN_VERSION@"
--- 
-2.51.0
-

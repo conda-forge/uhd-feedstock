@@ -1,14 +1,14 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 4f23b68e95eec411289e708b50a8b8368db941d3 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Fri, 28 Aug 2020 13:01:28 -0400
-Subject: [PATCH] python: Fix libpyuhd install_name on macOS.
+Subject: [PATCH 02/10] python: Fix libpyuhd install_name on macOS.
 
 ---
  host/cmake/Modules/UHDPython.cmake | 8 ++++++++
  1 file changed, 8 insertions(+)
 
 diff --git a/host/cmake/Modules/UHDPython.cmake b/host/cmake/Modules/UHDPython.cmake
-index ebb6b1ab1..81344b189 100644
+index ebb6b1a..81344b1 100644
 --- a/host/cmake/Modules/UHDPython.cmake
 +++ b/host/cmake/Modules/UHDPython.cmake
 @@ -299,6 +299,14 @@ macro(UHD_PYTHON_INSTALL_MODULE)
@@ -26,6 +26,3 @@ index ebb6b1ab1..81344b189 100644
              # On Linux/Unix systems, we must properly install the library file.
              # install(DIRECTORY) will treat the .so file like any other file, which
              # means it won't update its RPATH, and thus the RPATH would be stuck to the
--- 
-2.51.0
-

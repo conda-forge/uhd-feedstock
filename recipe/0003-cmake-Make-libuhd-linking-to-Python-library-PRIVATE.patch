@@ -1,7 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 74529d238b7246d030393e8e62db8c0be670509e Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Tue, 13 Jul 2021 16:58:01 -0400
-Subject: [PATCH] cmake: Make libuhd linking to Python library PRIVATE.
+Subject: [PATCH 03/10] cmake: Make libuhd linking to Python library PRIVATE.
 
 Linking with the Python library is only needed to embed the Python
 interpreter when ENABLE_SIM=ON, so it's not a link that is needed by
@@ -9,31 +9,19 @@ anything linking with libuhd. When it is not PRIVATE, however, libpyuhd
 links against the Python library too, which re-introduces the issues
 fixed by #309.
 ---
- host/lib/CMakeLists.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ host/lib/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index 26b79eb57..02de28f5c 100644
+index c92d119..2a5c4c3 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -180,7 +180,7 @@ if(ENABLE_MPMD)
-     list(APPEND libuhd_sources $<TARGET_OBJECTS:uhd_rpclib>)
- endif()
- add_library(uhd SHARED ${libuhd_sources})
--target_link_libraries(uhd ${Boost_LIBRARIES} ${libuhd_libs})
-+target_link_libraries(uhd PUBLIC ${Boost_LIBRARIES} ${libuhd_libs})
- if(ENABLE_DPDK)
-     add_definitions(-DHAVE_DPDK)
-     # The compile flags DPDK_CFLAGS add the DPDK_INCLUDE_DIRS include
-@@ -224,7 +224,7 @@ if(ENABLE_SIM)
+@@ -239,7 +239,7 @@ function(UHD_LIB_ADD_PYTHON uhd_lib_name)
  
      # For PYUHD we don't link against the python libraries, but when calling
      # python instead of being called by it, we have to.
--    target_link_libraries(uhd ${PYTHON_LIBRARIES})
-+    target_link_libraries(uhd PRIVATE ${PYTHON_LIBRARIES})
+-    target_link_libraries(${uhd_lib_name} PUBLIC ${PYTHON_LIBRARIES})
++    target_link_libraries(${uhd_lib_name} PRIVATE ${PYTHON_LIBRARIES})
+ endfunction(UHD_LIB_ADD_PYTHON)
  
- endif(ENABLE_SIM)
- 
--- 
-2.51.0
-
+ if(ENABLE_SIM)

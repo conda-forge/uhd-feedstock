@@ -1,7 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 0576a5f830e25f429ed8af4c3122fb12656da742 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Tue, 13 Jul 2021 18:05:19 -0400
-Subject: [PATCH] cmake: Don't set package_dir in setup.py.in.
+Subject: [PATCH 04/10] cmake: Don't set package_dir in setup.py.in.
 
 Since the setup.py.in gets configured to the CMAKE_CURRENT_BINARY_DIR
 and the Python files get copied there as well, there is no need to set
@@ -18,7 +18,7 @@ specified and so fails to do this properly).
  3 files changed, 4 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index 00c088237..c642eb5e9 100644
+index c9a020e..bdd27e6 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
 @@ -30,8 +30,6 @@ if (UHD_RELEASE_MODE)
@@ -31,7 +31,7 @@ index 00c088237..c642eb5e9 100644
  if(WIN32)
      configure_file(${PYPROJECT_TOML_IN} ${PYPROJECT_TOML})
 diff --git a/host/python/setup.py.in b/host/python/setup.py.in
-index 09263404e..12c460d62 100755
+index 0926340..12c460d 100755
 --- a/host/python/setup.py.in
 +++ b/host/python/setup.py.in
 @@ -32,7 +32,6 @@ setup(
@@ -43,7 +43,7 @@ index 09263404e..12c460d62 100755
          "uhd": ["*.so"],
          "uhd.rfnoc_utils.templates": ["*.mako"],
 diff --git a/mpm/python/setup.py.in b/mpm/python/setup.py.in
-index c95cfb3f6..7860f66d5 100755
+index c95cfb3..7860f66 100755
 --- a/mpm/python/setup.py.in
 +++ b/mpm/python/setup.py.in
 @@ -25,7 +25,6 @@ setup(name='usrp_mpm',
@@ -54,6 +54,3 @@ index c95cfb3f6..7860f66d5 100755
        package_data={"usrp_mpm": ["*.so"]},
        zip_safe=False,
        packages=[
--- 
-2.51.0
-
