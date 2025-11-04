@@ -3,13 +3,13 @@ c_compiler:
 c_stdlib:
 - vs
 channel_sources:
-- conda-forge,conda-forge/label/python_rc
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2022
 libboost_devel:
-- '1.86'
+- '1.88'
 numpy:
 - '2'
 pin_run_as_build:
@@ -24,6 +24,3 @@ target_platform:
 - win-64
 uhd:
 - 4.8.0
-zip_keys:
-- - python
-  - channel_sources
