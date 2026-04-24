@@ -23,4 +23,4 @@ python_impl:
 target_platform:
 - win-64
 uhd:
-- 4.8.0
+- 4.9.0

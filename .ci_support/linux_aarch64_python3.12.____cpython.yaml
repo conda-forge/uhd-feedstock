@@ -33,7 +33,7 @@ python_impl:
 target_platform:
 - linux-aarch64
 uhd:
-- 4.8.0
+- 4.9.0
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
