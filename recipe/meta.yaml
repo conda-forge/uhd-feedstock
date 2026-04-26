@@ -21,7 +21,7 @@ source:
     - 0010-Adjust-pyproject.toml-to-be-looser-on-Python-version.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:
