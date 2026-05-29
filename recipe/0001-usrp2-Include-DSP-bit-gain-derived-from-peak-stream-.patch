@@ -1,8 +1,7 @@
-From e7366558d137d549c998f65ed5b0c16e7280106c Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Tue, 8 Dec 2015 15:09:41 -0500
-Subject: [PATCH 01/10] usrp2: Include DSP bit gain derived from 'peak' stream
- arg.
+Subject: [PATCH] usrp2: Include DSP bit gain derived from 'peak' stream arg.
 
 This enables use of the 'peak' stream arg in sc16 and sc8
 over-the-wire modes to specify the peak value relative to 1.0
@@ -16,10 +15,10 @@ sacrificing high order bits.
  1 file changed, 12 insertions(+), 9 deletions(-)
 
 diff --git a/host/lib/usrp/cores/rx_dsp_core_200.cpp b/host/lib/usrp/cores/rx_dsp_core_200.cpp
-index 08e26cb..4ddae3d 100644
+index 6a177ef7a..5e1aaac3c 100644
 --- a/host/lib/usrp/cores/rx_dsp_core_200.cpp
 +++ b/host/lib/usrp/cores/rx_dsp_core_200.cpp
-@@ -224,13 +224,14 @@ public:
+@@ -220,13 +220,14 @@ public:
  
      void update_scalar(void)
      {
@@ -40,7 +39,7 @@ index 08e26cb..4ddae3d 100644
      }
  
      double get_scaling_adjustment(void) override
-@@ -267,12 +268,14 @@ public:
+@@ -263,12 +264,14 @@ public:
          unsigned format_word = 0;
          if (stream_args.otw_format == "sc16") {
              format_word         = 0;
@@ -58,3 +57,6 @@ index 08e26cb..4ddae3d 100644
              _host_extra_scaling = peak * 256;
              _dsp_extra_scaling  = peak * 256;
          } else
+-- 
+2.51.0
+
