@@ -37,7 +37,7 @@ python_impl:
 target_platform:
 - osx-arm64
 uhd:
-- 4.8.0
+- 4.9.0
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version

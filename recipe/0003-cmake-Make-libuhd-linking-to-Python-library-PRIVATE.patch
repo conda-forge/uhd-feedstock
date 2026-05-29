@@ -1,7 +1,7 @@
-From 74529d238b7246d030393e8e62db8c0be670509e Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <ryan.volz@gmail.com>
 Date: Tue, 13 Jul 2021 16:58:01 -0400
-Subject: [PATCH 03/10] cmake: Make libuhd linking to Python library PRIVATE.
+Subject: [PATCH] cmake: Make libuhd linking to Python library PRIVATE.
 
 Linking with the Python library is only needed to embed the Python
 interpreter when ENABLE_SIM=ON, so it's not a link that is needed by
@@ -13,10 +13,10 @@ fixed by #309.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index c92d119..2a5c4c3 100644
+index e7acd52bf..69242870c 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -239,7 +239,7 @@ function(UHD_LIB_ADD_PYTHON uhd_lib_name)
+@@ -254,7 +254,7 @@ function(UHD_LIB_ADD_PYTHON uhd_lib_name)
  
      # For PYUHD we don't link against the python libraries, but when calling
      # python instead of being called by it, we have to.
@@ -25,3 +25,6 @@ index c92d119..2a5c4c3 100644
  endfunction(UHD_LIB_ADD_PYTHON)
  
  if(ENABLE_SIM)
+-- 
+2.51.0
+
