@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Tue, 11 Aug 2026 11:55:02 -0400
+Subject: [PATCH] cmake: Remove Boost::system from required component list
+
+Boost::system is no longer available with Boost>=1.90, so downstream
+packages that depend on UHD will not be able to find a compatible Boost
+with version >=1.90. Removing the system component fixes that.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ host/cmake/Modules/UHDConfig.cmake.in | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/host/cmake/Modules/UHDConfig.cmake.in b/host/cmake/Modules/UHDConfig.cmake.in
+index 85fc3e158..ac7417684 100644
+--- a/host/cmake/Modules/UHDConfig.cmake.in
++++ b/host/cmake/Modules/UHDConfig.cmake.in
+@@ -30,7 +30,6 @@ find_dependency(Boost ${UHD_BOOST_MIN_VERSION}
+   date_time
+   filesystem
+   program_options
+-  system
+   serialization
+   thread
+   unit_test_framework
+-- 
+2.51.0
+
