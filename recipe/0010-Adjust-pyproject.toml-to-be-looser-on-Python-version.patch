@@ -4,6 +4,7 @@ Date: Thu, 30 Jan 2025 10:26:10 -0500
 Subject: [PATCH] Adjust pyproject.toml to be looser on Python version
  requirement
 
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
 ---
  host/python/pyproject.toml.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
