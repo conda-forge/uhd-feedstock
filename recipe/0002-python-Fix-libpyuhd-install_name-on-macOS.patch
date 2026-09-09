@@ -8,12 +8,12 @@ Subject: [PATCH] python: Fix libpyuhd install_name on macOS.
  1 file changed, 8 insertions(+)
 
 diff --git a/host/cmake/Modules/UHDPython.cmake b/host/cmake/Modules/UHDPython.cmake
-index cc2f3819c..cea2da35e 100644
+index 1bb6b0a71..fd97f4595 100644
 --- a/host/cmake/Modules/UHDPython.cmake
 +++ b/host/cmake/Modules/UHDPython.cmake
-@@ -299,6 +299,14 @@ macro(UHD_PYTHON_INSTALL_MODULE)
-                 DESTINATION ${UHD_PYTHON_DIR}
-                 COMPONENT pythonapi
+@@ -301,6 +301,14 @@ macro(UHD_PYTHON_INSTALL_MODULE)
+                 PATTERN "cmake_install.cmake" EXCLUDE
+                 PATTERN "CTestTestfile.cmake" EXCLUDE
              )
 +            if(APPLE)
 +                # CMAKE_INSTALL_NAME_DIR is set to

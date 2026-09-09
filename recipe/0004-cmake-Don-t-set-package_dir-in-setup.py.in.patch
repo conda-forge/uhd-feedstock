@@ -18,7 +18,7 @@ specified and so fails to do this properly).
  3 files changed, 4 deletions(-)
 
 diff --git a/host/python/CMakeLists.txt b/host/python/CMakeLists.txt
-index c9a020ee5..bdd27e64b 100644
+index 06b3b01fc..ad3245482 100644
 --- a/host/python/CMakeLists.txt
 +++ b/host/python/CMakeLists.txt
 @@ -30,8 +30,6 @@ if (UHD_RELEASE_MODE)
@@ -43,17 +43,17 @@ index d79425459..cbbaf03c3 100755
          "uhd": ["*.so"],
          "uhd.rfnoc_utils.templates": ["*.mako"],
 diff --git a/mpm/python/setup.py.in b/mpm/python/setup.py.in
-index a40c549fc..72a2b273b 100755
+index e36d86ea4..6a54cccca 100755
 --- a/mpm/python/setup.py.in
 +++ b/mpm/python/setup.py.in
-@@ -24,7 +24,6 @@ setup(name='usrp_mpm',
-       author_email='uhd.maintainer@emerson.com',
-       url='https://www.ettus.com/',
-       license='GPL-3.0-or-later',
--      package_dir={'': '${CMAKE_CURRENT_BINARY_DIR}'},
-       package_data={"usrp_mpm": ["*.so"]},
-       zip_safe=False,
-       packages=[
+@@ -25,7 +25,6 @@ setup(
+     author_email="uhd.maintainer@emerson.com",
+     url="https://www.ettus.com/",
+     license="GPL-3.0-or-later",
+-    package_dir={"": "${CMAKE_CURRENT_BINARY_DIR}"},
+     package_data={"usrp_mpm": ["*.so"]},
+     zip_safe=False,
+     packages=[
 -- 
 2.51.0
 
