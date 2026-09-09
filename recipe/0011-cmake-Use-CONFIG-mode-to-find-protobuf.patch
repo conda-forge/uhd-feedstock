@@ -1,0 +1,35 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Wed, 9 Sep 2026 17:24:03 -0400
+Subject: [PATCH] cmake: Use CONFIG mode to find protobuf
+
+gRPC uses CONFIG mode to find protobuf just after this, and the CONFIG
+mode as currently shipped by protobuf is incompatible with running the
+MODULE mode before it because MODULE does not define all of the targets
+CONFIG does and CONFIG errors out at a partially-defined list of
+targets.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ host/lib/usrp/common/CMakeLists.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/host/lib/usrp/common/CMakeLists.txt b/host/lib/usrp/common/CMakeLists.txt
+index a568e1335..e9027ecda 100644
+--- a/host/lib/usrp/common/CMakeLists.txt
++++ b/host/lib/usrp/common/CMakeLists.txt
+@@ -69,7 +69,10 @@ if(ENABLE_MPMD)
+         set(protobuf_MODULE_COMPATIBLE ON CACHE BOOL "" FORCE)
+         find_package(Protobuf CONFIG REQUIRED)
+     else()
+-        find_package(Protobuf REQUIRED)
++        # Find protobuf with CONFIG option because gRPC does and the CONFIG is
++        # incompatible with the MODULE find running first (partial target list)
++        set(protobuf_MODULE_COMPATIBLE ON CACHE BOOL "" FORCE)
++        find_package(Protobuf CONFIG REQUIRED)
+     endif()
+     find_package(gRPC REQUIRED)
+ 
+-- 
+2.51.0
+

@@ -19,6 +19,7 @@ source:
     - 0008-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
     - 0009-Add-option-to-control-building-a-Python-wheel.patch
     - 0010-Adjust-pyproject.toml-to-be-looser-on-Python-version.patch
+    - 0011-cmake-Use-CONFIG-mode-to-find-protobuf.patch
 
 build:
   number: 0
