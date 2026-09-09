@@ -49,6 +49,17 @@ cmake_config_args=(
 )
 
 if [[ $target_platform == osx* ]] ; then
+    # B310 requires a Linux kernel driver and development headers
+    cmake_config_args+=(
+        -DENABLE_B300=OFF
+    )
+else
+    cmake_config_args+=(
+        -DENABLE_B300=OFF
+    )
+fi
+
+if [[ $target_platform == osx* ]] ; then
     # the RPATH variables are forced to values that we don't want for a conda
     # package unless we specify them, so force them to the CMake defaults
     cmake_config_args+=(
