@@ -46,6 +46,7 @@ requirements:
     - pkg-config
 
   host:
+    - libabseil
     - libboost-devel
     - libgrpc
     - libprotobuf
