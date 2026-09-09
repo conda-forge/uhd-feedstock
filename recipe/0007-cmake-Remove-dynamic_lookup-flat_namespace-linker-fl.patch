@@ -15,10 +15,10 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 4 deletions(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index 69242870c..fc76451f7 100644
+index c47693ee2..d45f5124b 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -223,10 +223,6 @@ if(ENABLE_DPDK)
+@@ -242,10 +242,6 @@ if(ENABLE_DPDK)
      # undefined references when linking libuhd
      target_link_libraries(uhd PUBLIC ${DPDK_LIBRARIES})
  endif()

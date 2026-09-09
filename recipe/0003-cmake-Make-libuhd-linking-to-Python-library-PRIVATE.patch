@@ -13,10 +13,10 @@ fixed by #309.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/host/lib/CMakeLists.txt b/host/lib/CMakeLists.txt
-index e7acd52bf..69242870c 100644
+index 7debff32f..c47693ee2 100644
 --- a/host/lib/CMakeLists.txt
 +++ b/host/lib/CMakeLists.txt
-@@ -254,7 +254,7 @@ function(UHD_LIB_ADD_PYTHON uhd_lib_name)
+@@ -273,7 +273,7 @@ function(UHD_LIB_ADD_PYTHON uhd_lib_name)
  
      # For PYUHD we don't link against the python libraries, but when calling
      # python instead of being called by it, we have to.

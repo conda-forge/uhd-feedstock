@@ -13,12 +13,10 @@ cd build
 #   E300 build fails on CI
 cmake_config_args=(
     -DBOOST_ROOT=$PREFIX
-    -DBoost_NO_BOOST_CMAKE=ON
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX=$ARCH
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCURSES_NEED_NCURSES=ON
-    -DLIB_SUFFIX=""
     -DPYTHON_EXECUTABLE=$PYTHON
     -DRUNTIME_PYTHON_EXECUTABLE=$PYTHON
     -DUHD_RELEASE_MODE=release
@@ -47,6 +45,17 @@ cmake_config_args=(
     -DENABLE_X300=ON
     -DENABLE_X400=ON
 )
+
+if [[ $target_platform == osx* ]] ; then
+    # B310 requires a Linux kernel driver and development headers
+    cmake_config_args+=(
+        -DENABLE_B300=OFF
+    )
+else
+    cmake_config_args+=(
+        -DENABLE_B300=OFF
+    )
+fi
 
 if [[ $target_platform == osx* ]] ; then
     # the RPATH variables are forced to values that we don't want for a conda

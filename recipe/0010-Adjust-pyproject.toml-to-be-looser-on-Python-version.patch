@@ -10,7 +10,7 @@ Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/host/python/pyproject.toml.in b/host/python/pyproject.toml.in
-index cb6a14a68..b1da6e944 100644
+index 516df1c66..988c01ebb 100644
 --- a/host/python/pyproject.toml.in
 +++ b/host/python/pyproject.toml.in
 @@ -17,7 +17,7 @@ exclude = [
@@ -18,10 +18,10 @@ index cb6a14a68..b1da6e944 100644
  
  [tool.poetry.dependencies]
 -python = ">=3.10,<3.14"
-+python = ">=3.9"
- numpy = "^@UHD_NUMPY_MIN_VERSION@"
- mako = ">=@UHD_PY_MAKO_MIN_VERSION@"
- ruamel-yaml = ">=@UHD_RUAMEL_YAML_MIN_VERSION@"
++python = ">=3.10"
+ numpy = [
+   {version = ">=2.0.0", python = ">=3.13"},
+   {version = ">=@UHD_NUMPY_MIN_VERSION@,<2.0.0", python = "<3.13"}
 -- 
 2.51.0
 
