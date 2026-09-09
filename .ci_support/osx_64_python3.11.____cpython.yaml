@@ -18,6 +18,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '21'
+libabseil:
+- '20260526'
 libboost_devel:
 - '1.90'
 libgrpc:
