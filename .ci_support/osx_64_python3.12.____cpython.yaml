@@ -20,6 +20,10 @@ cxx_compiler_version:
 - '21'
 libboost_devel:
 - '1.90'
+libgrpc:
+- '1.82'
+libprotobuf:
+- 7.35.1
 macos_machine:
 - x86_64-apple-darwin13.4.0
 ncurses:
