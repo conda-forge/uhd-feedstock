@@ -54,6 +54,15 @@ requirements:
     - pkg-config
 
   host:
+    # B300 code requires <linux/dma-buf.h>, which is not included in Linux
+    # kernel 3.10.0 used by the default sysroot of 2.17 (as of writing).
+    # We could require c_stdlib_version of 2.28 to get a new enough kernel
+    # version, but instead we depend on the newer kernel-headers package
+    # directly in host (so it doesn't conflict with the default sysroot)
+    # and rely on the fact that only the B300 code really uses the kernel
+    # headers and so we don't break default sysroot compatibility except
+    # for B300 which requires an external kernel module anyway.
+    - kernel-headers_{{ target_platform }} 4.18.0  # [linux]
     - libabseil
     - libboost-devel
     - libgrpc
