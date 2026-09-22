@@ -54,7 +54,7 @@ if [[ $target_platform == linux* ]] ; then
         -DENABLE_B300=ON
     )
     # see meta.yaml note about kernel headers, this points to updated version in host
-    export CFLAGS=${CFLAGS}" -isystem $PREFIX/$HOST/sysroot/usr/include"
+    export CXXFLAGS=${CXXFLAGS}" -isystem $PREFIX/$HOST/sysroot/usr/include"
 else
     # B310 requires a Linux kernel driver and development headers
     cmake_config_args+=(
