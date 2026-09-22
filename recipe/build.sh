@@ -46,12 +46,17 @@ cmake_config_args=(
     -DENABLE_X400=ON
 )
 
-if [[ $target_platform == osx* ]] ; then
-    # B310 requires a Linux kernel driver and development headers
+if [[ $target_platform == linux* ]] ; then
+    # copy nib310rio headers to include directory and enable support
+    cmake -E make_directory "$PREFIX/include/nib310rio"
+    cmake -E copy -t "$PREFIX/include/nib310rio" "$SRC_DIR/nib310rio/kernel/nib310rio.h"
     cmake_config_args+=(
-        -DENABLE_B300=OFF
+        -DENABLE_B300=ON
     )
+    # see meta.yaml note about kernel headers, this points to updated version in host
+    export CXXFLAGS=${CXXFLAGS}" -isystem $PREFIX/$HOST/sysroot/usr/include"
 else
+    # B310 requires a Linux kernel driver and development headers
     cmake_config_args+=(
         -DENABLE_B300=OFF
     )

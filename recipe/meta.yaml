@@ -1,28 +1,32 @@
 {% set uhd_lib = "uhd" %}
 {% set version = "4.11.0.0" %}
+{% set nib310rio_version = "1.0.0" %}
 
 package:
   name: uhd
   version: {{ version }}
 
 source:
-  url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
-  sha256: 1e53faec13ea2be9dd8f765956157d1434f41fa0a124fac8f7b2340f8445b026
-  patches:
-    - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
-    - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
-    - 0003-cmake-Make-libuhd-linking-to-Python-library-PRIVATE.patch
-    - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
-    - 0005-cmake-Prefer-python-config-extension-suffix-to-hard-.patch
-    - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
-    - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
-    - 0008-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
-    - 0009-Add-option-to-control-building-a-Python-wheel.patch
-    - 0010-Adjust-pyproject.toml-to-be-looser-on-Python-version.patch
-    - 0011-cmake-Use-CONFIG-mode-to-find-protobuf.patch
+  - url: https://github.com/EttusResearch/uhd/archive/v{{ version }}.tar.gz
+    sha256: 1e53faec13ea2be9dd8f765956157d1434f41fa0a124fac8f7b2340f8445b026
+    patches:
+      - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
+      - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
+      - 0003-cmake-Make-libuhd-linking-to-Python-library-PRIVATE.patch
+      - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
+      - 0005-cmake-Prefer-python-config-extension-suffix-to-hard-.patch
+      - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
+      - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
+      - 0008-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
+      - 0009-Add-option-to-control-building-a-Python-wheel.patch
+      - 0010-Adjust-pyproject.toml-to-be-looser-on-Python-version.patch
+      - 0011-cmake-Use-CONFIG-mode-to-find-protobuf.patch
+  - url: https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+sourcefiles/nib310rio/{{ nib310rio_version }}-0ubuntu1~resolute1/nib310rio_{{ nib310rio_version }}.orig.tar.xz
+    sha256: afbbdb12f9565a0ac20542c44c5f37e76ad549afc5ee333958a7e12bd846d347
+    folder: nib310rio
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('uhd', min_pin='x.x.x', max_pin='x.x.x') }}
   entry_points:
@@ -50,6 +54,15 @@ requirements:
     - pkg-config
 
   host:
+    # B300 code requires <linux/dma-buf.h>, which is not included in Linux
+    # kernel 3.10.0 used by the default sysroot of 2.17 (as of writing).
+    # We could require c_stdlib_version of 2.28 to get a new enough kernel
+    # version, but instead we depend on the newer kernel-headers package
+    # directly in host (so it doesn't conflict with the default sysroot)
+    # and rely on the fact that only the B300 code really uses the kernel
+    # headers and so we don't break default sysroot compatibility except
+    # for B300 which requires an external kernel module anyway.
+    - kernel-headers_{{ target_platform }} 4.18.0  # [linux]
     - libabseil
     - libboost-devel
     - libgrpc
