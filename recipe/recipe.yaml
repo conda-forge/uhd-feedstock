@@ -158,13 +158,9 @@ tests:
           - usrpctl --help || (($? == 1))
           - rfnoc_image_builder --help || (($? == 1))
         else:
-          # do not use %ERRORLEVEL% or !ERRORLEVEL!, but ERRORLEVEL, c.f.
-          # https://devblogs.microsoft.com/oldnewthing/20080926-00/?p=20743;
-          # while `if ... NEQ 1 exit 1` would be nicer, NEQ is incompatible with
-          # using bare ERRORLEVEL, see https://stackoverflow.com/a/74148543
-          - uhd_images_downloader --help & if ERRORLEVEL ==1 (exit 0) else (exit 1)
-          - usrpctl --help & if ERRORLEVEL ==1 (exit 0) else (exit 1)
-          - rfnoc_image_builder --help & if ERRORLEVEL ==1 (exit 0) else (exit 1)
+          - uhd_images_downloader --help & if !ERRORLEVEL! GTR 1 (exit /b !ERRORLEVEL!) else (exit /b 0)
+          - usrpctl --help & if !ERRORLEVEL! GTR 1 (exit /b !ERRORLEVEL!) else (exit /b 0)
+          - rfnoc_image_builder --help & if !ERRORLEVEL! GTR 1 (exit /b !ERRORLEVEL!) else (exit /b 0)
       - uhd_config_info --print-all
       - if: unix
         then: uhd_find_devices || (($? < 128))
