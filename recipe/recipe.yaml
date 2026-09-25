@@ -133,7 +133,7 @@ tests:
       lib:
         - uhd
       files:
-        - ${{ "Lib/" if win else "lib/"}}python*/site-packages/uhd/**
+        - ${{ "Lib/" if win else "lib/" }}python*/site-packages/uhd/**
         - if: win
           then: Lib/python*/site-packages/uhd-${{ version }}.dist-info/**
         - ${{ "Library/" if win }}lib/cmake/uhd/*.cmake
