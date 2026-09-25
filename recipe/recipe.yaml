@@ -158,9 +158,9 @@ tests:
           - usrpctl --help || (($? == 1))
           - rfnoc_image_builder --help || (($? == 1))
         else:
-          - uhd_images_downloader --help & if !ERRORLEVEL! GTR 1 (exit /b !ERRORLEVEL!) else (exit /b 0)
-          - usrpctl --help & if !ERRORLEVEL! GTR 1 (exit /b !ERRORLEVEL!) else (exit /b 0)
-          - rfnoc_image_builder --help & if !ERRORLEVEL! GTR 1 (exit /b !ERRORLEVEL!) else (exit /b 0)
+          - uhd_images_downloader --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
+          - usrpctl --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
+          - rfnoc_image_builder --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
       - uhd_config_info --print-all
       - if: unix
         then: uhd_find_devices || (($? < 128))
