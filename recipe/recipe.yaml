@@ -133,16 +133,19 @@ tests:
       lib:
         - uhd
       files:
-        - ${{ "Lib/" if win else "lib/" }}python*/site-packages/uhd/**
+        - ${{ "Lib/" if win else "lib/python*" }}site-packages/uhd/**
         - if: win
           then: Lib/python*/site-packages/uhd-${{ version }}.dist-info/**
         - ${{ "Library/" if win }}lib/cmake/uhd/*.cmake
         - ${{ "Library/" if win }}lib/uhd/**
-        - ${{ "Library/" if win }}pkgconfig/uhd.pc
+        - ${{ "Library/" if win }}lib/pkgconfig/uhd.pc
         - ${{ "Library/" if win }}share/doc/uhd/**
-        - ${{ "Library/" if win }}share/man/man1/rfnoc*
-        - ${{ "Library/" if win }}share/man/man1/uhd*
-        - ${{ "Library/" if win }}share/man/man1/usrp*
+        - if: unix
+          then: ${{ "Library/" if win }}share/man/man1/rfnoc*
+        - if: unix
+          then: ${{ "Library/" if win }}share/man/man1/uhd*
+        - if: unix
+          then: ${{ "Library/" if win }}share/man/man1/usrp*
         - ${{ "Library/" if win }}share/uhd/**
         - if: win
           then: Scripts/rfnoc*-script.py
