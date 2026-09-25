@@ -34,31 +34,26 @@ build:
   python:
     entry_points:
       - if: win
-        then: rfnoc_image_builder = uhd.rfnoc_image_builder_cmd:main
-      - if: win
-        then: rfnoc_modtool = uhd.rfnoc_modtool_cmd:main
-      - uhd_convert_cal_data = uhd.utils.convert_cal_data:main
+        then:
+          - rfnoc_image_builder = uhd.rfnoc_image_builder_cmd:main
+          - rfnoc_modtool = uhd.rfnoc_modtool_cmd:main
+          - usrpctl = uhd.usrpctl_script_cmd:main
       - if: not linux
         then: uhd_images_downloader = uhd.uhd_images_downloader_cmd:main
+      - uhd_convert_cal_data = uhd.utils.convert_cal_data:main
       - uhd_power_cal = uhd.utils.uhd_power_cal:main
-      - if: win
-        then: usrpctl = uhd.usrpctl_script_cmd:main
 
 requirements:
   build:
     - if: build_platform != target_platform
-      then: python
-    - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
-    # needs to run protoc & grpc_cpp_plugin
-    - if: build_platform != target_platform
-      then: libgrpc
-    - if: build_platform != target_platform
-      then: libprotobuf
-    - if: build_platform != target_platform
-      then: pybind11
-    - if: build_platform != target_platform
-      then: numpy
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        # needs to run protoc & grpc_cpp_plugin
+        - libgrpc
+        - libprotobuf
+        - pybind11
+        - numpy
     - ${{ compiler("c") }}
     - ${{ stdlib("c") }}
     - ${{ compiler("cxx") }}
