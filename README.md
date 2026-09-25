@@ -18,7 +18,6 @@ Software Radio Peripheral (USRP(TM)) SDR platform, created and sold by
 Ettus Research. UHD supports all Ettus Research USRP(TM) hardware,
 including all motherboards and daughterboards, and the combinations thereof.
 
-
 Current build status
 ====================
 
