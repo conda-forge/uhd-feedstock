@@ -111,6 +111,7 @@ tests:
       bin:
         - rfnoc_image_builder
         - rfnoc_modtool
+        - uhd_adc_self_cal
         - uhd_cal_rx_iq_balance
         - uhd_cal_tx_dc_offset
         - uhd_cal_tx_iq_balance
@@ -125,22 +126,30 @@ tests:
         - if: linux
           then: usrp2_card_burner
       include:
-        - nib310rio/nib310rio.h
+        - if: linux
+          then: nib310rio/nib310rio.h
         - uhd.h
         - uhd/**
       lib:
         - uhd
-      site_packages:
-        - uhd
       files:
-        - ${{ "Library/" if win }}/lib/cmake/uhd/*.cmake
-        - ${{ "Library/" if win }}/lib/uhd/**
-        - ${{ "Library/" if win }}/pkgconfig/uhd.pc
-        - ${{ "Library/" if win }}/share/doc/uhd/**
-        - ${{ "Library/" if win }}/share/man/man1/rfnoc*
-        - ${{ "Library/" if win }}/share/man/man1/uhd*
-        - ${{ "Library/" if win }}/share/man/man1/usrp*
-        - ${{ "Library/" if win }}/share/uhd/**
+        - ${{ "Lib/" if win else "lib/"}}python*/site-packages/uhd/**
+        - if: win
+          then: Lib/python*/site-packages/uhd-${{ version }}.dist-info/**
+        - ${{ "Library/" if win }}lib/cmake/uhd/*.cmake
+        - ${{ "Library/" if win }}lib/uhd/**
+        - ${{ "Library/" if win }}pkgconfig/uhd.pc
+        - ${{ "Library/" if win }}share/doc/uhd/**
+        - ${{ "Library/" if win }}share/man/man1/rfnoc*
+        - ${{ "Library/" if win }}share/man/man1/uhd*
+        - ${{ "Library/" if win }}share/man/man1/usrp*
+        - ${{ "Library/" if win }}share/uhd/**
+        - if: win
+          then: Scripts/rfnoc*-script.py
+        - if: win
+          then: Scripts/uhd*-script.py
+        - if: win
+          then: Scripts/usrp*-script.py
   - python:
       imports:
         - uhd
