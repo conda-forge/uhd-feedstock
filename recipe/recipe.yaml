@@ -1,0 +1,183 @@
+schema_version: 1
+
+context:
+  uhd_lib: uhd
+  version: "4.11.0.0"
+  nib310rio_version: "1.0.0"
+
+package:
+  name: uhd
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/EttusResearch/uhd/archive/v${{ version }}.tar.gz
+    sha256: 1e53faec13ea2be9dd8f765956157d1434f41fa0a124fac8f7b2340f8445b026
+    patches:
+      - 0001-usrp2-Include-DSP-bit-gain-derived-from-peak-stream-.patch
+      - 0002-python-Fix-libpyuhd-install_name-on-macOS.patch
+      - 0003-cmake-Make-libuhd-linking-to-Python-library-PRIVATE.patch
+      - 0004-cmake-Don-t-set-package_dir-in-setup.py.in.patch
+      - 0005-cmake-Prefer-python-config-extension-suffix-to-hard-.patch
+      - 0006-lib-types-Declare-types-used-with-digital_filter_-ba.patch
+      - 0007-cmake-Remove-dynamic_lookup-flat_namespace-linker-fl.patch
+      - 0008-utils-rfnoc_modtool-Add-main-function-so-it-can-be-a.patch
+      - 0009-Add-option-to-control-building-a-Python-wheel.patch
+      - 0010-Adjust-pyproject.toml-to-be-looser-on-Python-version.patch
+      - 0011-cmake-Use-CONFIG-mode-to-find-protobuf.patch
+      - 0012-cmake-Add-missing-log_add_impl.hpp-to-distributed-he.patch
+  - url: https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+sourcefiles/nib310rio/${{ nib310rio_version }}-0ubuntu1~resolute1/nib310rio_${{ nib310rio_version }}.orig.tar.xz
+    sha256: afbbdb12f9565a0ac20542c44c5f37e76ad549afc5ee333958a7e12bd846d347
+    target_directory: nib310rio
+
+build:
+  number: 3
+  python:
+    entry_points:
+      - if: win
+        then:
+          - rfnoc_image_builder = uhd.rfnoc_image_builder_cmd:main
+          - rfnoc_modtool = uhd.rfnoc_modtool_cmd:main
+          - usrpctl = uhd.usrpctl_script_cmd:main
+      - if: not linux
+        then: uhd_images_downloader = uhd.uhd_images_downloader_cmd:main
+      - uhd_convert_cal_data = uhd.utils.convert_cal_data:main
+      - uhd_power_cal = uhd.utils.uhd_power_cal:main
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        # needs to run protoc & grpc_cpp_plugin
+        - libgrpc
+        - libprotobuf
+        - pybind11
+        - numpy
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler("cxx") }}
+    - cmake >=3.5.1
+    - ninja
+    - pkg-config
+  host:
+    # B300 code requires <linux/dma-buf.h>, which is not included in Linux
+    # kernel 3.10.0 used by the default sysroot of 2.17 (as of writing).
+    # We could require c_stdlib_version of 2.28 to get a new enough kernel
+    # version, but instead we depend on the newer kernel-headers package
+    # directly in host (so it doesn't conflict with the default sysroot)
+    # and rely on the fact that only the B300 code really uses the kernel
+    # headers and so we don't break default sysroot compatibility except
+    # for B300 which requires an external kernel module anyway.
+    - if: linux
+      then: kernel-headers_${{ target_platform }} ==4.18.0
+    - libabseil
+    - libboost-devel
+    - libgrpc
+    - libprotobuf
+    - libusb
+    - mako >=0.5.0
+    - if: not win
+      then: ncurses
+    - numpy
+    - if: win
+      then: pip
+    - if: win
+      then: poetry
+    - pybind11
+    - python
+    - requests
+    - ruamel.yaml
+    - setuptools
+  run:
+    - mako >=0.5.0
+    - if: not win
+      then: ncurses
+    - python
+    - pyyaml
+    - requests
+    - ruamel.yaml
+  run_exports:
+    - ${{ pin_subpackage("uhd", lower_bound="x.x.x", upper_bound="x.x.x") }}
+
+tests:
+  - package_contents:
+      strict: true
+      bin:
+        - rfnoc_image_builder
+        - rfnoc_modtool
+        - uhd_adc_self_cal
+        - uhd_cal_rx_iq_balance
+        - uhd_cal_tx_dc_offset
+        - uhd_cal_tx_iq_balance
+        - uhd_config_info
+        - uhd_convert_cal_data
+        - uhd_find_devices
+        - uhd_image_loader
+        - uhd_images_downloader
+        - uhd_power_cal
+        - uhd_usrp_probe
+        - usrpctl
+        - if: linux
+          then: usrp2_card_burner
+      include:
+        - if: linux
+          then: nib310rio/nib310rio.h
+        - uhd.h
+        - uhd/**
+      lib:
+        - uhd
+      files:
+        - ${{ "Lib/" if win else "lib/python*" }}site-packages/uhd/**
+        - if: win
+          then: Lib/site-packages/uhd-${{ version }}.dist-info/**
+        - ${{ "Library/" if win }}lib/cmake/uhd/*.cmake
+        - ${{ "Library/" if win }}lib/uhd/**
+        - ${{ "Library/" if win }}lib/pkgconfig/uhd.pc
+        - ${{ "Library/" if win }}share/doc/uhd/**
+        - if: unix
+          then:
+            - ${{ "Library/" if win }}share/man/man1/rfnoc*
+            - ${{ "Library/" if win }}share/man/man1/uhd*
+            - ${{ "Library/" if win }}share/man/man1/usrp*
+        - ${{ "Library/" if win }}share/uhd/**
+        - if: win
+          then:
+            - Scripts/rfnoc*-script.py
+            - Scripts/uhd*-script.py
+            - Scripts/usrp*-script.py
+  - python:
+      imports:
+        - uhd
+      pip_check: false
+  - script:
+      - if: unix
+        then:
+          # expect exit code of 1 for --help
+          - uhd_images_downloader --help || (($? == 1))
+          - usrpctl --help || (($? == 1))
+          - rfnoc_image_builder --help || (($? == 1))
+        else:
+          - uhd_images_downloader --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
+          - usrpctl --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
+          - rfnoc_image_builder --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
+      - uhd_config_info --print-all
+      - if: unix
+        then: uhd_find_devices || (($? < 128))
+
+about:
+  license: GPL-3.0-or-later
+  license_file: host/LICENSE
+  summary: Software driver and API for the Ettus Research USRP SDR platform
+  description: |
+    UHD is the free & open-source software driver and API for the Universal
+    Software Radio Peripheral (USRP(TM)) SDR platform, created and sold by
+    Ettus Research. UHD supports all Ettus Research USRP(TM) hardware,
+    including all motherboards and daughterboards, and the combinations thereof.
+  homepage: httsp://github.com/EttusResearch/uhd
+  repository: https://github.com/EttusResearch/uhd
+  documentation: https://files.ettus.com/manual/
+
+extra:
+  recipe-maintainers:
+    - ryanvolz
