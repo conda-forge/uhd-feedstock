@@ -135,41 +135,41 @@ tests:
       files:
         - ${{ "Lib/" if win else "lib/python*" }}site-packages/uhd/**
         - if: win
-          then: Lib/python*/site-packages/uhd-${{ version }}.dist-info/**
+          then: Lib/site-packages/uhd-${{ version }}.dist-info/**
         - ${{ "Library/" if win }}lib/cmake/uhd/*.cmake
         - ${{ "Library/" if win }}lib/uhd/**
         - ${{ "Library/" if win }}lib/pkgconfig/uhd.pc
         - ${{ "Library/" if win }}share/doc/uhd/**
         - if: unix
-          then: ${{ "Library/" if win }}share/man/man1/rfnoc*
-        - if: unix
-          then: ${{ "Library/" if win }}share/man/man1/uhd*
-        - if: unix
-          then: ${{ "Library/" if win }}share/man/man1/usrp*
+          then:
+            - ${{ "Library/" if win }}share/man/man1/rfnoc*
+            - ${{ "Library/" if win }}share/man/man1/uhd*
+            - ${{ "Library/" if win }}share/man/man1/usrp*
         - ${{ "Library/" if win }}share/uhd/**
         - if: win
-          then: Scripts/rfnoc*-script.py
-        - if: win
-          then: Scripts/uhd*-script.py
-        - if: win
-          then: Scripts/usrp*-script.py
+          then:
+            - Scripts/rfnoc*-script.py
+            - Scripts/uhd*-script.py
+            - Scripts/usrp*-script.py
   - python:
       imports:
         - uhd
       pip_check: false
   - script:
-      - if: not win
-        then: uhd_images_downloader --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi
-      - if: win
-        then: uhd_images_downloader --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
-      - if: not win
-        then: usrpctl --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi
-      - if: win
-        then: usrpctl --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
-      - if: not win
-        then: rfnoc_image_builder --help || ec=$?; if [ $ec -gt 1 ]; then exit $ec; fi
-      - if: win
-        then: rfnoc_image_builder --help || if !ERRORLEVEL! LEQ 1 cmd /c "exit /b 0"
+      - if: unix
+        then:
+          # expect exit code of 1 for --help
+          - uhd_images_downloader --help || (($? == 1))
+          - usrpctl --help || (($? == 1))
+          - rfnoc_image_builder --help || (($? == 1))
+        else:
+          # do not use %ERRORLEVEL% or !ERRORLEVEL!, but ERRORLEVEL, c.f.
+          # https://devblogs.microsoft.com/oldnewthing/20080926-00/?p=20743;
+          # while `if ... NEQ 1 exit 1` would be nicer, NEQ is incompatible with
+          # using bare ERRORLEVEL, see https://stackoverflow.com/a/74148543
+          - uhd_images_downloader --help & if ERRORLEVEL ==1 (exit 0) else (exit 1)
+          - usrpctl --help & if ERRORLEVEL ==1 (exit 0) else (exit 1)
+          - rfnoc_image_builder --help & if ERRORLEVEL ==1 (exit 0) else (exit 1)
       - uhd_config_info --print-all
       - if: unix
         then: uhd_find_devices || (($? < 128))
