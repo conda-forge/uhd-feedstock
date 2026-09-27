@@ -22,8 +22,8 @@ jobs:
       max-parallel: 50
       matrix:
         include:
-          - CONFIG: linux_64_python3.11.____cpython
-            CONFIG_SHORT: linux_64_python3.11.____cpython
+          - CONFIG: linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315
+            CONFIG_SHORT: linux_64_channel_sourcesconda-forgeconda_h3d149755
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -35,8 +35,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_64_python3.12.____cpython
-            CONFIG_SHORT: linux_64_python3.12.____cpython
+          - CONFIG: linux_64_channel_sourcesconda-forgepython3.11.____cpython
+            CONFIG_SHORT: linux_64_channel_sourcesconda-forgepytho_hda691198
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -48,8 +48,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_64_python3.13.____cp313
-            CONFIG_SHORT: linux_64_python3.13.____cp313
+          - CONFIG: linux_64_channel_sourcesconda-forgepython3.12.____cpython
+            CONFIG_SHORT: linux_64_channel_sourcesconda-forgepytho_h39cb0187
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -61,8 +61,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_64_python3.14.____cp314
-            CONFIG_SHORT: linux_64_python3.14.____cp314
+          - CONFIG: linux_64_channel_sourcesconda-forgepython3.13.____cp313
+            CONFIG_SHORT: linux_64_channel_sourcesconda-forgepytho_h0fc1e113
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -74,8 +74,21 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_aarch64_python3.11.____cpython
-            CONFIG_SHORT: linux_aarch64_python3.11.____cpython
+          - CONFIG: linux_64_channel_sourcesconda-forgepython3.14.____cp314
+            CONFIG_SHORT: linux_64_channel_sourcesconda-forgepytho_h796430ae
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: True
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
+          - CONFIG: linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315
+            CONFIG_SHORT: linux_aarch64_channel_sourcesconda-forge_h7fab9775
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -87,8 +100,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-24.04-arm']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_aarch64_python3.12.____cpython
-            CONFIG_SHORT: linux_aarch64_python3.12.____cpython
+          - CONFIG: linux_aarch64_channel_sourcesconda-forgepython3.11.____cpython
+            CONFIG_SHORT: linux_aarch64_channel_sourcesconda-forge_h8236412a
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -100,8 +113,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-24.04-arm']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_aarch64_python3.13.____cp313
-            CONFIG_SHORT: linux_aarch64_python3.13.____cp313
+          - CONFIG: linux_aarch64_channel_sourcesconda-forgepython3.12.____cpython
+            CONFIG_SHORT: linux_aarch64_channel_sourcesconda-forge_h3e54468e
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -113,8 +126,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-24.04-arm']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_aarch64_python3.14.____cp314
-            CONFIG_SHORT: linux_aarch64_python3.14.____cp314
+          - CONFIG: linux_aarch64_channel_sourcesconda-forgepython3.13.____cp313
+            CONFIG_SHORT: linux_aarch64_channel_sourcesconda-forge_h38a75925
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -126,8 +139,21 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-24.04-arm']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_ppc64le_python3.11.____cpython
-            CONFIG_SHORT: linux_ppc64le_python3.11.____cpython
+          - CONFIG: linux_aarch64_channel_sourcesconda-forgepython3.14.____cp314
+            CONFIG_SHORT: linux_aarch64_channel_sourcesconda-forge_hb122908b
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
+            STORE_BUILD_ARTIFACTS: True
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-24.04-arm']
+            tools_install_dir: ~/miniforge3
+          - CONFIG: linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315
+            CONFIG_SHORT: linux_ppc64le_channel_sourcesconda-forge_h4f0dc6bf
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -139,8 +165,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_ppc64le_python3.12.____cpython
-            CONFIG_SHORT: linux_ppc64le_python3.12.____cpython
+          - CONFIG: linux_ppc64le_channel_sourcesconda-forgepython3.11.____cpython
+            CONFIG_SHORT: linux_ppc64le_channel_sourcesconda-forge_h56214672
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -152,8 +178,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_ppc64le_python3.13.____cp313
-            CONFIG_SHORT: linux_ppc64le_python3.13.____cp313
+          - CONFIG: linux_ppc64le_channel_sourcesconda-forgepython3.12.____cpython
+            CONFIG_SHORT: linux_ppc64le_channel_sourcesconda-forge_h8fa0db24
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -165,8 +191,8 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_ppc64le_python3.14.____cp314
-            CONFIG_SHORT: linux_ppc64le_python3.14.____cp314
+          - CONFIG: linux_ppc64le_channel_sourcesconda-forgepython3.13.____cp313
+            CONFIG_SHORT: linux_ppc64le_channel_sourcesconda-forge_h39f177a6
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
@@ -178,8 +204,21 @@ jobs:
             resize_partitions: False
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
-          - CONFIG: win_64_python3.11.____cpython
-            CONFIG_SHORT: win_64_python3.11.____cpython
+          - CONFIG: linux_ppc64le_channel_sourcesconda-forgepython3.14.____cp314
+            CONFIG_SHORT: linux_ppc64le_channel_sourcesconda-forge_hbaf03674
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: True
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
+          - CONFIG: win_64_channel_sourcesconda-forgeconda-forgelabelpython_rcpython3.15.____cp315
+            CONFIG_SHORT: win_64_channel_sourcesconda-forgeconda-f_hec7db75e
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
             build_platform: win-64
@@ -191,8 +230,8 @@ jobs:
             resize_partitions: False
             runs_on: ['windows-2022']
             tools_install_dir: D:\Miniforge
-          - CONFIG: win_64_python3.12.____cpython
-            CONFIG_SHORT: win_64_python3.12.____cpython
+          - CONFIG: win_64_channel_sourcesconda-forgepython3.11.____cpython
+            CONFIG_SHORT: win_64_channel_sourcesconda-forgepython3_hdcc11507
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
             build_platform: win-64
@@ -204,8 +243,8 @@ jobs:
             resize_partitions: False
             runs_on: ['windows-2022']
             tools_install_dir: D:\Miniforge
-          - CONFIG: win_64_python3.13.____cp313
-            CONFIG_SHORT: win_64_python3.13.____cp313
+          - CONFIG: win_64_channel_sourcesconda-forgepython3.12.____cpython
+            CONFIG_SHORT: win_64_channel_sourcesconda-forgepython3_h87b221f0
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
             build_platform: win-64
@@ -217,8 +256,21 @@ jobs:
             resize_partitions: False
             runs_on: ['windows-2022']
             tools_install_dir: D:\Miniforge
-          - CONFIG: win_64_python3.14.____cp314
-            CONFIG_SHORT: win_64_python3.14.____cp314
+          - CONFIG: win_64_channel_sourcesconda-forgepython3.13.____cp313
+            CONFIG_SHORT: win_64_channel_sourcesconda-forgepython3_hcde7023c
+            STORE_BUILD_ARTIFACTS: True
+            UPLOAD_PACKAGES: True
+            build_platform: win-64
+            build_workspace_dir: D:\\bld\\
+            docker_run_args: 
+            free_disk_space: skip
+            os: windows
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['windows-2022']
+            tools_install_dir: D:\Miniforge
+          - CONFIG: win_64_channel_sourcesconda-forgepython3.14.____cp314
+            CONFIG_SHORT: win_64_channel_sourcesconda-forgepython3_h6690d29e
             STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
             build_platform: win-64
