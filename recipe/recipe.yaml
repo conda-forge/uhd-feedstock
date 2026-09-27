@@ -30,7 +30,7 @@ source:
     target_directory: nib310rio
 
 build:
-  number: 3
+  number: 4
   python:
     entry_points:
       - if: win
@@ -81,9 +81,9 @@ requirements:
       then: ncurses
     - numpy
     - if: win
-      then: pip
-    - if: win
-      then: poetry
+      then:
+        - pip
+        - poetry
     - pybind11
     - python
     - requests
