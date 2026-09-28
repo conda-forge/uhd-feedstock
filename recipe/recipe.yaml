@@ -30,7 +30,7 @@ source:
     target_directory: nib310rio
 
 build:
-  number: 3
+  number: 4
   python:
     entry_points:
       - if: win
@@ -75,15 +75,17 @@ requirements:
     - libboost-devel
     - libgrpc
     - libprotobuf
+    # Since Python 3.15, library is split into libpython output needed by CMake
+    - libpython
     - libusb
     - mako >=0.5.0
     - if: not win
       then: ncurses
     - numpy
     - if: win
-      then: pip
-    - if: win
-      then: poetry
+      then:
+        - pip
+        - poetry
     - pybind11
     - python
     - requests
@@ -99,6 +101,11 @@ requirements:
     - ruamel.yaml
   run_exports:
     - ${{ pin_subpackage("uhd", lower_bound="x.x.x", upper_bound="x.x.x") }}
+  ignore_run_exports:
+    from_package:
+      # CMake needs to find it, but it is only linked when ENABLE_SIM=ON
+      # and we have that disabled
+      - libpython
 
 tests:
   - package_contents:
@@ -128,9 +135,9 @@ tests:
       lib:
         - uhd
       files:
-        - ${{ "Lib/" if win else "lib/python*" }}site-packages/uhd/**
+        - ${{ "Lib/" if (win and match(python, "<3.15")) else "lib/python*" }}site-packages/uhd/**
         - if: win
-          then: Lib/site-packages/uhd-${{ version }}.dist-info/**
+          then: ${{ "Lib/" if match(python, "<3.15") else "lib/python*" }}site-packages/uhd-${{ version }}.dist-info/**
         - ${{ "Library/" if win }}lib/cmake/uhd/*.cmake
         - ${{ "Library/" if win }}lib/uhd/**
         - ${{ "Library/" if win }}lib/pkgconfig/uhd.pc
