@@ -101,6 +101,11 @@ requirements:
     - ruamel.yaml
   run_exports:
     - ${{ pin_subpackage("uhd", lower_bound="x.x.x", upper_bound="x.x.x") }}
+  ignore_run_exports:
+    from_package:
+      # CMake needs to find it, but it is only linked when ENABLE_SIM=ON
+      # and we have that disabled
+      - libpython
 
 tests:
   - package_contents:
