@@ -30,7 +30,7 @@ source:
     target_directory: nib310rio
 
 build:
-  number: 4
+  number: 5
   python:
     entry_points:
       - if: win
